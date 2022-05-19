@@ -1,12 +1,15 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { NavbarTop, NavigationBar } from './Components/Navbar';
+import { NavigationBar } from './Components/Navbar';
+import Background from './Components/Background';
 
 function App() {
   return (
     <div className="App">
       <NavigationBar/>
+      <Background/>
     </div>
   );
 }

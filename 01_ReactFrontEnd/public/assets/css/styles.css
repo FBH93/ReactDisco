@@ -1,0 +1,68 @@
+.discoNav {
+  --bs-bg-opacity: 1;
+  background-color: #53736a !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("../../assets/img/bar.svg");
+}
+
+.btn-primary {
+  background-color: #53736a !important;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #455f58 !important;
+  color: #fff;
+}
+
+.form-control:focus {
+  border-color: #53736a !important;
+  box-shadow: 0 0 0 0.25rem rgba(83,115,106,0.2);
+}
+
+.btn-primary:focus {
+  border-color: #53736a !important;
+  box-shadow: 0 0 0 0.25rem rgba(83,115,106,0.2);
+}
+
+.disco-form-row {
+  padding-top: 16px;
+}
+
+.loginStatus {
+  background-color: var(--bs-white) !important;
+  border-radius: 5px;
+  margin: 5px;
+  color: var(--bs-gray-dark) !important;
+}
+
+.accountAddress {
+  font-size: 1.5em;
+}
+
+.dashboardLogout {
+  visibility: hidden;
+}
+
+.cartInfo {
+  visibility: hidden;
+}
+
+.shopGridLink {
+  text-decoration: none !important;
+}
+
+.discoCard {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+.discoGrid {
+  margin-top: 50px;
+}
+
