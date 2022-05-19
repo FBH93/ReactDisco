@@ -1,0 +1,107 @@
+[
+  {
+    "productID" : 1,
+    "productName" : "Disco Pants",
+    "productPrice" : 899,
+    "style" : "sportswear",
+    "type" : "pants"
+  },
+  {
+    "productID" : 2,
+    "productName" : "Disco Jacket",
+    "productPrice" : 349,
+    "style" : "sportswear",
+    "type" : "jackets"
+  },
+  {
+    "productID" : 3,
+    "productName" : "Disco Headband",
+    "productPrice" : 149,
+    "style" : "sportswear",
+    "type" : "accessories"
+  },
+  {
+    "productID" : 4,
+    "productName" : "Disco Bumper",
+    "productPrice" : 299,
+    "style" : "sportswear",
+    "type" : "jackets"
+  },
+  {
+    "productID" : 5,
+    "productName" : "Disco Tights",
+    "productPrice" : 400,
+    "style" : "70s",
+    "type" : "pants"
+  },
+  {
+    "productID" : 6,
+    "productName" : "Disco Shirt Flower",
+    "productPrice" : 400,
+    "style" : "70s",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 7,
+    "productName" : "Disco Shirt More Flower",
+    "productPrice" : 400,
+    "style" : "space",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 8,
+    "productName" : "Disco Shirt Tight",
+    "productPrice" : 400,
+    "style" : "space",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 9,
+    "productName" : "Disco Top",
+    "productPrice" : 400,
+    "style" : "70s",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 10,
+    "productName" : "Disco Oversized Shirt",
+    "productPrice" : 400,
+    "style" : "80s",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 11,
+    "productName" : "Disco Glitter Shirt",
+    "productPrice" : 400,
+    "style" : "space",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 12,
+    "productName" : "Disco Space T-Shirt",
+    "productPrice" : 400,
+    "style" : "space",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 13,
+    "productName" : "Disco Bra",
+    "productPrice" : 350,
+    "style" : "space",
+    "type" : "accessories"
+  },
+  {
+    "productID" : 14,
+    "productName" : "Disco Space Dress",
+    "productPrice" : 400,
+    "style" : "space",
+    "type" : "shirt"
+  },
+  {
+    "productID" : 15,
+    "productName" : "Disco Space Pants",
+    "productPrice" : 400,
+    "style" : "space",
+    "type" : "pants"
+  }
+]

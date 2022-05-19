@@ -1,0 +1,23 @@
+[
+    {
+      "customerId" : "1",
+      "firstName" : "John",
+      "lastName" : "Doe",
+      "email" : "johndoe@gmail.com",
+      "address" : "Somestreet avenue 24"
+    },
+    {
+        "customerId" : "2",
+        "firstName" : "Peter",
+        "lastName" : "Larsen",
+        "email" : "pete@gmail.com",
+        "address" : "Anotherstreet avenue 21"
+    },
+    {
+        "customerId" : "3",
+        "firstName" : "Eliza",
+        "lastName" : "Smith",
+        "email" : "elizas@mail.dk",
+        "address" : "Nowarealstreet street 4"
+    }
+]

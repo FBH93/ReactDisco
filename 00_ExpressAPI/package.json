@@ -1,0 +1,17 @@
+{
+  "name": "disco-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "discoAPI.js",
+  "scripts": {
+    "start": "node customerAPI.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Group 14",
+  "license": "",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

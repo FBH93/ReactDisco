@@ -1,0 +1,56 @@
+
+// GET ALL PRODUCTS
+GET http://localhost:3000/products HTTP/1.1
+###
+
+// GET SPECFIC PRODUCT WITH IDENTIFIER
+GET http://localhost:3000/products/11 HTTP/1.1
+###
+
+// GET PRODUCT BY SPECIFIED FILTERS
+GET http://localhost:3000/products/filter/?type=shirt HTTP/1.1
+###
+GET http://localhost:3000/products/filter/?type=shirt&style=70s HTTP/1.1
+###
+GET http://localhost:3000/products/filter/?style=70s HTTP/1.1
+###
+
+//GET CATEGORIES
+GET http://localhost:3000/categories HTTP/1.1
+###
+
+//GET CATEGORIES BY NAME
+GET http://localhost:3000/categories/type HTTP/1.1
+###
+
+//GET CATEGORIES BY SIZE
+GET http://localhost:3000/categories/size HTTP/1.1
+###
+
+// GET CUSTOMER BY IDENTIFIER
+GET http://localhost:3000/customer/1 HTTP/1.1
+###
+
+// GET BASKET BY CUSTOMERID
+GET http://localhost:3000/basket/1 HTTP/1.1
+###
+GET http://localhost:3000/basket/2 HTTP/1.1
+###
+
+//CREATE BASKET FOR CUSTOMERID
+POST http://localhost:3000/basket/1 HTTP/1.1
+###
+POST http://localhost:3000/basket/2 HTTP/1.1
+###
+
+//ADD ITEM TO BASKET 
+PUT http://localhost:3000/basket/1/?productID=11&size=S HTTP/1.1
+###
+PUT http://localhost:3000/basket/1/?productID=12&size=M HTTP/1.1
+###
+PUT http://localhost:3000/basket/1/?productID=12 HTTP/1.1
+###
+
+//REMOVE ITEM FROM BASKET
+DELETE http://localhost:3000/basket/1/?productID=11&size=S HTTP/1.1
+###
