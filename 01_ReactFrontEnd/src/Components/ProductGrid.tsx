@@ -31,7 +31,7 @@ export function productToString(props: product) {
           <h1 id="productName" className="fs-2 text-center">
           {props.productName}
           </h1>
-        <img className="mt-5 mb-5" id="productImage" src={"/assets/img/products/" + props.productID + ".jpg"} width="300px" />
+        <img className="mt-5 mb-5" id="productImage" src={"/assets/img/products/" + props.productID + ".jpg"} alt-text="productImage" width="300px" />
         <h1 id="productName-1" className="fs-3 fw-light text-center">
           {props.productPrice + "DKK"}
         </h1>
