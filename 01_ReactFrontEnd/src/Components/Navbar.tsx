@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import React, {Component, useCallback, useRef, useState} from 'react'
+import ProductGrid from './ProductGrid'
 
 export function NavigationBar() {
 
@@ -29,6 +30,7 @@ export function NavigationBar() {
       console.log('filter is ' + filter + ', and profile is' + profile)
     }
     return (
+    <div>
     <Navbar bg="dark" variant="dark" expand="lg" onSelect={handleSelect}>
         <Container>
             <Navbar.Brand href="#home" >
@@ -62,6 +64,8 @@ export function NavigationBar() {
             </Navbar.Collapse>
         </Container>
     </Navbar>
+    <ProductGrid filter={filter.filter} type={filter.type}/>
+    </div>
     )
 }
 export default Navbar
