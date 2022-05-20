@@ -8,7 +8,7 @@ export default function ProductsCall(filter:Filter) {
     fetch(API)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res)
+        console.log(res) //This prints twice, for some reason??
         getProducts(res)
       })
   }
