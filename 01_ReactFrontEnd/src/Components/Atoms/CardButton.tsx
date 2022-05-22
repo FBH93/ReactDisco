@@ -1,16 +1,22 @@
-import { Component } from 'react'
+import { Component, useState } from 'react'
+import { Button } from 'react-bootstrap'
+import Alert from 'react-bootstrap/Alert'
 
-export class CardButton extends Component {
-  render() {
+
+export const CardButton = () => {
+
+  const [isAdded, setIsAdded] = useState(false);
+
+  const alert = () => {
+    setIsAdded(true)
+  } 
     return (
-        <>
-            <div className="row text-center mt-1">
-                <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" style={{ marginBottom: '25px' }}>Add to cart</button></div>
-            </div>
-            <div className="alert alert-success cartInfo" role="alert"><span><strong>The item has been added to your card.</strong></span></div>
-        </>
+      <>
+          <div className="col">
+            <Button onClick = {alert} className="btn btn-primary" data-bss-hover-animate="pulse" type="button" style={{ marginBottom: '25px' }}>Add to cart</Button></div>
+           {isAdded ? <Alert variant="success"> Added to cart! </Alert> : null }
+      </>
     )
-  }
 }
 
 export default CardButton

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import CardButton from "./Atoms/CardButton";
 
 //Product type based on JSON
 export type product = {
@@ -88,9 +89,9 @@ export const Product = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div>
+                <CardButton />
+                {/* <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div> */}
               </div>
-              <div className="alert alert-success cartInfo" role="alert"><span><strong>The item has been added to your card.</strong></span></div>
             </div>
           </div>
         </div>
