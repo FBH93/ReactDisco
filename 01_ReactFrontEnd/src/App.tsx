@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { Product } from './Components/Product';
 import { render } from 'react-dom';
 import {Account} from './Components/Account';
+import { Greetings } from './Components/Atoms/Greetings';
 
 class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <NavigationBar />
+          <Greetings/>
           <Routes>
               <Route path="/" element={<ProductGrid filter1={'None'} filter2={'None'}/>}/>
               <Route path="/products/70s" element={<ProductGrid filter1={'style=70s'} filter2={'None'}/>} />

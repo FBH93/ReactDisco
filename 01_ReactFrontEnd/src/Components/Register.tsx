@@ -41,9 +41,13 @@ const register = () => {
 
   }
 
+const registerWithAPI = () => {
+
+}
+
   const handleSubmit = () => {
     localStorage.clear();
-    navigate("/home", {replace: true});
+    navigate("/", {replace: true});
   }
 
   const checkMatch = () => {

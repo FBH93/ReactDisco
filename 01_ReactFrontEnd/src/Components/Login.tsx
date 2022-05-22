@@ -32,6 +32,7 @@ const login = () => {
     else {
     setIsSubmitted(true);
     setLogin(true);
+    localStorage.setItem("isLoggedIn", "true")
     navigate(-1);
     }
  };
