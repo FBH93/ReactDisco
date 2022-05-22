@@ -3,6 +3,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { NavigationBar } from './Components/Navbar';
+import { Basket } from './Components/Basket';
 import Background from './Components/Background';
 import ProductGrid from './Components/ProductGrid';
 
@@ -10,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <NavigationBar/>
-      <ProductGrid filter={''} type={'None'}/> 
+      <Basket/>
     </div>
   );
 }

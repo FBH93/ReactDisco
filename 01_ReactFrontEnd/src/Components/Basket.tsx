@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 
-export const Basket = (props: {id:number}) => {
+export const Basket = () => {
 
   const [selectedSize, setProductSize] = useState("");
   const [isAdded, setIsAdded] = useState(false);
@@ -168,7 +168,7 @@ export const Basket = (props: {id:number}) => {
             <div className="col d-flex justify-content-center align-items-center">
               <p className="fs-4 fw-light" style={{marginTop: '12px'}}>{value /*this is size*/}</p>
             </div>
-            <div className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" style={{padding: '25px'}}><button onClick={() => removeFromCart(thisProductId)} className="btn btn-primary" type="button" ><i className="fa fa-trash fs-2" /></button></div>
+            <div className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" style={{padding: '25px'}}><button onClick={() => removeFromCart(thisProductId)} className="btn btn-primary" type="button" ><i className="fa fa-trash fs-2" />Remove</button></div>
           
           </div>
       );

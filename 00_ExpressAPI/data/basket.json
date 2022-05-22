@@ -1,1 +1,29 @@
-[{"customerId":"1","products":[{"productID":11,"productName":"Disco Glitter Shirt","productPrice":400,"style":"space","type":"shirt","size":"L"},{"productID":11,"productName":"Disco Glitter Shirt","productPrice":400,"style":"space","type":"shirt","size":"L"}]},{"customerId":"2","products":[]}]
+[
+    {
+       "customerId":"1",
+       "products":[
+          {
+             "productID":11,
+             "productName":"Disco Glitter Shirt",
+             "productPrice":400,
+             "style":"space",
+             "type":"shirt",
+             "size":"L"
+          },
+          {
+             "productID":11,
+             "productName":"Disco Glitter Shirt",
+             "productPrice":400,
+             "style":"space",
+             "type":"shirt",
+             "size":"L"
+          }
+       ]
+    },
+    {
+       "customerId":"2",
+       "products":[
+          
+       ]
+    }
+ ]
