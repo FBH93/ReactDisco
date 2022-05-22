@@ -21,15 +21,19 @@ export default function ProductsCall(filter:Filter) {
 
 }
 
+  //get products from API
 function getAPI(filter:Filter){
-  if (filter.type === 'None' || filter.type === undefined){
+    //Return all products if no filter
+  if (filter.filter1 === 'None' || filter.filter1 === undefined){
     return 'http://localhost:3000/products';
   }
-  if (filter.filter === 'None' || filter.filter === undefined){
-    return 'http://localhost:3000/products/filter/?type=' + filter.type
+    //return products with only filter1
+  if (filter.filter2 === 'None' || filter.filter2 === undefined){
+    return 'http://localhost:3000/products/filter/?' + filter.filter1
   }
+    //Return products with both filter parameters
   else {
-    return 'http://localhost:3000/products/filter/?type=' + filter.type + '&' + filter.filter
+    return 'http://localhost:3000/products/filter/?' + filter.filter1 + '&' + filter.filter2
   }
 }
 
