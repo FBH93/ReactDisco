@@ -1,4 +1,4 @@
-import { Form, Navbar } from 'react-bootstrap';
+import { Alert, Form, Navbar } from 'react-bootstrap';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,8 +25,10 @@ const login = () => {
 
     if (password !== inputPassword) {
     setErrorMessages({ name: "pass", message: errors.pass });
+    alert('Wrong Password');
     } 
     if(email !== inputEmail){
+    alert('Wrong Email');
     setErrorMessages({ name: "email", message: errors.uname });
     }
     else {
