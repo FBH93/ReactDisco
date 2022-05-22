@@ -8,7 +8,7 @@ import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from '
 import { LoginForm } from './Login'
 import { RegisterForm } from './Register'
 
-export class NavigationBar extends React.Component <{}, { showModal: boolean, showSignUp: boolean, isLogin: boolean}> {
+export class NavigationBar extends React.Component <{}, { showModal: boolean, showSignUp: boolean, isLogin: string}> {
     profile: string;
     
     constructor(props){
@@ -17,7 +17,7 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
         this.state = {
             showModal: false,
             showSignUp: false,
-            isLogin: true
+            isLogin: "false"
           }
     }
 
@@ -51,7 +51,7 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
       }
     
     setLogin(){
-        this.setState({isLogin: true})
+        this.setState({isLogin: "true"})
     }
 
     setProfile(profileName: string){
@@ -90,7 +90,7 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            {this.state.isLogin ? <Nav.Link eventKey="button" onClick={() => this.openModal()}> Hello {localStorage.getItem("name")! }</Nav.Link> : 
+                            {localStorage.getItem("isLoggedIn") == "true" ? <Nav.Link eventKey="button" onClick={() => this.openModal()}> Hello {localStorage.getItem("name")! }</Nav.Link> : 
                             <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>}
                             <Nav.Link eventKey="Basket" href="#basket">basket</Nav.Link>
                         </Nav>
