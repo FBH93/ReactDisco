@@ -22,13 +22,12 @@ export class NavigationBar extends Component {
     }
 
     handleFilter(filterA, filterB){
-        setState1(filterA){
-            this.setState(
-                {filter1 : filterA}
-        }
-
+        this.setState(
+            {filter1 : filterA}
+        );
+        this.setState(
             {filter2 : filterB}
-        )
+        );
     }
 
     closeModal() {
@@ -76,8 +75,6 @@ export class NavigationBar extends Component {
     }
 
     render() {
-        const filter = this.filter1;
-        const filter2 = this.filter2;
         const profile = this.profile;
         return (
         <div>
