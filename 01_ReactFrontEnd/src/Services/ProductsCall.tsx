@@ -29,11 +29,11 @@ function getAPI(filter:Filter){
   }
     //return products with only filter1
   if (filter.filter2 === 'None' || filter.filter2 === undefined){
-    return 'http://localhost:3000/products/filter/?type=' + filter.filter1
+    return 'http://localhost:3000/products/filter/?' + filter.filter1
   }
     //Return products with both filter parameters
   else {
-    return 'http://localhost:3000/products/filter/?type=' + filter.filter1 + '&' + filter.filter2
+    return 'http://localhost:3000/products/filter/?' + filter.filter1 + '&' + filter.filter2
   }
 }
 

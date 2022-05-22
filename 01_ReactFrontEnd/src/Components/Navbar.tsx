@@ -89,7 +89,7 @@ export class NavigationBar extends Component {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        <ProductGrid filter1={'style=70s'} filter2={'None'}/>
+        <ProductGrid filter1={'None'} filter2={'None'}/>
         </div>
         );
     }
