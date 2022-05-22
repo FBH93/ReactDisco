@@ -1,7 +1,11 @@
 import React from 'react'
 import { useState } from "react";
+import BasketCall from '../Services/BasketCall'
 
-
+export type typeBasket = {
+  customerID: string;
+  products: Array<Object>
+}
 
 export const Basket = () => {
 
@@ -16,6 +20,8 @@ export const Basket = () => {
     type: string; 
     details: string;
   }
+  
+
 
   const products: Array<typeProduct> = [
     { productID: 1, productName: "Disco pants", productPrice: 899, style: "Sportswear", type: "pants", details: "You will be hip and fash with these rocking disco pants!"},
@@ -36,44 +42,65 @@ export const Basket = () => {
   ];
 
   let cart: Map<typeProduct, string> = new Map<typeProduct, string>() ;
+  
 
   function fillCart() {
     //TODO: make a fillCart version, that reads from API
+    
 
     //if not logged in. make an if statement
-    console.log("fillcart runs")
-
-    for (let i = 0; i < localStorage.length; i++) {
-      console.log("loop runs" + localStorage.length)
-      let productID = localStorage.key(i); 
-      console.log("productID: " + productID);
-      let splitted;
-      if(productID){
-        if (localStorage.getItem(productID)){
-          splitted = (localStorage.getItem(productID)?.split(", ")) 
-         }
-        };
-
+    if(localStorage.getItem("CustomerID")){
+      console.log("logged in")
+      let contents:typeBasket; 
+      let cID = localStorage.getItem("CustomerID");
+      if(cID){
+        console.log(BasketCall(cID))
+      }
       
-
-      if (splitted)if (splitted[0]  == "product") {
-        console.log("second if works")
-        let thisProduct;
-        for (let i = 0; i < products.length; i++) {
-          console.log("number 3 productID = " +productID?.substring(7)+ " products[i].productID = "+ products[i].productID)
-          if (productID) if (parseInt(productID.substring(7)) == products[i].productID) {
-            console.log("number 4")
-            thisProduct = products[i];
-            console.log(thisProduct.productName);
+      
+    }
+    else {
+      for (let i = 0; i < localStorage.length; i++) {
+        console.log("loop runs" + localStorage.length)
+        let productID = localStorage.key(i); 
+        console.log("productID: " + productID);
+        let splitted;
+        if(productID){
+          if (localStorage.getItem(productID)){
+            splitted = (localStorage.getItem(productID)?.split(", ")) 
           }
-        }
-        let size: string = splitted[1];
-        if(thisProduct){
-          cart.set(thisProduct, size);
-        }
+          };
+
         
+
+        if (splitted)if (splitted[0]  == "product") {
+          console.log("second if works")
+          let thisProduct;
+          for (let i = 0; i < products.length; i++) {
+            console.log("number 3 productID = " +productID?.substring(7)+ " products[i].productID = "+ products[i].productID)
+            if (productID) if (parseInt(productID.substring(7)) == products[i].productID) {
+              console.log("number 4")
+              thisProduct = products[i];
+              console.log(thisProduct.productName);
+            }
+          }
+          let size: string = splitted[1];
+          if(thisProduct){
+            cart.set(thisProduct, size);
+          }
       }
     }
+  }
+    
+  }
+
+
+  const pseudoLogin = (cID: string) => {
+    localStorage.setItem("CustomerID", cID);
+  }
+
+  const pseudoLogout = () => {
+    localStorage.removeItem("CustomerID");
   }
 
 
@@ -154,8 +181,7 @@ export const Basket = () => {
     cart.forEach((value: string, key: typeProduct) => {
       let thisProduct: typeProduct = key;
       let thisProductId: number = thisProduct.productID;
-      console.log("Eh?");
-      console.log(thisProductId);
+      
       buffer.push(
         <div className="row row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row-cols-xl-5 row-cols-xxl-5 justify-content-start" style={{background: '#ffffff', borderRadius: '5px', margin: '5px', marginBottom: '30px'}}>
             <div className="col d-flex d-md-flex d-xxl-flex justify-content-center align-items-center justify-content-md-center justify-content-xxl-center align-items-xxl-center"><img src={getImgPathById(thisProductId)} width="90x" /></div>
@@ -204,6 +230,9 @@ export const Basket = () => {
             </div>
           </div>
         </div>
+         {/* delete the two buttons below later */}
+        <div className='testLogin'> <button onClick={() => pseudoLogin("1")} className="btn btn-primary" type="button" >test log in</button> </div>
+        <div className='testLogout'> <button onClick={() => pseudoLogout()} className="btn btn-primary" type="button" >test log out</button> </div>
         <div className="container" id="discoSaleButtonContent" />
     </div>      
 
