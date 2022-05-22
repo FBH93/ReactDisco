@@ -36,14 +36,18 @@ const register = () => {
     localStorage.setItem("zip", inputZip);
     localStorage.setItem("street", inputStreet);
     localStorage.setItem("city", inputCity);
-    localStorage.setItem("isLogin", "1");
+    localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("CustomerID", "TestID");
 
   }
 
+const registerWithAPI = () => {
+
+}
+
   const handleSubmit = () => {
     localStorage.clear();
-    navigate("/home", {replace: true});
+    navigate("/", {replace: true});
   }
 
   const checkMatch = () => {

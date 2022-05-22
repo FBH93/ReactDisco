@@ -8,7 +8,7 @@ import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from '
 import { LoginForm } from './Login'
 import { RegisterForm } from './Register'
 
-export class NavigationBar extends React.Component <{}, {showModal: boolean, showSignUp: boolean, filter1: string, filter2: string}> {
+export class NavigationBar extends React.Component <{}, { showModal: boolean, showSignUp: boolean, isLogin: string}> {
     profile: string;
     
     constructor(props){
@@ -17,18 +17,8 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
         this.state = {
             showModal: false,
             showSignUp: false,
-            filter1: 'None',
-            filter2: 'None'
+            isLogin: "false"
           }
-    }
-
-    handleFilter(filterA, filterB){
-        this.setState(
-            {filter1 : filterA}
-        );
-        this.setState(
-            {filter2 : filterB}
-        );
     }
 
     closeModal() {
@@ -55,31 +45,25 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
           {showSignUp : false}
         )
       }
-
-    /*
-    setFilter(filter1: string, filter2: string){
-        this.filter1 = filter1;
-        this.filter2 = filter2;
+    
+    closeAfterLogin() {
+        this.setState({showModal: false})
+        localStorage.setItem("isLoggedIn", "false");
+      }
+    
+    setLogin(){
+        this.setState({isLogin: "true"})
     }
-    */
 
     setProfile(profileName: string){
         this.profile = profileName + 1;
     }
 
-    handleSelect=(e)=>{
-      console.log(e);
-      var debugFilterMsg = 'filter1 is ' + this.state.filter1 + ', filter2 is '+ this.state.filter2 + ',  and profile is ' + this.profile
-      console.log(debugFilterMsg)
-    }
-
     render() {
         const profile = this.profile;
-        var filter1 = this.state.filter1
-        var filter2 = this.state.filter2
         return (
         <div>
-        <Navbar bg="dark" variant="dark" expand="lg" onSelect={this.handleSelect}>
+        <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="/" >
                 <img
@@ -96,18 +80,19 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link eventKey="button" href="#button">Some Button</Nav.Link>
-                            <Nav.Link onClick={(event)=> this.handleFilter('None', 'None')} href="#products">All Products</Nav.Link>
+                            <Nav.Link href="#products">All Products</Nav.Link>
                             <NavDropdown title="Styles" id="basic-nav-dropdown">
-                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=70s', 'None')} href="/products/70s">70s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=80s', 'None')} href="/products/80s">80s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=sportswear', 'None')} href="/products/sportswear">Sportswear</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=space', 'None')} href="/products/space">Space</NavDropdown.Item>
+                                <NavDropdown.Item href="/products/70s">70s</NavDropdown.Item>
+                                <NavDropdown.Item href="/products/80s">80s</NavDropdown.Item>
+                                <NavDropdown.Item href="/products/sportswear">Sportswear</NavDropdown.Item>
+                                <NavDropdown.Item href="/products/space">Space</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item eventKey="SomeLink" href="#SomeLink">Some separate link</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>
+                            {localStorage.getItem("isLoggedIn") === "true" ? <Nav.Link eventKey="button" onClick={() => this.openModal()}> Hello {localStorage.getItem("firstname")}! </Nav.Link> : 
+                            <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>}
                             <Nav.Link eventKey="Basket" href="#basket">basket</Nav.Link>
                         </Nav>
                         <Modal
@@ -121,18 +106,20 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
                                         <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
                                 </ModalHeader>
                                 <ModalBody>
-                                    <LoginForm />
+                                {localStorage.getItem("isLoggedIn") === "true" ? <Button onClick={() => this.closeAfterLogin()}> Logout </Button> : 
+                                    <LoginForm />}
                                 </ModalBody>
                                 <ModalFooter>
-                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={() => this.handleSignup()}>Register new account</button></div>
+                                {localStorage.getItem("isLoggedIn") === "true" ? null :
+                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={() => this.handleSignup()}>Register new account</button></div> }
                                 </ModalFooter>
                             </Modal> 
                             <Modal
-                            size="lg"
-                            aria-labelledby="contained-modal-title-vcenter"
-                            centered
-                            role="dialog" tabindex="-1" id="signupModal"
-                            show = {this.state.showSignUp}>
+                                size="lg"
+                                aria-labelledby="contained-modal-title-vcenter"
+                                centered
+                                role="dialog" tabindex="-1" id="signupModal"
+                                show = {this.state.showSignUp}>
                                 <ModalHeader>
                                     <ModalTitle> DiscoClothing® Members</ModalTitle>
                                         <Button variant="secondary" onClick={() => this.closeSignup()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
