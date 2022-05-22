@@ -44,6 +44,11 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
           {showSignUp : false}
         )
       }
+    
+    closeAfterLogin() {
+        this.setState({showModal: false});
+        console.log(this.state.showModal);
+      }
 
     setProfile(profileName: string){
         this.profile = profileName + 1;
@@ -102,11 +107,11 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
                                 </ModalFooter>
                             </Modal> 
                             <Modal
-                            size="lg"
-                            aria-labelledby="contained-modal-title-vcenter"
-                            centered
-                            role="dialog" tabindex="-1" id="signupModal"
-                            show = {this.state.showSignUp}>
+                                size="lg"
+                                aria-labelledby="contained-modal-title-vcenter"
+                                centered
+                                role="dialog" tabindex="-1" id="signupModal"
+                                show = {this.state.showSignUp}>
                                 <ModalHeader>
                                     <ModalTitle> DiscoClothing® Members</ModalTitle>
                                         <Button variant="secondary" onClick={() => this.closeSignup()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
