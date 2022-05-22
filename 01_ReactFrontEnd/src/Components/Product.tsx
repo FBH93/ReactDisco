@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 //Product type based on JSON
 export type product = {
@@ -9,9 +10,10 @@ export type product = {
   type : string
 };
 
-export const Product = (props: {id:number}) => {
+export const Product = () => {
 
   const [selectedSize, setProductSize] = useState("");
+  let { id } = useParams();
   
   const products = [
     { productID: 1, productName: "Disco pants", productPrice: 899, style: "Sportswear", type: "pants", details: "You will be hip and fash with these rocking disco pants!"},
@@ -35,22 +37,25 @@ export const Product = (props: {id:number}) => {
     product: "product not found",
   };
 
-  const getNameById = (id:number) => {
-    let prod = products.find((product) => product.productID === id)
+  const getNameById = (id:any) => {
+    let intID = parseInt(id)
+    let prod = products.find((product) => product.productID === intID)
     return prod ? prod.productName : errors.product
   };
 
-  const getPriceById = (id:number) => {
-    let prod = products.find((product) => product.productID === id) 
+  const getPriceById = (id:any) => {
+    let intID = parseInt(id)
+    let prod = products.find((product) => product.productID === intID) 
     return prod ? prod.productPrice + " DKK" : errors.product
   };
 
-  const getDescById = (id:number) => {
-    let prod = products.find((product) => product.productID === id) 
+  const getDescById = (id:any) => {
+    let intID = parseInt(id)
+    let prod = products.find((product) => product.productID === intID) 
     return prod ? prod.details : errors.product
   };
 
-  const addItem = (id:number) => { 
+  const addItem = (id:any) => { 
     localStorage.setItem("product" + id, "product, " + selectedSize)
   };
  
@@ -59,11 +64,11 @@ export const Product = (props: {id:number}) => {
         <div className="container">
           <div className="row">
             <div className="col">
-              <div id="discoProductImage" style={{background: 'url("assets/img/products/' + props.id + '.jpg") no-repeat', backgroundSize: 'contain', height: '512px'}} />
+              <div id="discoProductImage" style={{background: 'url("../assets/img/products/' + id + '.jpg") no-repeat', backgroundSize: 'contain', height: '512px'}} />
             </div>
             <div className="col mt-5">
-              <h2 id="discoProductName">{getNameById(props.id)}</h2>
-              <p id="discoProductDesc">{getDescById(props.id)}</p>
+              <h2 id="discoProductName">{getNameById(id)}</h2>
+              <p id="discoProductDesc">{getDescById(id)}</p>
               <div className="row">
                 <div className="col"><div className="btn-group btn-group-toggle" style={{paddingBottom: '16px'}} data-toggle="buttons">
                   <label className="btn btn-secondary">
@@ -79,11 +84,11 @@ export const Product = (props: {id:number}) => {
                     <input type="radio" name="size" id="XL" autoComplete="off" onClick={(event) => {setProductSize("XL")}} /> XL
                   </label>
                   </div>
-                  <h2 id="discoProductPrice" style={{ marginBottom: '25px', marginTop: '25px' }}>{getPriceById(props.id)}</h2>
+                  <h2 id="discoProductPrice" style={{ marginBottom: '25px', marginTop: '25px' }}>{getPriceById(id)}</h2>
                 </div>
               </div>
               <div className="row">
-                <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(props.id)} style={{ marginBottom: '25px' }}>Add to cart</button></div>
+                <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div>
               </div>
               <div className="alert alert-success cartInfo" role="alert"><span><strong>The item has been added to your card.</strong></span></div>
             </div>
