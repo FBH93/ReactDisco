@@ -10,3 +10,14 @@ export async function getCustomerById(req, res) {
     res.status(404).send(error.message);
   }
 }
+
+export async function postCustomer(req, res) {
+  try {
+    let customerId = req.params.customerId;
+    await customerModel.createCustomer(customerId);
+    res.status(201).send('');
+    res.end();
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}

@@ -31,3 +31,17 @@ function findCustomer(customersArray, customerId) {
     (customers) => customers.customerId === customerId
   );
 }
+
+export async function createCustomer(customerId) {
+  let customersArray = await getAll();
+  if (findCustomer(customersArray, customerId) !== -1)
+    throw new Error(`Customer #${customerId} already has a user`);
+  let newCustomer = { customerId: customerId, firstName: "x", lastName: "y", email: "x@y.dk", address: "blabla"  };
+  customersArray.push(newCustomer);
+  await save(customersArray);
+}
+
+async function save(customersArray) {
+  let customers = JSON.stringify(customersArray);
+  await fs.writeFile(CUSTOMER_DB, customers);
+}
