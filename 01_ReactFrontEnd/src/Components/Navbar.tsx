@@ -6,16 +6,34 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import React, {Component, useCallback, useRef, useState} from 'react'
 import ProductGrid from './ProductGrid'
 import { render } from 'react-dom'
+import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from 'react-bootstrap'
+import { LoginForm } from './Login'
 
 export class NavigationBar extends Component {
     filter: string;
     type: string;
-    profile: string
+    profile: string;
+
     constructor(props){
         super(props);
         this.filter = ''
         this.type = 'None'
         this.profile = 'Profile'
+        this.state = {
+            showModal: false
+          }
+    }
+
+    closeModal() {
+        this.setState(
+          {showModal : false}
+        )
+      }
+    
+    openModal() {
+        this.setState(
+            {showModal : true}
+          )
     }
 
     setFilter(filter: string, type: string){
@@ -83,9 +101,25 @@ export class NavigationBar extends Component {
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link eventKey="Profile" onClick={(event)=> this.setProfile(profile)} href="#profile">{profile}</Nav.Link>
+                            <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>
                             <Nav.Link eventKey="Basket" href="#basket">basket</Nav.Link>
                         </Nav>
+                        <Modal
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                            role="dialog" tabindex="-1" id="loginModal">
+                                <ModalHeader>
+                                    <ModalTitle> DiscoClothing® Members</ModalTitle>
+                                        <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <LoginForm />
+                                </ModalBody>
+                                <ModalFooter>
+                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={this.closeModal}>Register new account</button></div>
+                                </ModalFooter>
+                        </Modal>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
