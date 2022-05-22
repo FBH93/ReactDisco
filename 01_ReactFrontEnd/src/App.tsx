@@ -16,7 +16,8 @@ class App extends React.Component {
         <div>
           <NavigationBar />
           <Routes>
-              <Route path="/" element={<ProductGrid filter1={'70s'} filter2={'None'}/>}/>
+              <Route path = "/home" element = {<Background/>}/>
+              <Route path="/" element={<ProductGrid filter1={'None'} filter2={'None'}/>}/>
               <Route path="/products/70s" element={<ProductGrid filter1={'70s'} filter2={'None'}/>} />
               <Route path="/products/80s" element={<ProductGrid filter1={'80s'} filter2={'None'}/>} />
               <Route path="/products/sportswear" element={<ProductGrid filter1={'sportswear'} filter2={'None'}/>} />

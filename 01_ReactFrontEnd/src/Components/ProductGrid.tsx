@@ -2,7 +2,6 @@ import ProductsCall from '../Services/ProductsCall'
 import Product, { product } from '../Components/Product'
 import Sizometer from './Atoms/Sizometer'
 import CardButton from './Atoms/CardButton'
-import { idText } from 'typescript'
 
 export type Filter = {
   filter1: string;
@@ -35,7 +34,7 @@ export function productToString(props: product) {
           </h1>
         <img className="mt-5 mb-5" id="productImage" src={"/assets/img/products/" + props.productID + ".jpg"} alt-text="productImage" width="300px" />
         <h1 id="productName-1" className="fs-3 fw-light text-center">
-          {props.productPrice + "DKK"}
+          {props.productPrice + " DKK"}
         </h1>
         </a>
         <Sizometer />
