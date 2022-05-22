@@ -10,17 +10,25 @@ import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from '
 import { LoginForm } from './Login'
 
 export class NavigationBar extends Component {
-    filter1: string;
-    filter2: string;
     profile: string;
     constructor(props){
         super(props);
-        this.filter1 = ''
-        this.filter2 = 'None'
         this.profile = 'Profile'
         this.state = {
-            showModal: false
+            showModal: false,
+            filter1: 'None',
+            filter2: 'None'
           }
+    }
+
+    handleFilter(filterA, filterB){
+        setState1(filterA){
+            this.setState(
+                {filter1 : filterA}
+        }
+
+            {filter2 : filterB}
+        )
     }
 
     closeModal() {
