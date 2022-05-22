@@ -6,8 +6,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import React, {Component, useCallback, useRef, useState} from 'react'
 import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from 'react-bootstrap'
 import { LoginForm } from './Login'
+import { RegisterForm } from './Register'
 
-export class NavigationBar extends React.Component <{}, {showModal: boolean, filter1: string, filter2: string}> {
+export class NavigationBar extends React.Component <{}, {showModal: boolean, showSignUp: boolean, filter1: string, filter2: string}> {
     profile: string;
     
     constructor(props){
@@ -15,6 +16,7 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
         this.profile = 'Profile'
         this.state = {
             showModal: false,
+            showSignUp: false,
             filter1: 'None',
             filter2: 'None'
           }
@@ -41,6 +43,25 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
           )
     }
 
+    handleSignup() {
+    this.setState(
+        {showModal : false,
+        showSignUp: true}
+      )
+    }
+
+    closeSignup() {
+        this.setState(
+          {showSignUp : false}
+        )
+      }
+
+    /*
+    setFilter(filter1: string, filter2: string){
+        this.filter1 = filter1;
+        this.filter2 = filter2;
+    }
+    */
 
     setProfile(profileName: string){
         this.profile = profileName + 1;
@@ -102,8 +123,22 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
                                     <LoginForm />
                                 </ModalBody>
                                 <ModalFooter>
-                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={this.closeModal}>Register new account</button></div>
+                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={() => this.handleSignup()}>Register new account</button></div>
                                 </ModalFooter>
+                            </Modal> 
+                            <Modal
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                            role="dialog" tabindex="-1" id="signupModal"
+                            show = {this.state.showSignUp}>
+                                <ModalHeader>
+                                    <ModalTitle> DiscoClothing® Members</ModalTitle>
+                                        <Button variant="secondary" onClick={() => this.closeSignup()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <RegisterForm />
+                                </ModalBody>
                             </Modal> 
                 </Navbar.Collapse>
             </Container>
@@ -112,4 +147,5 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
         );
     }
 }
+
 export default Navbar
