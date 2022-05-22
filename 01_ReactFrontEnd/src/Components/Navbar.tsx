@@ -9,7 +9,7 @@ import { render } from 'react-dom'
 import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from 'react-bootstrap'
 import { LoginForm } from './Login'
 
-export class NavigationBar extends React.Component <{}, {showModal: boolean}> {
+export class NavigationBar extends React.Component <{}, {showModal: boolean, filter1: string, filter2: string}> {
     profile: string;
     
     constructor(props){
@@ -43,10 +43,12 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean}> {
           )
     }
 
+    /*
     setFilter(filter1: string, filter2: string){
         this.filter1 = filter1;
         this.filter2 = filter2;
     }
+    */
 
     setProfile(profileName: string){
         this.profile = profileName + 1;
@@ -72,11 +74,14 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean}> {
 */
     handleSelect=(e)=>{
       console.log(e);
-      console.log('filter1 is ' + this.filter1 + ', filter2 is '+ this.filter2 + ',  and profile is ' + this.profile)
+      var debugFilterMsg = 'filter1 is ' + this.state.filter1 + ', filter2 is '+ this.state.filter2 + ',  and profile is ' + this.profile
+      console.log(debugFilterMsg)
     }
 
     render() {
         const profile = this.profile;
+        var filter1 = this.state.filter1
+        var filter2 = this.state.filter2
         return (
         <div>
         <Navbar bg="dark" variant="dark" expand="lg" onSelect={this.handleSelect}>
@@ -96,11 +101,11 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean}> {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link eventKey="button" href="#button">Some Button</Nav.Link>
-                            <Nav.Link onClick={(event)=> this.setFilter('', 'None')} href="#products">All Products</Nav.Link>
+                            <Nav.Link onClick={(event)=> this.handleFilter('None', 'None')} href="#products">All Products</Nav.Link>
                             <NavDropdown title="Styles" id="basic-nav-dropdown">
-                                <NavDropdown.Item onClick={(event)=> this.setFilter('style=70s', 'None')} href="#70s">70s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.setFilter('style=80s', 'None')} href="#80s">80s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.setFilter('style=sportswear', 'None')} href="#Price">sportswear</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=70s', 'None')} href="#70s">70s</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=80s', 'None')} href="#80s">80s</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=sportswear', 'None')} href="#sportswear">sportswear</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item eventKey="SomeLink" href="#SomeLink">Some separate link</NavDropdown.Item>
                             </NavDropdown>
@@ -113,7 +118,7 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean}> {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        <ProductGrid filter1={'None'} filter2={'None'}/>
+        <ProductGrid filter1={filter1} filter2={filter2}/>
         </div>
         );
     }
