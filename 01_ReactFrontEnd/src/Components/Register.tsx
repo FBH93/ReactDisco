@@ -34,6 +34,7 @@ const register = () => {
     localStorage.setItem("street", inputStreet);
     localStorage.setItem("city", inputCity);
     localStorage.setItem("isLogin", "1");
+    localStorage.setItem("CustomerID", "TestID");
 
   }
 
