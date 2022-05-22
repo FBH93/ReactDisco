@@ -9,8 +9,9 @@ import { render } from 'react-dom'
 import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from 'react-bootstrap'
 import { LoginForm } from './Login'
 
-export class NavigationBar extends Component {
+export class NavigationBar extends React.Component <{}, {showModal: boolean}> {
     profile: string;
+    
     constructor(props){
         super(props);
         this.profile = 'Profile'
@@ -108,22 +109,7 @@ export class NavigationBar extends Component {
                             <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>
                             <Nav.Link eventKey="Basket" href="#basket">basket</Nav.Link>
                         </Nav>
-                        <Modal
-                            size="lg"
-                            aria-labelledby="contained-modal-title-vcenter"
-                            centered
-                            role="dialog" tabindex="-1" id="loginModal">
-                                <ModalHeader>
-                                    <ModalTitle> DiscoClothing® Members</ModalTitle>
-                                        <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
-                                </ModalHeader>
-                                <ModalBody>
-                                    <LoginForm />
-                                </ModalBody>
-                                <ModalFooter>
-                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={this.closeModal}>Register new account</button></div>
-                                </ModalFooter>
-                        </Modal>
+                        <LoginModal show={this.state.showModal} />
                 </Navbar.Collapse>
             </Container>
         </Navbar>
@@ -133,3 +119,21 @@ export class NavigationBar extends Component {
     }
 }
 export default Navbar
+
+const LoginModal = ({ show }) => 
+<Modal
+size="lg"
+aria-labelledby="contained-modal-title-vcenter"
+centered
+role="dialog" tabindex="-1" id="loginModal">
+    <ModalHeader>
+        <ModalTitle> DiscoClothing® Members</ModalTitle>
+            <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
+    </ModalHeader>
+    <ModalBody>
+        <LoginForm />
+    </ModalBody>
+    <ModalFooter>
+    <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={this.closeModal}>Register new account</button></div>
+    </ModalFooter>
+</Modal>
