@@ -8,6 +8,7 @@ import ProductGrid from './Components/ProductGrid';
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { Product } from './Components/Product';
 import { render } from 'react-dom';
+import {Account} from './Components/Account';
 
 class App extends React.Component {
   render() {

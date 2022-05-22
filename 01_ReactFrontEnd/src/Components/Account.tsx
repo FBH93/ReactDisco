@@ -1,10 +1,14 @@
 import {Col, Container, Row, Button} from 'react-bootstrap';
+import {useNavigate} from 'react-router';
 
 export const Account = () => {
 
+    const navigate = useNavigate();
 
-  const logout = () => {
+    const logout = (e) => {
       localStorage.clear();
+      navigate("/home", {replace: true});
+
   } 
 
     const email = localStorage.getItem("email");
@@ -32,7 +36,7 @@ export const Account = () => {
                   <Col className="col offset-sm-0 offset-md-1 offset-lg-1 offset-xl-2 offset-xxl-2">
                       <h1 className="fs-2 text-start" id="dashboardName">{firstName} {lastName}</h1>                                                                                                              
                       <h1 className="fs-3 fw-light text-start" id="dashboardEmail" style={{marginBottom: "16px"}}>{email}</h1>
-                      <Button className="btn btn-primary dashboardLogout" type="button" onClick={logout} href="#home">Logout</Button>
+                      <Button className="btn btn-primary dashboardLogout" type="button" onClick={logout} >Logout</Button>
                   </Col>
                   <Col className="col"></Col>
                   <Col className="col accountAddress">
