@@ -48,6 +48,7 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
     
     closeAfterLogin() {
         this.setState({showModal: false})
+        localStorage.clear();
       }
     
     setLogin(){
@@ -90,7 +91,7 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            {localStorage.getItem("isLoggedIn") == "true" ? <Nav.Link eventKey="button" onClick={() => this.openModal()}> Hello {localStorage.getItem("name")! }</Nav.Link> : 
+                            {localStorage.getItem("isLoggedIn") == "true" ? <Nav.Link eventKey="button" onClick={() => this.openModal()}> Hello {localStorage.getItem("firstname")}! </Nav.Link> : 
                             <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>}
                             <Nav.Link eventKey="Basket" href="#basket">basket</Nav.Link>
                         </Nav>
@@ -105,10 +106,12 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
                                         <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
                                 </ModalHeader>
                                 <ModalBody>
-                                    <LoginForm />
+                                {localStorage.getItem("isLoggedIn") == "true" ? <Button onClick={() => this.closeAfterLogin()}> Logout </Button> : 
+                                    <LoginForm />}
                                 </ModalBody>
                                 <ModalFooter>
-                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={() => this.handleSignup()}>Register new account</button></div>
+                                {localStorage.getItem("isLoggedIn") == "true" ? null :
+                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={() => this.handleSignup()}>Register new account</button></div> }
                                 </ModalFooter>
                             </Modal> 
                             <Modal
