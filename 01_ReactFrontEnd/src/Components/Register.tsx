@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from "react";
 import {Form} from 'react-bootstrap';
+import { useNavigate } from 'react-router';
 
 export const RegisterForm = () => {
+
+const navigate = useNavigate();
 
 const [show, setShow] = useState(false);
 const [errorMessages, setErrorMessages] = useState({});
@@ -34,7 +37,13 @@ const register = () => {
     localStorage.setItem("street", inputStreet);
     localStorage.setItem("city", inputCity);
     localStorage.setItem("isLogin", "1");
+    localStorage.setItem("CustomerID", "TestID");
 
+  }
+
+  const handleSubmit = () => {
+    localStorage.clear();
+    navigate("/home", {replace: true});
   }
 
   const checkMatch = () => {
@@ -72,7 +81,7 @@ return (
                     </div>
                 </div>
                 <div className="row disco-form-row" style={{paddingTop: "16px"}}>
-                    <div className="col"><button className="btn btn-primary discoButton" data-bss-hover-animate="pulse" id="discoRegister" type="submit">Register</button></div>
+                    <div className="col"><button className="btn btn-primary discoButton" data-bss-hover-animate="pulse" id="discoRegister" type="submit" onClick={handleSubmit}>Register</button></div>
                 </div>
         </Form>
 )}

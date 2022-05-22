@@ -8,6 +8,7 @@ import ProductGrid from './Components/ProductGrid';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Product } from './Components/Product';
 import { render } from 'react-dom';
+import {Account} from './Components/Account';
 
 class App extends React.Component {
   render() {
@@ -23,6 +24,8 @@ class App extends React.Component {
               <Route path="/products/sportswear" element={<ProductGrid filter1={'sportswear'} filter2={'None'}/>} />
               <Route path="/products/space" element={<ProductGrid filter1={'space'} filter2={'None'}/>} />
               <Route path="/product/:id" element={<Product id={1}/>}/>
+              <Route path="/home" element={<Product id={1}/>}/>
+              <Route path="/account" element={<Account/>}/>
           </Routes>
         </div>
       </BrowserRouter>
