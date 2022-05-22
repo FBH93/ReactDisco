@@ -81,9 +81,9 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
         <div>
         <Navbar bg="dark" variant="dark" expand="lg" onSelect={this.handleSelect}>
             <Container>
-                <Navbar.Brand href="#home" >
+                <Navbar.Brand href="/" >
                 <img
-                    src="assets/img/logo/logo-discoclothing--white.svg"
+                    src="../assets/img/logo/logo-discoclothing--white.svg"
                     height="30"
                     className="d-inline-block align-top"
                     alt="DiscoClothing® Logo"
@@ -91,16 +91,17 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, sho
             </Navbar.Brand>
         </Container>
             <Container>
-                <Navbar.Brand href="#home">Home</Navbar.Brand>
+                <Navbar.Brand href="/">Home</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link eventKey="button" href="#button">Some Button</Nav.Link>
                             <Nav.Link onClick={(event)=> this.handleFilter('None', 'None')} href="#products">All Products</Nav.Link>
                             <NavDropdown title="Styles" id="basic-nav-dropdown">
-                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=70s', 'None')} href="#70s">70s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=80s', 'None')} href="#80s">80s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=sportswear', 'None')} href="#sportswear">sportswear</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=70s', 'None')} href="/products/70s">70s</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=80s', 'None')} href="/products/80s">80s</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=sportswear', 'None')} href="/products/sportswear">Sportswear</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.handleFilter('style=space', 'None')} href="/products/space">Space</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item eventKey="SomeLink" href="#SomeLink">Some separate link</NavDropdown.Item>
                             </NavDropdown>
