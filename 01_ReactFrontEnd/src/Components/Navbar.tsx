@@ -4,8 +4,6 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import React, {Component, useCallback, useRef, useState} from 'react'
-import ProductGrid from './ProductGrid'
-import { render } from 'react-dom'
 import { Modal, ModalBody, ModalTitle, ModalHeader, Button, ModalFooter } from 'react-bootstrap'
 import { LoginForm } from './Login'
 
@@ -43,35 +41,11 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
           )
     }
 
-    /*
-    setFilter(filter1: string, filter2: string){
-        this.filter1 = filter1;
-        this.filter2 = filter2;
-    }
-    */
 
     setProfile(profileName: string){
         this.profile = profileName + 1;
     }
 
-/*
-    const [filter,setFilter]=useState({
-        filter: '',
-        type: 'None'
-    });
-
-    const [profile, setProfile]=useState({
-        profileName: 'Profile'
-    });
-
-    const handleSetFilter=({e}) => {
-        setFilter(prevFilter=> ({
-            ...prevFilter,
-            filter: e.filter,
-            type: e.type
-        }))
-    }
-*/
     handleSelect=(e)=>{
       console.log(e);
       var debugFilterMsg = 'filter1 is ' + this.state.filter1 + ', filter2 is '+ this.state.filter2 + ',  and profile is ' + this.profile
@@ -91,7 +65,7 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
                     src="assets/img/logo/logo-discoclothing--white.svg"
                     height="30"
                     className="d-inline-block align-top"
-                    alt="React Bootstrap logo"
+                    alt="DiscoClothing® Logo"
                 /> 
             </Navbar.Brand>
         </Container>
@@ -121,7 +95,7 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
                             role="dialog" tabindex="-1" id="loginModal"
                             show = {this.state.showModal}>
                                 <ModalHeader>
-                                    <ModalTitle> DiscoClothing® Members</ModalTitle>
+                                    <ModalTitle>DiscoClothing® Members</ModalTitle>
                                         <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
                                 </ModalHeader>
                                 <ModalBody>
@@ -134,7 +108,6 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        <ProductGrid filter1={filter1} filter2={filter2}/>
         </div>
         );
     }

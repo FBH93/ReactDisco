@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <NavigationBar/>
-      
+      <ProductGrid filter1={'None'} filter2={'None'}/>
     </div>
   );
 }
