@@ -12,7 +12,6 @@ export type product = {
 export const Product = (props: {id:number}) => {
 
   const [selectedSize, setProductSize] = useState("");
-  const [isAdded, setIsAdded] = useState(false);
   
   const products = [
     { productID: 1, productName: "Disco pants", productPrice: 899, style: "Sportswear", type: "pants", details: "You will be hip and fash with these rocking disco pants!"},
@@ -54,11 +53,6 @@ export const Product = (props: {id:number}) => {
   const addItem = (id:number) => { 
     localStorage.setItem("product" + id, "product, " + selectedSize)
   };
-
-  const itemToCart = (id:number) => {
-    addItem(id)
-    setIsAdded(true)
-  };
  
   return (
     <div>
@@ -89,7 +83,7 @@ export const Product = (props: {id:number}) => {
                 </div>
               </div>
               <div className="row">
-                <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => itemToCart(props.id)} style={{ marginBottom: '25px' }}>Add to cart</button></div>
+                <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(props.id)} style={{ marginBottom: '25px' }}>Add to cart</button></div>
               </div>
               <div className="alert alert-success cartInfo" role="alert"><span><strong>The item has been added to your card.</strong></span></div>
             </div>
