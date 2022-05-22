@@ -1,7 +1,8 @@
 import ProductsCall from '../Services/ProductsCall'
-import { product } from '../Components/Product'
+import Product, { product } from '../Components/Product'
 import Sizometer from './Atoms/Sizometer'
 import CardButton from './Atoms/CardButton'
+import { idText } from 'typescript'
 
 export type Filter = {
   filter1: string;
@@ -25,9 +26,10 @@ else return (<div> FAULTY FILTER </div>)
 }
 
 export function productToString(props: product) {
+
   return (
         <>
-        <a className="shopGridLink" href={"/product.html?id=" + props.productID} style={{ color: '#455f58' }}>
+        <a className="shopGridLink" href={"/product/" + props.productID} style={{ color: '#455f58' }}>
           <h1 id="productName" className="fs-2 text-center">
           {props.productName}
           </h1>
