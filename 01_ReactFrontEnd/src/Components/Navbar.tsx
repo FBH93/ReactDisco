@@ -8,19 +8,19 @@ import ProductGrid from './ProductGrid'
 import { render } from 'react-dom'
 
 export class NavigationBar extends Component {
-    filter: string;
-    type: string;
-    profile: string
+    filter1: string;
+    filter2: string;
+    profile: string;
     constructor(props){
         super(props);
-        this.filter = ''
-        this.type = 'None'
+        this.filter1 = ''
+        this.filter2 = 'None'
         this.profile = 'Profile'
     }
 
-    setFilter(filter: string, type: string){
-        this.filter = filter;
-        this.type = type;
+    setFilter(filter1: string, filter2: string){
+        this.filter1 = filter1;
+        this.filter2 = filter2;
     }
 
     setProfile(profileName: string){
@@ -47,12 +47,12 @@ export class NavigationBar extends Component {
 */
     handleSelect=(e)=>{
       console.log(e);
-      console.log('filter is ' + this.filter + ', and profile is ' + this.profile)
+      console.log('filter1 is ' + this.filter1 + ', filter2 is '+ this.filter2 + ',  and profile is ' + this.profile)
     }
 
     render() {
-        const filter = this.filter;
-        const type = this.type;
+        const filter = this.filter1;
+        const filter2 = this.filter2;
         const profile = this.profile;
         return (
         <div>
@@ -75,9 +75,9 @@ export class NavigationBar extends Component {
                             <Nav.Link eventKey="button" href="#button">Some Button</Nav.Link>
                             <Nav.Link onClick={(event)=> this.setFilter('', 'None')} href="#products">All Products</Nav.Link>
                             <NavDropdown title="Styles" id="basic-nav-dropdown">
-                                <NavDropdown.Item onClick={(event)=> this.setFilter('70s', 'style')} href="#70s">70s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.setFilter('80s', 'style')} href="#80s">80s</NavDropdown.Item>
-                                <NavDropdown.Item onClick={(event)=> this.setFilter('sportswear', 'style')} href="#Price">sportswear</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.setFilter('style=70s', 'None')} href="#70s">70s</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.setFilter('style=80s', 'None')} href="#80s">80s</NavDropdown.Item>
+                                <NavDropdown.Item onClick={(event)=> this.setFilter('style=sportswear', 'None')} href="#Price">sportswear</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item eventKey="SomeLink" href="#SomeLink">Some separate link</NavDropdown.Item>
                             </NavDropdown>
@@ -89,7 +89,7 @@ export class NavigationBar extends Component {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        <ProductGrid filter={filter} type={type}/>
+        <ProductGrid filter1={'None'} filter2={'None'}/>
         </div>
         );
     }

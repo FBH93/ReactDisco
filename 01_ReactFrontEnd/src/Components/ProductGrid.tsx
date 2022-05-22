@@ -4,8 +4,8 @@ import Sizometer from './Atoms/Sizometer'
 import CardButton from './Atoms/CardButton'
 
 export type Filter = {
-  filter: string;
-  type: string;
+  filter1: string;
+  filter2: string;
 }
 
 function ProductGrid(filter:Filter) {
