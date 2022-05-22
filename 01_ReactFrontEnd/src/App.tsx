@@ -24,7 +24,6 @@ class App extends React.Component {
               <Route path="/products/sportswear" element={<ProductGrid filter1={'sportswear'} filter2={'None'}/>} />
               <Route path="/products/space" element={<ProductGrid filter1={'space'} filter2={'None'}/>} />
               <Route path="/product/:id" element={<Product id={1}/>}/>
-              <Route path="/home" element={<Product id={1}/>}/>
               <Route path="/account" element={<Account/>}/>
           </Routes>
         </div>
