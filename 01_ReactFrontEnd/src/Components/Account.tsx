@@ -4,7 +4,7 @@ export const Account = () => {
 
 
   const logout = () => {
-      localStorage.clear;
+      localStorage.clear();
   } 
 
     const email = localStorage.getItem("email");
