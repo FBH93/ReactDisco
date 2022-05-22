@@ -114,7 +114,23 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
                             <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>
                             <Nav.Link eventKey="Basket" href="#basket">basket</Nav.Link>
                         </Nav>
-                        <LoginModal show={this.state.showModal} />
+                        <Modal
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                            role="dialog" tabindex="-1" id="loginModal"
+                            show = {this.state.showModal}>
+                                <ModalHeader>
+                                    <ModalTitle> DiscoClothing® Members</ModalTitle>
+                                        <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <LoginForm />
+                                </ModalBody>
+                                <ModalFooter>
+                                <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={this.closeModal}>Register new account</button></div>
+                                </ModalFooter>
+                            </Modal> 
                 </Navbar.Collapse>
             </Container>
         </Navbar>
@@ -124,21 +140,3 @@ export class NavigationBar extends React.Component <{}, {showModal: boolean, fil
     }
 }
 export default Navbar
-
-const LoginModal = ({ show }) => 
-<Modal
-size="lg"
-aria-labelledby="contained-modal-title-vcenter"
-centered
-role="dialog" tabindex="-1" id="loginModal">
-    <ModalHeader>
-        <ModalTitle> DiscoClothing® Members</ModalTitle>
-            <Button variant="secondary" onClick={() => this.closeModal()} data-bs-dismiss="modal" aria-label="Close">Close</Button>
-    </ModalHeader>
-    <ModalBody>
-        <LoginForm />
-    </ModalBody>
-    <ModalFooter>
-    <div className="modal-footer"><span>No account yet?</span><button className="btn btn-secondary discoButton" data-bss-hover-animate="pulse" type="submit" onClick={this.closeModal}>Register new account</button></div>
-    </ModalFooter>
-</Modal>
