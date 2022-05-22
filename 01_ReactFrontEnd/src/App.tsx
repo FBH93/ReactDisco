@@ -22,7 +22,7 @@ class App extends React.Component {
               <Route path="/products/80s" element={<ProductGrid filter1={'style=80s'} filter2={'None'}/>} />
               <Route path="/products/sportswear" element={<ProductGrid filter1={'style=sportswear'} filter2={'None'}/>} />
               <Route path="/products/space" element={<ProductGrid filter1={'style=space'} filter2={'None'}/>} />
-              <Route path="/product/:id" element={<Product />}/>
+              <Route path="/:id" element ={<Product />}/>
               <Route path="/account" element = {<Account />} />
           </Routes>
         </div>

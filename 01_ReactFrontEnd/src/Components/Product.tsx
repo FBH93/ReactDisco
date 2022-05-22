@@ -13,8 +13,7 @@ export type product = {
 export const Product = () => {
 
   const [selectedSize, setProductSize] = useState("");
-  //const { id } = parseInt(useParams();
-  var { id } = useParams();
+  let { id } = useParams();
   
   const products = [
     { productID: 1, productName: "Disco pants", productPrice: 899, style: "Sportswear", type: "pants", details: "You will be hip and fash with these rocking disco pants!"},
@@ -38,22 +37,25 @@ export const Product = () => {
     product: "product not found",
   };
 
-  const getNameById = (id:number) => {
-    let prod = products.find((product) => product.productID === id)
+  const getNameById = (id:any) => {
+    let intID = parseInt(id)
+    let prod = products.find((product) => product.productID === intID)
     return prod ? prod.productName : errors.product
   };
 
-  const getPriceById = (id:number) => {
-    let prod = products.find((product) => product.productID === id) 
+  const getPriceById = (id:any) => {
+    let intID = parseInt(id)
+    let prod = products.find((product) => product.productID === intID) 
     return prod ? prod.productPrice + " DKK" : errors.product
   };
 
-  const getDescById = (id:number) => {
-    let prod = products.find((product) => product.productID === id) 
+  const getDescById = (id:any) => {
+    let intID = parseInt(id)
+    let prod = products.find((product) => product.productID === intID) 
     return prod ? prod.details : errors.product
   };
 
-  const addItem = (id:number) => { 
+  const addItem = (id:any) => { 
     localStorage.setItem("product" + id, "product, " + selectedSize)
   };
  

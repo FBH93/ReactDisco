@@ -28,7 +28,7 @@ export function productToString(props: product) {
 
   return (
         <>
-        <a className="shopGridLink" href={"/product/" + props.productID} style={{ color: '#455f58' }}>
+        <a className="shopGridLink" href={"/" + props.productID} style={{ color: '#455f58' }}>
           <h1 id="productName" className="fs-2 text-center">
           {props.productName}
           </h1>
