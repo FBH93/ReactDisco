@@ -38,7 +38,7 @@ let handleSubmit = async (e) => {
         e.preventDefault();
         let customerID = Math.floor((Math.random() * 100000) + 1);
         try {
-          let res = await fetch("https://localhost:3000/costumer/", {
+          let res = await fetch("http://localhost:3000/customer/", {
             method: "POST",
             body: JSON.stringify({
             customerID: customerID,  
@@ -48,8 +48,8 @@ let handleSubmit = async (e) => {
             pword: inputPassword,
             addr: inputAddress
             }),
-          });
-          let resJson = await res.json();
+          })
+          //let resJson = await res.json();
           if (res.status === 200) {
             //setName("");
             //setEmail("");
