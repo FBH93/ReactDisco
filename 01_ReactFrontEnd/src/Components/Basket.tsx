@@ -10,7 +10,7 @@ export interface BasketInterface {
 export const Basket = () => {
   const [selectedSize, setProductSize] = useState('')
   const [isAdded, setIsAdded] = useState(false)
-
+  
   type typeProduct = {
     productID: number
     productName: string

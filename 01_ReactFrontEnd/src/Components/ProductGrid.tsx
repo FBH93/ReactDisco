@@ -1,8 +1,12 @@
 import ProductsCall from '../Services/ProductsCall'
 import { ProductInterface } from '../Components/Product'
 import Sizometer from './Atoms/Sizometer'
+import { useState, useEffect } from 'react'
 import { CardButton } from './Atoms/CardButton'
 import { Alert } from 'react-bootstrap'
+import { getAPI } from '../Services/ProductsCall'
+import { useAtom } from 'jotai'
+import { sizeAtom } from './store'
 
 export type Filter = {
   filter1: string
@@ -10,7 +14,24 @@ export type Filter = {
 }
 
 function ProductGrid(filter: Filter) {
-  const products = ProductsCall(filter)
+  const [products, setProducts] = useState<ProductInterface[]>([])
+  const [selectedSize, setproductize] = useAtom(sizeAtom)
+
+  const API = getAPI(filter)
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      fetch(API)
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res) //This prints twice, for some reason??
+          setProducts(res)
+        })
+    }
+
+    fetchProducts()
+  }, [API])
+
   if (products) {
     return (
       <div className="container discoGrid justify-content-center d-flex flex-wrap">
@@ -18,7 +39,27 @@ function ProductGrid(filter: Filter) {
           {products.map((product, i) => {
             return (
               <div className="discoCard" key={i}>
-                {productToString(product)}
+                <a
+                  className="shopGridLink"
+                  href={'/' + product.productID}
+                  style={{ color: '#455f58' }}
+                >
+                  <h1 id="productName" className="fs-2 text-center">
+                    {product.productName}
+                  </h1>
+                  <img
+                    className="mt-5 mb-5"
+                    id="productImage"
+                    src={'/assets/img/products/' + product.productID + '.jpg'}
+                    alt-text="productImage"
+                    width="300px"
+                  />
+                  <h1 id="productName-1" className="fs-3 fw-light text-center">
+                    {product.productPrice + ' DKK'}
+                  </h1>
+                </a>
+                <Sizometer />
+                <CardButton pID={product.productID} size={selectedSize} />
               </div>
             )
           })}
@@ -26,34 +67,6 @@ function ProductGrid(filter: Filter) {
       </div>
     )
   } else return <div> FAULTY FILTER </div>
-}
-
-export function productToString(props: ProductInterface) {
-  return (
-    <>
-      <a
-        className="shopGridLink"
-        href={'/' + props.productID}
-        style={{ color: '#455f58' }}
-      >
-        <h1 id="productName" className="fs-2 text-center">
-          {props.productName}
-        </h1>
-        <img
-          className="mt-5 mb-5"
-          id="productImage"
-          src={'/assets/img/products/' + props.productID + '.jpg'}
-          alt-text="productImage"
-          width="300px"
-        />
-        <h1 id="productName-1" className="fs-3 fw-light text-center">
-          {props.productPrice + ' DKK'}
-        </h1>
-      </a>
-      <Sizometer />
-      <CardButton />
-    </>
-  )
 }
 
 export default ProductGrid
