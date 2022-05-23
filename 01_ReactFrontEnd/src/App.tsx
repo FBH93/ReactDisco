@@ -41,6 +41,7 @@ class App extends React.Component {
             />
             <Route path="/:id" element={<Product />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/basket" element={<Basket />} />
           </Routes>
         </div>
       </BrowserRouter>
