@@ -22,7 +22,6 @@ const errors = {
       };
 
 const register = () => {
-
     localStorage.setItem("psw", inputPassword);
     localStorage.setItem("email", inputEmail);
     localStorage.setItem("firstname", inputFirstName);
@@ -42,6 +41,7 @@ let handleSubmit = async (e) => {
           pword: inputPassword,
           addr: inputAddress 
         };
+        //POST call to API to create user from input data
          axios
          .post("http://localhost:3000/customer/", data)
          .then(res => console.log(res))
