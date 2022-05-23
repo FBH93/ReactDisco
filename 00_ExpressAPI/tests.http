@@ -27,8 +27,21 @@ GET http://localhost:3000/categories/type HTTP/1.1
 GET http://localhost:3000/categories/size HTTP/1.1
 ###
 
+//CREATE CUSTOMER BY JSON body
+POST http://localhost:3000/customer/ HTTP/1.1
+
+###
+
+//GET ALL CUSTOMERS
+GET http://localhost:3000/customer HTTP/1.1
+###
+
 // GET CUSTOMER BY IDENTIFIER
 GET http://localhost:3000/customer/1 HTTP/1.1
+###
+
+// GET CUSTOMER BY IDENTIFIER
+GET http://localhost:3000/customer/login/johndoe@gmail.com HTTP/1.1
 ###
 
 // GET BASKET BY CUSTOMERID
