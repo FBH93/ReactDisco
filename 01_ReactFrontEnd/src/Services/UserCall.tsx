@@ -22,3 +22,5 @@ function getUserFromAPI(userID: number) {
   return 'http://localhost:3000/customer/' + userID
 }
  */
+
+export {}
