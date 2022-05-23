@@ -2,7 +2,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import React, { Component, useCallback, useRef, useState } from 'react'
+import React, { Component, useCallback, useEffect, useRef, useState } from 'react'
 import {
   Modal,
   ModalBody,
@@ -14,53 +14,34 @@ import {
 import { LoginForm } from './Login'
 import { RegisterForm } from './Register'
 
-export class NavigationBar extends React.Component<
-  {},
-  { showModal: boolean; showSignUp: boolean; isLogin: string }
-> {
-  profile: string
+export function NavigationBar(){
 
-  constructor(props) {
-    super(props)
-    this.profile = 'Profile'
-    this.state = {
-      showModal: false,
-      showSignUp: false,
-      isLogin: 'false',
-    }
+  const [showModal, setShowModal] = useState(false);
+
+  const [showSignUp, setShowSignup] = useState(false);
+
+function closeModal() {
+    setShowModal(false)
   }
 
-  closeModal() {
-    this.setState({ showModal: false })
+  function openModal() {
+    setShowModal(true)
   }
 
-  openModal() {
-    this.setState({ showModal: true })
+  function handleSignup() {
+    setShowModal(false)
+    setShowSignup(true)
   }
 
-  handleSignup() {
-    this.setState({ showModal: false, showSignUp: true })
+  function closeSignup() {
+    setShowSignup(false)
   }
 
-  closeSignup() {
-    this.setState({ showSignUp: false })
-  }
-
-  closeAfterLogin() {
-    this.setState({ showModal: false })
+  function closeAfterLogin() {
+    setShowModal(false)
     localStorage.setItem('isLoggedIn', 'false')
   }
 
-  setLogin() {
-    this.setState({ isLogin: 'true' })
-  }
-
-  setProfile(profileName: string) {
-    this.profile = profileName + 1
-  }
-
-  render() {
-    const profile = this.profile
     return (
       <div>
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -100,12 +81,12 @@ export class NavigationBar extends React.Component<
               </Nav>
               <Nav>
                 {localStorage.getItem('isLoggedIn') === 'true' ? (
-                  <Nav.Link eventKey="button" onClick={() => this.openModal()}>
+                  <Nav.Link eventKey="button" onClick={() => openModal()}>
                     {' '}
                     Hello {localStorage.getItem('firstname')}!{' '}
                   </Nav.Link>
                 ) : (
-                  <Nav.Link eventKey="button" onClick={() => this.openModal()}>
+                  <Nav.Link eventKey="button" onClick={() => openModal()}>
                     Login
                   </Nav.Link>
                 )}
@@ -120,13 +101,13 @@ export class NavigationBar extends React.Component<
                 role="dialog"
                 tabindex="-1"
                 id="loginModal"
-                show={this.state.showModal}
+                show={showModal}
               >
                 <ModalHeader>
                   <ModalTitle>DiscoClothing® Members</ModalTitle>
                   <Button
                     variant="secondary"
-                    onClick={() => this.closeModal()}
+                    onClick={() => closeModal()}
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   >
@@ -135,7 +116,7 @@ export class NavigationBar extends React.Component<
                 </ModalHeader>
                 <ModalBody>
                   {localStorage.getItem('isLoggedIn') === 'true' ? (
-                    <Button onClick={() => this.closeAfterLogin()}>
+                    <Button onClick={() => closeAfterLogin()}>
                       {' '}
                       Logout{' '}
                     </Button>
@@ -151,7 +132,7 @@ export class NavigationBar extends React.Component<
                         className="btn btn-secondary discoButton"
                         data-bss-hover-animate="pulse"
                         type="submit"
-                        onClick={() => this.handleSignup()}
+                        onClick={() => handleSignup()}
                       >
                         Register new account
                       </button>
@@ -166,13 +147,13 @@ export class NavigationBar extends React.Component<
                 role="dialog"
                 tabindex="-1"
                 id="signupModal"
-                show={this.state.showSignUp}
+                show={showSignUp}
               >
                 <ModalHeader>
                   <ModalTitle> DiscoClothing® Members</ModalTitle>
                   <Button
                     variant="secondary"
-                    onClick={() => this.closeSignup()}
+                    onClick={() => closeSignup()}
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   >
@@ -189,6 +170,5 @@ export class NavigationBar extends React.Component<
       </div>
     )
   }
-}
 
 export default Navbar
