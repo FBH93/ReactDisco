@@ -18,7 +18,7 @@ class App extends React.Component {
           <NavigationBar />
           <Routes>
             <Route
-              path="/"
+              path="/products"
               element={<ProductGrid filter1={'None'} filter2={'None'} />}
             />
             <Route
@@ -39,7 +39,7 @@ class App extends React.Component {
               path="/products/space"
               element={<ProductGrid filter1={'style=space'} filter2={'None'} />}
             />
-            <Route path="/:id" element={<Product />} />
+            <Route path="/products/:id" element={<Product />} />
             <Route path="/account" element={<Account />} />
             <Route path="/basket" element={<Basket />} />
           </Routes>
