@@ -7,4 +7,4 @@ export const customerRouter = express.Router();
 customerRouter.use(express.json());
 
 customerRouter.get("/customer/:customerId", getCustomerById);
-customerRouter.post("/customer/:customerId", postCustomer);
+customerRouter.post("/customer/", postCustomer); //Uses Query to create customer

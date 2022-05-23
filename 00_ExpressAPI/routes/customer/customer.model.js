@@ -32,11 +32,11 @@ function findCustomer(customersArray, customerId) {
   );
 }
 
-export async function createCustomer(customerId) {
+export async function createCustomer(customerId, fname, lname, email, addr) {
   let customersArray = await getAll();
   if (findCustomer(customersArray, customerId) !== -1)
     throw new Error(`Customer #${customerId} already has a user`);
-  let newCustomer = { customerId: customerId, firstName: "x", lastName: "y", email: "x@y.dk", address: "blabla"  };
+  let newCustomer = { customerId: customerId, firstName: fname, lastName: lname, email: email, address: addr  };
   customersArray.push(newCustomer);
   await save(customersArray);
 }

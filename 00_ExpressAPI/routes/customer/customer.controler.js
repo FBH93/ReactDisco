@@ -13,8 +13,12 @@ export async function getCustomerById(req, res) {
 
 export async function postCustomer(req, res) {
   try {
-    let customerId = req.params.customerId;
-    await customerModel.createCustomer(customerId);
+    let customerId = req.query.customerID;
+    let fname = req.query.fname
+    let lname = req.query.lname
+    let email = req.query.email
+    let addr = req.query.addr
+    await customerModel.createCustomer(customerId, fname, lname, email, addr);
     res.status(201).send('');
     res.end();
   } catch (error) {
