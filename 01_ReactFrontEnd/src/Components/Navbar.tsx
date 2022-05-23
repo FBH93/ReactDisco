@@ -95,7 +95,7 @@ export function NavigationBar() {
                   Login
                 </Nav.Link>
               )}
-              <Nav.Link eventKey="Basket" href="#basket">
+              <Nav.Link eventKey="Basket" href="/basket">
                 basket
               </Nav.Link>
             </Nav>

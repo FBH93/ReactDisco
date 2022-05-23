@@ -18,9 +18,9 @@ function ProductGrid(filter: Filter) {
   const [selectedSize, setproductize] = useAtom(sizeAtom)
 
   const API = getAPI(filter)
-  
+
   useEffect(() => {
-    const fetchProducts = async() => {
+    const fetchProducts = async () => {
       fetch(API)
         .then((res) => res.json())
         .then((res) => {
@@ -40,27 +40,26 @@ function ProductGrid(filter: Filter) {
             return (
               <div className="discoCard" key={i}>
                 <a
-        className="shopGridLink"
-        href={'/' + product.productID}
-        style={{ color: '#455f58' }}
-      >
-        <h1 id="productName" className="fs-2 text-center">
-          {product.productName}
-        </h1>
-        <img
-          className="mt-5 mb-5"
-          id="productImage"
-          src={'/assets/img/products/' + product.productID + '.jpg'}
-          alt-text="productImage"
-          width="300px"
-        />
-        <h1 id="productName-1" className="fs-3 fw-light text-center">
-          {product.productPrice + ' DKK'}
-        </h1>
-      </a>
-      <Sizometer />
-      <CardButton pID={product.productID} size={selectedSize}/> 
-  
+                  className="shopGridLink"
+                  href={'/products/' + product.productID}
+                  style={{ color: '#455f58' }}
+                >
+                  <h1 id="productName" className="fs-2 text-center">
+                    {product.productName}
+                  </h1>
+                  <img
+                    className="mt-5 mb-5"
+                    id="productImage"
+                    src={'/assets/img/products/' + product.productID + '.jpg'}
+                    alt-text="productImage"
+                    width="300px"
+                  />
+                  <h1 id="productName-1" className="fs-3 fw-light text-center">
+                    {product.productPrice + ' DKK'}
+                  </h1>
+                </a>
+                <Sizometer />
+                <CardButton pID={product.productID} size={selectedSize} />
               </div>
             )
           })}
@@ -69,7 +68,5 @@ function ProductGrid(filter: Filter) {
     )
   } else return <div> FAULTY FILTER </div>
 }
-
-
 
 export default ProductGrid
