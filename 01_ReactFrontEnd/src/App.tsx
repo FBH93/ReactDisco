@@ -16,7 +16,6 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <NavigationBar />
-          <Greetings />
           <Routes>
             <Route
               path="/"
