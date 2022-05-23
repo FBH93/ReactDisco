@@ -1,0 +1,4 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.configPath": "./01_ReactFrontEnd/prettier.config.js"
+}

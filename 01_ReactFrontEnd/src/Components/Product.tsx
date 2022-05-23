@@ -1,63 +1,122 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { SingleProductCall } from "../Services/ProductsCall";
-import CardButton from "./Atoms/CardButton";
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { getSingleProduct } from '../Services/ProductsCall'
+import CardButton from './Atoms/CardButton'
 
-//Product type based on JSON
-export type product = {
-  productID: number,
-  productName : string,
-  productPrice : number,
-  style : string,
-  type : string
-};
+export interface ProductInterface {
+  productID: number
+  productName: string
+  productPrice: number
+  style: string
+  type: string
+}
 
-export const Product = () => {
+const Product = () => {
+  let { id } = useParams()
+  const [selectedSize, setproductize] = useState('')
 
-  const [selectedSize, setproductize] = useState("");
-  let { id } = useParams();
+  const [myProduct, setMyProduct] = useState<ProductInterface | null>(null)
 
-  const myProduct = SingleProductCall(id);
+  useEffect(() => {
+    const updateProduct = async () => {
+      const myProduct = await getSingleProduct(id)
+      setMyProduct(myProduct)
+    }
 
-  const errors = {
-    product: "product not found",
-  };
+    updateProduct()
+  }, [id])
+
   return (
     <div>
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <div id="discoProductImage" style={{background: 'url("../assets/img/product/' + id + '.jpg") no-repeat', backgroundSize: 'contain', height: '512px'}} />
-            </div>
-            <div className="col mt-5">
-              <h2 id="discoProductName">{myProduct.productName}</h2>
-              <div className="row">
-                <div className="col"><div className="btn-group btn-group-toggle" style={{paddingBottom: '16px'}} data-toggle="buttons">
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <div
+              id="discoProductImage"
+              style={{
+                background:
+                  'url("../assets/img/products/' + id + '.jpg") no-repeat',
+                backgroundSize: 'contain',
+                height: '512px',
+              }}
+            />
+          </div>
+          <div className="col mt-5">
+            <h2 id="discoProductName">{myProduct?.productName}</h2>
+            <div className="row">
+              <div className="col">
+                <div
+                  className="btn-group btn-group-toggle"
+                  style={{ paddingBottom: '16px' }}
+                  data-toggle="buttons"
+                >
                   <label className="btn btn-secondary">
-                    <input type="radio" name="size" id="S" autoComplete="off" onClick={(event) => {setproductize("S")}} defaultChecked /> S
+                    <input
+                      type="radio"
+                      name="size"
+                      id="S"
+                      autoComplete="off"
+                      onClick={(event) => {
+                        setproductize('S')
+                      }}
+                      defaultChecked
+                    />{' '}
+                    S
                   </label>
                   <label className="btn btn-secondary">
-                    <input type="radio" name="size" id="M" autoComplete="off" onClick={(event) => {setproductize("M")}} /> M
+                    <input
+                      type="radio"
+                      name="size"
+                      id="M"
+                      autoComplete="off"
+                      onClick={(event) => {
+                        setproductize('M')
+                      }}
+                    />{' '}
+                    M
                   </label>
                   <label className="btn btn-secondary">
-                    <input type="radio" name="size" id="L" autoComplete="off" onClick={(event) => {setproductize("L")}}/> L
+                    <input
+                      type="radio"
+                      name="size"
+                      id="L"
+                      autoComplete="off"
+                      onClick={(event) => {
+                        setproductize('L')
+                      }}
+                    />{' '}
+                    L
                   </label>
                   <label className="btn btn-secondary">
-                    <input type="radio" name="size" id="XL" autoComplete="off" onClick={(event) => {setproductize("XL")}} /> XL
+                    <input
+                      type="radio"
+                      name="size"
+                      id="XL"
+                      autoComplete="off"
+                      onClick={(event) => {
+                        setproductize('XL')
+                      }}
+                    />{' '}
+                    XL
                   </label>
-                  </div>
-                  <h2 id="discoProductPrice" style={{ marginBottom: '25px', marginTop: '25px' }}>{myProduct.productPrice}</h2>
                 </div>
+                <h2
+                  id="discoProductPrice"
+                  style={{ marginBottom: '25px', marginTop: '25px' }}
+                >
+                  {myProduct?.productPrice} DKK
+                </h2>
               </div>
-              <div className="row">
-                <CardButton />
-                {/* <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div> */}
-              </div>
+            </div>
+            <div className="row">
+              <CardButton />
+              {/* <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div> */}
             </div>
           </div>
         </div>
       </div>
+    </div>
   )
-};
+}
 
 export default Product
