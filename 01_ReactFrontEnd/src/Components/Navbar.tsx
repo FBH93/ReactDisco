@@ -93,7 +93,7 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
                         <Nav>
                             {localStorage.getItem("isLoggedIn") === "true" ? <Nav.Link eventKey="button" onClick={() => this.openModal()}> Hello {localStorage.getItem("firstname")}! </Nav.Link> : 
                             <Nav.Link eventKey="button" onClick={() => this.openModal()}>Login</Nav.Link>}
-                            <Nav.Link eventKey="Basket" href="#basket">basket</Nav.Link>
+                            <Nav.Link eventKey="Basket" href="/basket">basket</Nav.Link>
                         </Nav>
                         <Modal
                             size="lg"
