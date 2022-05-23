@@ -1,1 +1,37 @@
-[{"customerId":"1","products":[{"productID":11,"productName":"Disco Glitter Shirt","productPrice":400,"style":"space","type":"shirt","size":"L"},{"productID":11,"productName":"Disco Glitter Shirt","productPrice":400,"style":"space","type":"shirt","size":"L"}]},{"customerId":"2","products":[]}]
+[
+    {
+       "customerId":"1",
+       "products":[
+          {
+             "productID":11,
+             "productName":"Disco Glitter Shirt",
+             "productPrice":400,
+             "style":"space",
+             "type":"shirt",
+             "size":"L"
+          },
+          {
+            "productID" : 1,
+            "productName" : "Disco Pants",
+            "productPrice" : 899,
+            "style" : "sportswear",
+            "type" : "pants",
+            "size":"S"
+          },
+          {
+            "productID" : 2,
+            "productName" : "Disco Jacket",
+            "productPrice" : 349,
+            "style" : "sportswear",
+            "type" : "jackets",
+            "size":"M"
+          }
+       ]
+    },
+    {
+       "customerId":"2",
+       "products":[
+          
+       ]
+    }
+ ]

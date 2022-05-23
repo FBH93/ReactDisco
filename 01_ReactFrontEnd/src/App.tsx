@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { NavigationBar } from './Components/Navbar';
+import { Basket } from './Components/Basket';
 import Background from './Components/Background';
 import ProductGrid from './Components/ProductGrid';
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
