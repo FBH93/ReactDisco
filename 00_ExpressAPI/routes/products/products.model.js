@@ -32,11 +32,16 @@ export async function getByID(productID) {
 }
 
 //GET PRODUCT_BY_FILTER
-export async function getByQuery(style, type) {
+export async function getByQuery(style, type, featured) {
   let productArray = await getAll();
   let filteredArray;
+
+  //check if products are featured
+  if (featured){
+    filteredArray = productArray.filter((product) => product.featured == featured)
+  }
   //Check if style and type are both filled in. Filters on both.
-  if (style && type) {
+  else if (style && type) {
     filteredArray = productArray
       .filter((a) => a.style == style)
       .filter((b) => b.type == type);
@@ -46,7 +51,7 @@ export async function getByQuery(style, type) {
     filteredArray = productArray.filter((b) => b.type == type);
   }
   //Else we assume style is filled in and type is not.
-  else {
+  else if (type === undefined && style) {
     filteredArray = productArray.filter((a) => a.style == style);
   }
   //Check if any products are returned. Error if none.
