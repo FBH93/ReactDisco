@@ -10,13 +10,7 @@ export type typeBasket = {
 export const Basket = () => {
   const [selectedSize, setProductSize] = useState('')
   const [isAdded, setIsAdded] = useState(false)
-
-<<<<<<< HEAD
-  const [selectedSize, setProductSize] = useState("");
-  const [isLoggedIn, setLoggedIn] = useState(false);
   
-=======
->>>>>>> 3063b92c8cbeff2b49df18d6bdceffa3aafef236
   type typeProduct = {
     productID: number
     productName: string

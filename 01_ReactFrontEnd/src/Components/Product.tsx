@@ -1,7 +1,9 @@
+import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getSingleProduct } from '../Services/ProductsCall'
 import { CardButton } from './Atoms/CardButton'
+import { sizeAtom } from './store'
 
 export interface ProductInterface {
   productID: number
@@ -13,7 +15,7 @@ export interface ProductInterface {
 
 const Product = () => {
   let { id } = useParams()
-  const [selectedSize, setproductize] = useState('')
+  const [selectedSize, setproductize] = useAtom(sizeAtom)
 
   const [myProduct, setMyProduct] = useState<ProductInterface | null>(null)
 
@@ -25,6 +27,10 @@ const Product = () => {
 
     updateProduct()
   }, [id])
+
+  if (!id) {
+    return<>Error</>
+  }
 
   return (
     <div>
@@ -109,7 +115,7 @@ const Product = () => {
               </div>
             </div>
             <div className="row">
-              <CardButton pid={id} size={selectedSize}/>
+              <CardButton pID={parseInt(id)} size={selectedSize}/>
               {/* <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div> */}
             </div>
           </div>

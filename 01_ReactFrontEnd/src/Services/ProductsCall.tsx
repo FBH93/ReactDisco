@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Filter } from '../Components/ProductGrid'
 import type { ProductInterface } from '../Components/Product'
 
-export default function ProductsCall(filter: Filter) {
+export default function useProductsCall(filter: Filter) {
   const [productArray, getProducts] = useState([])
   const API = getAPI(filter)
   const fetchProducts = () => {
@@ -20,7 +20,7 @@ export default function ProductsCall(filter: Filter) {
 }
 
 //get products from API
-function getAPI(filter: Filter) {
+export function getAPI(filter: Filter) {
   //Return all products if no filter
   if (filter.filter1 === 'None' || filter.filter1 === undefined) {
     return 'http://localhost:3000/products'

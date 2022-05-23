@@ -5,9 +5,13 @@ import { addSyntheticTrailingComment } from 'typescript'
 import { Basket } from '../Basket'
 import { putProductToBasket } from '../../Services/UserCall'
 
+type CardButtonProps = {
+  pID:number, 
+  size: string
+}
 
 
-export const CardButton = (pID:number, size: string) => {
+export const CardButton: React.FC<CardButtonProps> = ({pID, size}) => {
 
 
   const addItem = (pID:number, size: string) => { 
