@@ -41,7 +41,7 @@ function ProductGrid(filter: Filter) {
               <div className="discoCard" key={i}>
                 <a
                   className="shopGridLink"
-                  href={'/' + product.productID}
+                  href={'/products/' + product.productID}
                   style={{ color: '#455f58' }}
                 >
                   <h1 id="productName" className="fs-2 text-center">

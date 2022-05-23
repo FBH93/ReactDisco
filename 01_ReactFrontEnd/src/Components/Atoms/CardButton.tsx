@@ -24,7 +24,7 @@ export const CardButton: React.FC<CardButtonProps> = ({ pID, size }) => {
 
   return (
     <>
-      <div className="row text-center">
+      <div className="col text-center">
         <button
           onClick={(event) => {
             addItem(pID, size)

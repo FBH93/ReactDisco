@@ -29,12 +29,12 @@ const Product = () => {
   }, [id])
 
   if (!id) {
-    return<>Error</>
+    return <>Error</>
   }
 
   return (
     <div>
-      <div className="container">
+      <div className="container text-center">
         <div className="row">
           <div className="col">
             <div
@@ -115,7 +115,7 @@ const Product = () => {
               </div>
             </div>
             <div className="row">
-              <CardButton pID={parseInt(id)} size={selectedSize}/>
+              <CardButton pID={parseInt(id)} size={selectedSize} />
               {/* <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div> */}
             </div>
           </div>
