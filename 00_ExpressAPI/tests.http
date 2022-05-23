@@ -27,8 +27,9 @@ GET http://localhost:3000/categories/type HTTP/1.1
 GET http://localhost:3000/categories/size HTTP/1.1
 ###
 
-//CREATE CUSTOMER BY QUERY
-POST http://localhost:3000/customer/?customerID=5&fname=Jimmy&lname=Hendrix&email=Jboy@gmail.com&pword=1234&addr=streetname%20999 HTTP/1.1
+//CREATE CUSTOMER BY JSON body
+POST http://localhost:3000/customer/ HTTP/1.1
+
 ###
 
 //GET ALL CUSTOMERS
