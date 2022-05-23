@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
-import BasketCall from '../Services/BasketCall'
+import BasketCall, { getSingleBasket } from '../Services/BasketCall'
 
-export type typeBasket = {
+export interface BasketInterface {
   customerID: string
   products: Array<Object>
 }
@@ -11,12 +11,6 @@ export const Basket = () => {
   const [selectedSize, setProductSize] = useState('')
   const [isAdded, setIsAdded] = useState(false)
 
-<<<<<<< HEAD
-  const [selectedSize, setProductSize] = useState("");
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  
-=======
->>>>>>> 3063b92c8cbeff2b49df18d6bdceffa3aafef236
   type typeProduct = {
     productID: number
     productName: string
@@ -156,11 +150,20 @@ function fillCart() {
 
     //if not logged in. make an if statement
     if (localStorage.getItem('CustomerID')) {
-      console.log('logged in')
-      let contents: typeBasket
+      let contents: BasketInterface = {
+        customerID: "",
+        products: []
+      }
       let cID = localStorage.getItem('CustomerID')
       if (cID) {
-        console.log(BasketCall(cID))
+        
+        const getBasket = async () => {
+          contents = await getSingleBasket(cID);
+        }
+        getBasket();
+
+        console.log(contents)
+        
       }
     } else {
       for (let i = 0; i < localStorage.length; i++) {
