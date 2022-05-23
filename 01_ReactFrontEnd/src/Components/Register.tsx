@@ -14,10 +14,7 @@ const [inputEmail, setEmail] = useState("");
 const [inputPassword, setPassword] = useState("");
 const [inputFirstName, setFirstName] = useState("");
 const [inputName, setName] = useState("");
-const [inputCountry, setCountry] = useState("");
-const [inputZip, setZip] = useState("");
-const [inputStreet, setStreet] = useState("");
-const [inputCity, setCity] = useState("");
+const [inputCountry, setAddress] = useState("");
 const [inputConfirmPas, setConfirmPas] = useState("");
 
 const errors = {
@@ -32,10 +29,7 @@ const register = () => {
     localStorage.setItem("email", inputEmail);
     localStorage.setItem("firstname", inputFirstName);
     localStorage.setItem("name", inputName);
-    localStorage.setItem("country", inputCountry);
-    localStorage.setItem("zip", inputZip);
-    localStorage.setItem("street", inputStreet);
-    localStorage.setItem("city", inputCity);
+    localStorage.setItem("address", inputCountry);
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("CustomerID", "TestID");
 
@@ -63,14 +57,7 @@ return (
                     <div className="col-6"><label className="form-label">Last Name*</label><input className="form-control" type="text" id="name" onChange={(event) => setName(event.target.value)} required/></div>
                 </div>
                 <div className="row disco-form-row">
-                    <div className="col-6"><label className="form-label">Street*</label><input className="form-control" type="text" id="street" onChange={(event) => setStreet(event.target.value)} required/></div>
-                    <div className="col-6"><label className="form-label">City*</label><input className="form-control" type="text" id="city" onChange={(event) => setCity(event.target.value)} required/></div>
-                </div>
-                <div className="row disco-form-row">
-                    <div className="col-6"><label className="form-label">Country*</label><input className="form-control" type="text" id="country" onChange={(event) => setCountry(event.target.value)} required/></div>
-                    <div className="col-6"><label className="form-label">ZIP*</label><input className="form-control" type="text" id="zip" pattern="^[0-9]{4,5}$" onChange={(event) => setZip(event.target.value)} required/></div>
-                </div>
-                <div className="row disco-form-row">
+                    <div className="col-6"><label className="form-label">Address*</label><input className="form-control" type="text" id="address" onChange={(event) => setAddress(event.target.value)} required/></div>
                     <div className="col-12"><label className="form-label">E-Mail*</label><input className="form-control" type="email" id="email" onChange={(event) => setEmail(event.target.value)} required/></div>
                 </div>
                 <div className="row disco-form-row">
