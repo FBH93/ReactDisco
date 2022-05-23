@@ -15,16 +15,11 @@ export default function BasketCall(cID: string) {
   useEffect(() => {
     fetchProducts()
   }, [])
-  
-  return (
-    basketArray
-  )
 
+  return basketArray
 }
 
-function getAPI(cID: string){
-    console.log("calling with id: " + cID)
-    return 'http://localhost:3000/basket/'+cID;
-  
+function getAPI(cID: string) {
+  console.log('calling with id: ' + cID)
+  return 'http://localhost:3000/basket/' + cID
 }
-

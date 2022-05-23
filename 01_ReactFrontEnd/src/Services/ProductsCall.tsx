@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Filter, productToString } from '../Components/ProductGrid'
-import { product } from '../Components/Product'
+import { Filter } from '../Components/ProductGrid'
+import type { ProductInterface } from '../Components/Product'
 
-export default function ProductsCall(filter:Filter) {
+export default function ProductsCall(filter: Filter) {
   const [productArray, getProducts] = useState([])
   const API = getAPI(filter)
   const fetchProducts = () => {
@@ -16,36 +16,32 @@ export default function ProductsCall(filter:Filter) {
   useEffect(() => {
     fetchProducts()
   }, [])
-  return (
-    productArray
-  )
-
+  return productArray
 }
 
-  //get products from API
-function getAPI(filter:Filter){
-    //Return all products if no filter
-  if (filter.filter1 === 'None' || filter.filter1 === undefined){
-    return 'http://localhost:3000/products';
+//get products from API
+function getAPI(filter: Filter) {
+  //Return all products if no filter
+  if (filter.filter1 === 'None' || filter.filter1 === undefined) {
+    return 'http://localhost:3000/products'
   }
-    //return products with only filter1
-  if (filter.filter2 === 'None' || filter.filter2 === undefined){
+  //return products with only filter1
+  if (filter.filter2 === 'None' || filter.filter2 === undefined) {
     return 'http://localhost:3000/products/filter/?' + filter.filter1
   }
-    //Return products with both filter parameters
+  //Return products with both filter parameters
   else {
-    return 'http://localhost:3000/products/filter/?' + filter.filter1 + '&' + filter.filter2
+    return (
+      'http://localhost:3000/products/filter/?' +
+      filter.filter1 +
+      '&' +
+      filter.filter2
+    )
   }
 }
 
-export function SingleProductCall(id:any) {
-  return fetch('http://localhost:3000/products/' + id)
-          // the JSON body is taken from the response
-          .then(res => res.json())
-          .then(res => {
-                  return res as product
-          })
+export async function getSingleProduct(id: any): Promise<ProductInterface> {
+  return fetch('http://localhost:3000/products/' + id).then((response) =>
+    response.json()
+  ) // Parse the response in JSON
 }
-
-
-
