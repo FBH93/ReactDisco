@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NumericLiteral } from 'typescript'
 
-export default function usersCall(userID: number) {
+export default function usersCall(email:string) {
   const [user, getUser] = useState([])
   const API = getUserFromAPI(email)
   const fetchUser = () => {
@@ -15,7 +15,9 @@ export default function usersCall(userID: number) {
   useEffect(() => {
     fetchUser()
   }, [])
-  return user
+  return (
+    user
+  )
 }
 
 //get products from API
