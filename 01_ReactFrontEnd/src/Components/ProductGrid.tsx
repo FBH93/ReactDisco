@@ -13,11 +13,12 @@ export type Filter = {
   filter2: string
 }
 
-function ProductGrid(filter: Filter) {
+function ProductGrid(filter: Filter, props) {
   const [products, setProducts] = useState<ProductInterface[]>([])
   const [selectedSize, setproductize] = useAtom(sizeAtom)
 
   const API = getAPI(filter)
+  console.log(filter)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -34,11 +35,17 @@ function ProductGrid(filter: Filter) {
 
   if (products) {
     return (
-      <div className="container discoGrid justify-content-center d-flex flex-wrap">
+      <div className="container discoGrid justify-content-center d-flex flex-wrap mt-5">
         <>
           {products.map((product, i) => {
             return (
-              <div className="discoCard" key={i}>
+              <div
+                className={
+                  'discoCard ' +
+                  (filter.filter1 === 'featured=yes' ? 'show' : 'hidden')
+                }
+                key={i}
+              >
                 <a
                   className="shopGridLink"
                   href={'/products/' + product.productID}
