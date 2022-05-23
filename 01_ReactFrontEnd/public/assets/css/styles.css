@@ -4,7 +4,7 @@
 }
 
 .navbar-dark .navbar-toggler-icon {
-  background-image: url("../../assets/img/bar.svg");
+  background-image: url('../../assets/img/bar.svg');
 }
 
 .btn-primary {
@@ -20,12 +20,12 @@
 
 .form-control:focus {
   border-color: #53736a !important;
-  box-shadow: 0 0 0 0.25rem rgba(83,115,106,0.2);
+  box-shadow: 0 0 0 0.25rem rgba(83, 115, 106, 0.2);
 }
 
 .btn-primary:focus {
   border-color: #53736a !important;
-  box-shadow: 0 0 0 0.25rem rgba(83,115,106,0.2);
+  box-shadow: 0 0 0 0.25rem rgba(83, 115, 106, 0.2);
 }
 
 .disco-form-row {
@@ -65,4 +65,3 @@
 .discoGrid {
   margin-top: 50px;
 }
-

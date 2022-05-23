@@ -1,3 +1,3 @@
-import {atom} from 'jotai';
+import { atom } from 'jotai'
 
-export const loginAtom = atom(false);
+export const loginAtom = atom(false)
