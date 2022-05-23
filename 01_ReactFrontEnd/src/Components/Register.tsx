@@ -14,7 +14,7 @@ const [inputEmail, setEmail] = useState("");
 const [inputPassword, setPassword] = useState("");
 const [inputFirstName, setFirstName] = useState("");
 const [inputName, setName] = useState("");
-const [inputCountry, setAddress] = useState("");
+const [inputAddress, setAddress] = useState("");
 const [inputConfirmPas, setConfirmPas] = useState("");
 
 const errors = {
@@ -29,16 +29,42 @@ const register = () => {
     localStorage.setItem("email", inputEmail);
     localStorage.setItem("firstname", inputFirstName);
     localStorage.setItem("name", inputName);
-    localStorage.setItem("address", inputCountry);
+    localStorage.setItem("address", inputAddress);
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("CustomerID", "TestID");
-
   }
 
-const registerWithAPI = () => {
-
+//costumerID creation send to 
+let handleSubmit = async (e) => {
+        e.preventDefault();
+        let customerID = Math.floor((Math.random() * 100000) + 1);
+        try {
+          let res = await fetch("https://localhost:3000/costumer/", {
+            method: "POST",
+            body: JSON.stringify({
+            customerID: customerID,  
+            fname: inputFirstName,
+            lname: inputName,
+            email: inputEmail,
+            pword: inputPassword,
+            addr: inputAddress
+            }),
+          });
+          let resJson = await res.json();
+          if (res.status === 200) {
+            //setName("");
+            //setEmail("");
+            setIsSubmitted(true);
+          } else {
+            setErrorMessages("Some error occured");
+          }
+        } catch (err) {
+          console.log(err);
+        } finally {
+            localStorage.setItem("isLoggedIn", "true");
+        }
 }
 
+/*
   const handleSubmit = () => {
     localStorage.clear();
     navigate("/", {replace: true});
@@ -48,7 +74,7 @@ const registerWithAPI = () => {
     if (inputConfirmPas !== inputPassword) {
         setErrorMessages({ name: "confirm-Pass", message: errors.confirmPass });
     }
-  }
+  }*/
 
 return (
     <Form method="post" onSubmit={register}>
@@ -64,7 +90,7 @@ return (
                     <div className="col-12"><label className="form-label">Password*</label><input className="form-control" type="password" id="discoPassword" onChange={(event) => setPassword(event.target.value)} required/></div>
                 </div>
                 <div className="row disco-form-row">
-                    <div className="col-12"><label className="form-label">Repeat Password*</label><input className="form-control" type="password" id="discoPasswordConfirm" required onChange={(event) => setConfirmPas(event.target.value)} onInput={checkMatch}/></div>
+                    <div className="col-12"><label className="form-label">Repeat Password*</label><input className="form-control" type="password" id="discoPasswordConfirm" required onChange={(event) => setConfirmPas(event.target.value)} /*onInput={checkMatch}*//></div>
                 </div>
                 <div className="row disco-form-row" style={{paddingTop: "16px"}}>
                     <div className="col">
