@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Filter } from '../Components/ProductGrid'
+import { Filter, productToString } from '../Components/ProductGrid'
+import { product } from '../Components/Product'
 
 export default function ProductsCall(filter:Filter) {
   const [productArray, getProducts] = useState([])
@@ -36,4 +37,15 @@ function getAPI(filter:Filter){
     return 'http://localhost:3000/products/filter/?' + filter.filter1 + '&' + filter.filter2
   }
 }
+
+export function SingleProductCall(id:any) {
+  return fetch('http://localhost:3000/products/' + id)
+          // the JSON body is taken from the response
+          .then(res => res.json())
+          .then(res => {
+                  return res as product
+          })
+}
+
+
 

@@ -1,5 +1,5 @@
 import ProductsCall from '../Services/ProductsCall'
-import Product, { product } from '../Components/Product'
+import { product } from '../Components/Product'
 import Sizometer from './Atoms/Sizometer'
 import CardButton from './Atoms/CardButton'
 
