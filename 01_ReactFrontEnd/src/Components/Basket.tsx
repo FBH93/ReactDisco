@@ -27,6 +27,7 @@ export const Basket = () => {
 
  let cID = localStorage.getItem('CustomerID')
 
+ //see TODO at localStorageCart()
  const [localCart]=useAtom(localCartAtom)
  
  const [cart, setCart] = useState<BasketProduct[] | null>([])
@@ -43,7 +44,18 @@ export const Basket = () => {
 
     getBasket()
   }, [cID])
-   
+
+  //TODO: Currently, localCart only takes the items specified at store.ts. 
+  //What needs to happen is that we have find the productIDs from localStorage, then find the objects from getSingleProduct(id: any), where we input the productID as an argument. 
+  //This these products should be added to "something" alongside the size of the product. 
+  //hopefully this will work...
+  async function localStorageCart(): Promise<BasketProduct[]> {
+    let something: BasketProduct[] = []
+    for (let i = 0; i < localStorage.length; i++) {
+      
+     }
+    return something
+  }
 
 async function removeFromCart(cID:string, pID:number, size:string): Promise<BasketProduct[]> {
   //add a API call where we remove the item.
@@ -65,6 +77,8 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
     localStorage.removeItem('CustomerID')
     window.location.reload()
   }
+
+  
 
 
   // const getTotalPrice = () => {
@@ -149,7 +163,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
             <button
               onClick={async() => {
                 const updatedCart = cID?await removeFromCart(cID, productID, size): cart.filter((item)=>item.productID!=productID)
-                console.log(updatedCart)
+                console.log
                 setCart(updatedCart)}}
               className="btn btn-primary"
               type="button"
