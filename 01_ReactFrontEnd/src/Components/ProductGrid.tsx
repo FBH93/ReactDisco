@@ -2,10 +2,11 @@ import ProductsCall from '../Services/ProductsCall'
 import { product } from '../Components/Product'
 import Sizometer from './Atoms/Sizometer'
 import CardButton from './Atoms/CardButton'
+import { Alert } from 'react-bootstrap'
 
 export type Filter = {
-  filter: string;
-  type: string;
+  filter1: string;
+  filter2: string;
 }
 
 function ProductGrid(filter:Filter) {
@@ -25,15 +26,16 @@ else return (<div> FAULTY FILTER </div>)
 }
 
 export function productToString(props: product) {
+
   return (
         <>
-        <a className="shopGridLink" href={"/product.html?id=" + props.productID} style={{ color: '#455f58' }}>
+        <a className="shopGridLink" href={"/" + props.productID} style={{ color: '#455f58' }}>
           <h1 id="productName" className="fs-2 text-center">
           {props.productName}
           </h1>
-        <img className="mt-5 mb-5" id="productImage" src={"/assets/img/products/" + props.productID + ".jpg"} width="300px" />
+        <img className="mt-5 mb-5" id="productImage" src={"/assets/img/products/" + props.productID + ".jpg"} alt-text="productImage" width="300px" />
         <h1 id="productName-1" className="fs-3 fw-light text-center">
-          {props.productPrice + "DKK"}
+          {props.productPrice + " DKK"}
         </h1>
         </a>
         <Sizometer />
