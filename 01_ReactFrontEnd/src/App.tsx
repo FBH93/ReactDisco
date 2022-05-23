@@ -20,6 +20,10 @@ class App extends React.Component {
           <Routes>
             <Route
               path="/"
+              element={<ProductGrid filter1={'featured=yes'} filter2={'None'} />}
+            />
+            <Route 
+              path="/products"
               element={<ProductGrid filter1={'None'} filter2={'None'} />}
             />
             <Route
