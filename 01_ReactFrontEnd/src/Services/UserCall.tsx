@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
-export default function usersCall(userID:number) {
+export default function usersCall(email:string) {
   const [user, getUser] = useState([])
-  const API = getUserFromAPI(userID)
+  const API = getUserFromAPI(email)
   const fetchUser = () => {
     fetch(API)
       .then((res) => res.json())
@@ -21,6 +21,6 @@ export default function usersCall(userID:number) {
 }
 
   //get products from API
-function getUserFromAPI(userID:number){
-   return 'http://localhost:3000/customer/' + userID
+function getUserFromAPI(email:string){
+   return 'http://localhost:3000/customer/' + email
 }

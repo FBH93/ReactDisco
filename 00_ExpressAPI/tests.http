@@ -40,6 +40,10 @@ GET http://localhost:3000/customer HTTP/1.1
 GET http://localhost:3000/customer/1 HTTP/1.1
 ###
 
+// GET CUSTOMER BY IDENTIFIER
+GET http://localhost:3000/customer/login/johndoe@gmail.com HTTP/1.1
+###
+
 // GET BASKET BY CUSTOMERID
 GET http://localhost:3000/basket/1 HTTP/1.1
 ###

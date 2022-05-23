@@ -37,3 +37,13 @@ export async function getAllCustomers(req, res) {
     res.status(400).send(error.message);
   }
 }
+
+export async function getCustomerByEmail(req, res) {
+  try {
+    let customer = await customerModel.getByEmail(req.params.email);
+    res.json(customer);
+  } catch (error) {
+    // RES ERROR
+    res.status(404).send(error.message);
+  }
+}
