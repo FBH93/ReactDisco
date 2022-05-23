@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import BasketCall, { getSingleBasket } from '../Services/BasketCall'
+import { getSingleBasket, removeProductFromBasket } from '../Services/BasketCall'
 import { localCartAtom } from './store'
 
 export interface BasketProduct{
@@ -44,17 +44,16 @@ export const Basket = () => {
     getBasket()
   }, [cID])
    
-    
-    
 
-
-async function removeFromCart(cID: string): Promise<BasketProduct[]> {
+async function removeFromCart(cID:string, pID:number, size:string): Promise<BasketProduct[]> {
   //add a API call where we remove the item.
   //then get back the updated cart
-  let something: BasketProduct[] = [
+  await removeProductFromBasket(cID, pID, size);
+  let numberCID = parseInt(cID);
+  let something: BasketProduct[] = [];
+  
 
-  ]
-  return something; //update 
+  return await getSingleBasket(cID);
 }
 
   const pseudoLogin = (cID: string) => {
@@ -66,11 +65,6 @@ async function removeFromCart(cID: string): Promise<BasketProduct[]> {
     localStorage.removeItem('CustomerID')
     window.location.reload()
   }
-
- 
-
-  
-
 
 
   // const getTotalPrice = () => {
@@ -154,8 +148,8 @@ async function removeFromCart(cID: string): Promise<BasketProduct[]> {
           >
             <button
               onClick={async() => {
-                const updatedCart = cID?await removeFromCart(cID): cart.filter((item)=>item.productID!=productID)
-                
+                const updatedCart = cID?await removeFromCart(cID, productID, size): cart.filter((item)=>item.productID!=productID)
+                console.log(updatedCart)
                 setCart(updatedCart)}}
               className="btn btn-primary"
               type="button"

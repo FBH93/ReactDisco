@@ -33,3 +33,12 @@ export async function getSingleBasket(id: any): Promise<BasketProduct[]> {
   )
   // Parse the response in JSON
 }
+
+export async function removeProductFromBasket(userID:string, pID:number, size:string)  {
+  return fetch('http://localhost:3000/basket/' + userID + '/?productID=' + pID +'&size=' + size, {
+          method: 'DELETE',
+        }
+        ) 
+        
+        
+};
