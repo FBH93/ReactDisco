@@ -1,5 +1,5 @@
 import express from "express";
-import { getCustomerById, postCustomer } from "./customer.controler.js";
+import { getCustomerById, postCustomer, getAllCustomers } from "./customer.controler.js";
 
 export const customerRouter = express.Router();
 
@@ -8,3 +8,4 @@ customerRouter.use(express.json());
 
 customerRouter.get("/customer/:customerId", getCustomerById);
 customerRouter.post("/customer/", postCustomer); //Uses Query to create customer
+customerRouter.get("/customer/", getAllCustomers)

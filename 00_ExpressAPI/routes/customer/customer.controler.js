@@ -17,11 +17,22 @@ export async function postCustomer(req, res) {
     let fname = req.query.fname
     let lname = req.query.lname
     let email = req.query.email
+    let pword = req.query.pword
     let addr = req.query.addr
-    await customerModel.createCustomer(customerId, fname, lname, email, addr);
+    await customerModel.createCustomer(customerId, fname, lname, email, pword, addr);
     res.status(201).send('');
     res.end();
   } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
+export async function getAllCustomers(req, res) {
+  try {
+    let allCustomers = await customerModel.getAll();
+    res.json(allCustomers);
+  } catch (error) {
+    // RES ERROR
     res.status(400).send(error.message);
   }
 }

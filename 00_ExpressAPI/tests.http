@@ -31,6 +31,10 @@ GET http://localhost:3000/categories/size HTTP/1.1
 POST http://localhost:3000/customer/?customerID=5&fname=Jimmy&lname=Hendrix&email=Jboy@gmail.com&pword=1234&addr=streetname%20999 HTTP/1.1
 ###
 
+//GET ALL CUSTOMERS
+GET http://localhost:3000/customer HTTP/1.1
+###
+
 // GET CUSTOMER BY IDENTIFIER
 GET http://localhost:3000/customer/1 HTTP/1.1
 ###
