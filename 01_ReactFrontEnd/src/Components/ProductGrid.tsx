@@ -1,7 +1,7 @@
 import ProductsCall from '../Services/ProductsCall'
 import { ProductInterface } from '../Components/Product'
 import Sizometer from './Atoms/Sizometer'
-import CardButton from './Atoms/CardButton'
+import { CardButton } from './Atoms/CardButton'
 import { Alert } from 'react-bootstrap'
 
 export type Filter = {

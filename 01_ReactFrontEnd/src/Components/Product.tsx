@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getSingleProduct } from '../Services/ProductsCall'
-import CardButton from './Atoms/CardButton'
+import { CardButton } from './Atoms/CardButton'
 
 export interface ProductInterface {
   productID: number
@@ -109,7 +109,7 @@ const Product = () => {
               </div>
             </div>
             <div className="row">
-              <CardButton />
+              <CardButton pid={id} size={selectedSize}/>
               {/* <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div> */}
             </div>
           </div>

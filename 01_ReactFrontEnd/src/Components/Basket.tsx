@@ -11,6 +11,12 @@ export const Basket = () => {
   const [selectedSize, setProductSize] = useState('')
   const [isAdded, setIsAdded] = useState(false)
 
+<<<<<<< HEAD
+  const [selectedSize, setProductSize] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  
+=======
+>>>>>>> 3063b92c8cbeff2b49df18d6bdceffa3aafef236
   type typeProduct = {
     productID: number
     productName: string
@@ -145,7 +151,7 @@ export const Basket = () => {
 
   let cart: Map<typeProduct, string> = new Map<typeProduct, string>()
 
-  function fillCart() {
+function fillCart() {
     //TODO: make a fillCart version, that reads from API
 
     //if not logged in. make an if statement
