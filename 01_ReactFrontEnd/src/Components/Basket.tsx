@@ -1,61 +1,74 @@
+import { AsyncLocalStorage } from 'async_hooks';
 import React from 'react'
 import { useState } from "react";
 import BasketCall from '../Services/BasketCall'
+import { product } from './Product';
+import { ProductCardBasket } from './Atoms/ProductCardBasket';
 
 export type typeBasket = {
   customerID: string;
   products: Array<Object>
+}
+const products: Array<product> = [
+  { productID: 1, productName: "Disco pants", productPrice: 899, style: "Sportswear", type: "pants"},
+  { productID: 2, productName: "Disco jacket", productPrice: 349, style: "Sportswear", type: "jackets"},
+  { productID: 3, productName: "Disco headband", productPrice: 149, style: "Sportswear", type: "accesories"},
+  { productID: 4, productName: "Disco bumper", productPrice: 299, style: "Sportswear", type: "jackets"},
+  { productID: 5, productName: "Disco tights", productPrice: 400, style: "70s", type: "pants"},
+  { productID: 6, productName: "Disco shirt flower", productPrice: 400, style: "70s", type: "shirt"},
+  { productID: 7, productName: "Disco shirt more flower", productPrice: 400, style: "Space", type: "shirt"},
+  { productID: 8, productName: "Disco shirt tight", productPrice: 400, style: "Space", type: "shirt"},
+  { productID: 9, productName: "Disco top", productPrice: 400, style: "70s", type: "shirt"},
+  { productID: 10, productName: "Disco oversized shirt", productPrice: 400, style: "80s", type: "shirt"},
+  { productID: 11, productName: "Disco glitter shirt", productPrice: 400, style: "Space", type: "shirt"},
+  { productID: 12, productName: "Disco space t-shirt", productPrice: 549, style: "Space", type: "shirt"},
+  { productID: 13, productName: "Disco bra", productPrice: 350, style: "Space", type: "accessories"},
+  { productID: 14, productName: "Disco space dress", productPrice: 400, style: "Space", type: "shirt"},
+  { productID: 15, productName: "Disco space pants", productPrice: 200, style: "Space", type: "pants"},
+];
+
+export type basketProduct ={
+  productID: string,
+  productName: string,
+  productPrice: number,
+  size: string
 }
 
 export const Basket = () => {
 
   const [selectedSize, setProductSize] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
-  
-  type typeProduct = {
-    productID: number; 
-    productName: string; 
-    productPrice: number; 
-    style: string; 
-    type: string; 
-    details: string;
-  }
 
-  const products: Array<typeProduct> = [
-    { productID: 1, productName: "Disco pants", productPrice: 899, style: "Sportswear", type: "pants", details: "You will be hip and fash with these rocking disco pants!"},
-    { productID: 2, productName: "Disco jacket", productPrice: 349, style: "Sportswear", type: "jackets", details: "The perfect jacket for running or disco dancing"},
-    { productID: 3, productName: "Disco headband", productPrice: 149, style: "Sportswear", type: "accesories", details: "For the real headbangers out there."},
-    { productID: 4, productName: "Disco bumper", productPrice: 299, style: "Sportswear", type: "jackets", details: "Who are you bumping in to? "},
-    { productID: 5, productName: "Disco tights", productPrice: 400, style: "70s", type: "pants", details: ""},
-    { productID: 6, productName: "Disco shirt flower", productPrice: 400, style: "70s", type: "shirt", details: ""},
-    { productID: 7, productName: "Disco shirt more flower", productPrice: 400, style: "Space", type: "shirt", details: ""},
-    { productID: 8, productName: "Disco shirt tight", productPrice: 400, style: "Space", type: "shirt", details: ""},
-    { productID: 9, productName: "Disco top", productPrice: 400, style: "70s", type: "shirt", details: ""},
-    { productID: 10, productName: "Disco oversized shirt", productPrice: 400, style: "80s", type: "shirt", details: ""},
-    { productID: 11, productName: "Disco glitter shirt", productPrice: 400, style: "Space", type: "shirt", details: ""},
-    { productID: 12, productName: "Disco space t-shirt", productPrice: 549, style: "Space", type: "shirt", details: ""},
-    { productID: 13, productName: "Disco bra", productPrice: 350, style: "Space", type: "accessories", details: ""},
-    { productID: 14, productName: "Disco space dress", productPrice: 400, style: "Space", type: "shirt", details: ""},
-    { productID: 15, productName: "Disco space pants", productPrice: 200, style: "Space", type: "pants", details: ""},
-  ];
 
-  let cart: Map<typeProduct, string> = new Map<typeProduct, string>() ;
-  
+  return (
+    <>
+    <div>
+      <h1> BASKET GOES HERE</h1>
+      <ProductCardBasket/>
+    </div>
+    </>
+  )
+}
+export default Basket
+
 
 function fillCart() {
     //TODO: make a fillCart version, that reads from API
-    
 
     //if not logged in. make an if statement
-    if(localStorage.getItem("CustomerID")){
-      console.log("logged in")
-      let contents:typeBasket; 
-      let cID = localStorage.getItem("CustomerID");
-      if(cID){
-        console.log(BasketCall(cID))
+    if(localStorage.getItem("isLoggedIn") === "true"){
+      let customerID = localStorage.getItem("CustomerID")
+      if (customerID){
+        let basket = BasketCall(customerID)
+        console.log(basket)
+      }
+      
       }
     }
     
+  
+
+    /*
     else {
       for (let i = 0; i < localStorage.length; i++) {
         console.log("loop runs" + localStorage.length)
@@ -114,18 +127,21 @@ function fillCart() {
     return prod ? prod.productPrice + " DKK" : errors.product
   };
 
+
+  
   const getDescById = (id:number) => {
     let prod = products.find((product) => product.productID === id) 
     return prod ? prod.details : errors.product
-  };
- 
+  }; 
+  
+
   const addItem = (id:number) => { 
     localStorage.setItem("product" + id, "product, " + selectedSize)
   };
 
   const getTotalPrice = () => {
     let total: number = 0;
-    cart.forEach((value: string, key: typeProduct) => {
+    cart.forEach((value: string, key: product) => {
       total += key.productPrice
     })
     return total
@@ -183,7 +199,8 @@ function fillCart() {
               <p className="fs-4 fw-light" style={{marginTop: '12px'}}>{getPriceById(thisProductId)}</p>
             </div>
             <div className="col d-flex justify-content-center align-items-center">
-              <p className="fs-4 fw-light" style={{marginTop: '12px'}}>{value /*this is size*/}</p>
+              <p className="fs-4 fw-light" style={{marginTop: '12px'}}>{value /*this is size*/ /*
+            }</p>
             </div>
             <div className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" style={{padding: '25px'}}><button onClick={() => removeFromCart(thisProductId)} className="btn btn-primary" type="button" ><i className="fa fa-trash fs-2" />Remove</button></div>
           
@@ -206,7 +223,9 @@ function fillCart() {
         </div>
         <div className="container" id="discoCartContent">
           
-        {/* insert products here */}
+        {/* insert products here */
+        /*
+      }
         <div>{listItems()}</div>
     
           <div className="row row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row-cols-xl-5 row-cols-xxl-5 justify-content-start" style={{background: '#ffffff', borderRadius: '5px', margin: '5px', marginBottom: '30px'}}>
@@ -221,7 +240,9 @@ function fillCart() {
             </div>
           </div>
         </div>
-         {/* delete the two buttons below later */}
+         {/* delete the two buttons below later */
+        
+    /*}
         <div className='testLogin'> <button onClick={() => pseudoLogin("1")} className="btn btn-primary" type="button" >test log in</button> </div>
         <div className='testLogout'> <button onClick={() => pseudoLogout()} className="btn btn-primary" type="button" >test log out</button> </div>
         <div className="container" id="discoSaleButtonContent" />
@@ -233,4 +254,6 @@ function fillCart() {
   )
 };
 
+
 export default Basket
+*/
