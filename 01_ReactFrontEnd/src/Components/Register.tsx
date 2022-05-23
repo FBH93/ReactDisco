@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import {Form} from 'react-bootstrap';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 export const RegisterForm = () => {
 
@@ -37,32 +38,21 @@ const register = () => {
 let handleSubmit = async (e) => {
         e.preventDefault();
         let customerID = Math.floor((Math.random() * 100000) + 1);
-        try {
-          let res = await fetch("http://localhost:3000/customer/", {
-            method: "POST",
-            body: JSON.stringify({
-            customerID: customerID,  
-            fname: inputFirstName,
-            lname: inputName,
-            email: inputEmail,
-            pword: inputPassword,
-            addr: inputAddress
-            }),
-          })
-          //let resJson = await res.json();
-          if (res.status === 200) {
-            //setName("");
-            //setEmail("");
-            setIsSubmitted(true);
-          } else {
-            setErrorMessages("Some error occured");
-          }
-        } catch (err) {
-          console.log(err);
-        } finally {
-            localStorage.setItem("isLoggedIn", "true");
-        }
-}
+        const data = {
+          customerID: customerID,
+          fname: inputFirstName,
+          lname: inputName,
+          email: inputEmail,
+          pword: inputPassword,
+          addr: inputAddress 
+        };
+         axios
+         .post("http://localhost:3000/customer/", data)
+         .then(res => console.log(res))
+         .catch(err => console.log(err))
+         localStorage.setItem("isLoggedIn", "true");
+         console.log(data)
+};
 
 /*
   const handleSubmit = () => {

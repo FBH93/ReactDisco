@@ -99,7 +99,7 @@ export class NavigationBar extends React.Component <{}, { showModal: boolean, sh
                             size="lg"
                             aria-labelledby="contained-modal-title-vcenter"
                             centered
-                            role="dialog" tabindex="-1" id="loginModal"
+                            role="dialog" tabIndex="-1" id="loginModal"
                             show = {this.state.showModal}>
                                 <ModalHeader>
                                     <ModalTitle>DiscoClothing® Members</ModalTitle>
