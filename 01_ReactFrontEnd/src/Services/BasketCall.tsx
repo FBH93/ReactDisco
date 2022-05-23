@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BasketInterface } from '../Components/Basket'
+import { BasketInterface, BasketProduct } from '../Components/Basket'
 
 export default function BasketCall(cID: string) {
   const [basketArray, getBasket] = useState([])
@@ -24,8 +24,12 @@ function getAPI(cID: string) {
   return 'http://localhost:3000/basket/' + cID
 }
 
-export async function getSingleBasket(id: any): Promise<BasketInterface> {
+export async function getSingleBasket(id: any): Promise<BasketProduct[]> {
   return fetch('http://localhost:3000/basket/' + id).then((response) =>
     response.json()
-  ) // Parse the response in JSON
+    
+  ).then (
+    (basket) => basket.products
+  )
+  // Parse the response in JSON
 }
