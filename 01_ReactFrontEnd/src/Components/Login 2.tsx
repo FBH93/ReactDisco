@@ -1,6 +1,5 @@
-import { Alert, Form, Navbar } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,32 +9,29 @@ export const LoginForm = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [inputEmail, setEmail] = useState("");
     const [inputPassword, setPassword] = useState("");
-    const navigate = useNavigate();
-    const [isLogin, setLogin] = useState(false);
-
 
     const errors = {
             uname: "incorrect email",
             pass: "incorrect password"
         };
-        
+
 const login = () => {
-    const password = localStorage.getItem("psw")
-    const email = localStorage.getItem("email")
+    //const password = localStorage.getItem("psw")
+    //const email = localStorage.getItem("email")
+
+    const email = "test";
+    const password = "test";
 
     if (password !== inputPassword) {
     setErrorMessages({ name: "pass", message: errors.pass });
-    alert('Wrong Password');
     } 
     if(email !== inputEmail){
-    alert('Wrong Email');
     setErrorMessages({ name: "email", message: errors.uname });
     }
     else {
     setIsSubmitted(true);
-    setLogin(true);
-    localStorage.setItem("isLoggedIn", "true")
-    navigate(-1);
+    localStorage.setItem("isLogin", "1");
+    console.log('test pass');
     }
  };
 
