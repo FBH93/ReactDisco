@@ -10,7 +10,7 @@ export type typeBasket = {
 export const Basket = () => {
 
   const [selectedSize, setProductSize] = useState("");
-  const [isAdded, setIsAdded] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   
   type typeProduct = {
     productID: number; 
@@ -20,8 +20,6 @@ export const Basket = () => {
     type: string; 
     details: string;
   }
-  
-
 
   const products: Array<typeProduct> = [
     { productID: 1, productName: "Disco pants", productPrice: 899, style: "Sportswear", type: "pants", details: "You will be hip and fash with these rocking disco pants!"},
@@ -44,7 +42,7 @@ export const Basket = () => {
   let cart: Map<typeProduct, string> = new Map<typeProduct, string>() ;
   
 
-  function fillCart() {
+function fillCart() {
     //TODO: make a fillCart version, that reads from API
     
 
@@ -56,9 +54,8 @@ export const Basket = () => {
       if(cID){
         console.log(BasketCall(cID))
       }
-      
-      
     }
+    
     else {
       for (let i = 0; i < localStorage.length; i++) {
         console.log("loop runs" + localStorage.length)
@@ -71,8 +68,6 @@ export const Basket = () => {
           }
           };
 
-        
-
         if (splitted)if (splitted[0]  == "product") {
           console.log("second if works")
           let thisProduct;
@@ -84,7 +79,7 @@ export const Basket = () => {
               console.log(thisProduct.productName);
             }
           }
-          let size: string = splitted[1];
+          let size:string = splitted[1];
           if(thisProduct){
             cart.set(thisProduct, size);
           }
@@ -97,6 +92,7 @@ export const Basket = () => {
 
   const pseudoLogin = (cID: string) => {
     localStorage.setItem("CustomerID", cID);
+    console.log(cID)
   }
 
   const pseudoLogout = () => {
@@ -122,15 +118,10 @@ export const Basket = () => {
     let prod = products.find((product) => product.productID === id) 
     return prod ? prod.details : errors.product
   };
-
+ 
   const addItem = (id:number) => { 
     localStorage.setItem("product" + id, "product, " + selectedSize)
   };
-
-  const itemToCart = (id:number) => {
-    addItem(id)
-    setIsAdded(true)
-  };  
 
   const getTotalPrice = () => {
     let total: number = 0;
@@ -145,7 +136,7 @@ export const Basket = () => {
   }  
 
   const getImgPathById = (id:number) => {
-    return "assets/img/products/" + id+ ".jpg"
+    return "assets/img/products/" + id + ".jpg"
   }
 
   function removeFromCart(id:number){

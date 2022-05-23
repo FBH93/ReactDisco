@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { SingleProductCall } from "../Services/ProductsCall";
-import CardButton from "./Atoms/CardButton";
+import { CardButton } from "./Atoms/CardButton";
+
+
 
 //Product type based on JSON
 export type product = {
@@ -11,6 +13,7 @@ export type product = {
   style : string,
   type : string
 };
+
 
 export const Product = () => {
 
@@ -22,6 +25,7 @@ export const Product = () => {
   const errors = {
     product: "product not found",
   };
+
   return (
     <div>
         <div className="container">
@@ -30,7 +34,7 @@ export const Product = () => {
               <div id="discoProductImage" style={{background: 'url("../assets/img/product/' + id + '.jpg") no-repeat', backgroundSize: 'contain', height: '512px'}} />
             </div>
             <div className="col mt-5">
-              <h2 id="discoProductName">{myProduct.productName}</h2>
+              <h2 id="discoProductName">{id}</h2>
               <div className="row">
                 <div className="col"><div className="btn-group btn-group-toggle" style={{paddingBottom: '16px'}} data-toggle="buttons">
                   <label className="btn btn-secondary">
@@ -46,7 +50,7 @@ export const Product = () => {
                     <input type="radio" name="size" id="XL" autoComplete="off" onClick={(event) => {setproductize("XL")}} /> XL
                   </label>
                   </div>
-                  <h2 id="discoProductPrice" style={{ marginBottom: '25px', marginTop: '25px' }}>{myProduct.productPrice}</h2>
+                  <h2 id="discoProductPrice" style={{ marginBottom: '25px', marginTop: '25px' }}>{id}</h2>
                 </div>
               </div>
               <div className="row">
