@@ -163,7 +163,6 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
             <button
               onClick={async() => {
                 const updatedCart = cID?await removeFromCart(cID, productID, size): cart.filter((item)=>item.productID!=productID)
-                console.log
                 setCart(updatedCart)}}
               className="btn btn-primary"
               type="button"
