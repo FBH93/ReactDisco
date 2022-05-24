@@ -39,6 +39,4 @@ export async function removeProductFromBasket(userID:string, pID:number, size:st
           method: 'DELETE',
         }
         ) 
-        
-        
 };
