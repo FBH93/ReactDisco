@@ -65,9 +65,6 @@ export function NavigationBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link eventKey="button" href="#button">
-                Some Button
-              </Nav.Link>
               <Nav.Link href="/products">All Products</Nav.Link>
               <NavDropdown title="Styles" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/products/70s">70s</NavDropdown.Item>
@@ -78,9 +75,27 @@ export function NavigationBar() {
                 <NavDropdown.Item href="/products/space">
                   Space
                 </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item eventKey="SomeLink" href="#SomeLink">
-                  Some separate link
+              </NavDropdown>
+              <NavDropdown title="Types" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/products/shirts">
+                  Shirts
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/products/pants">
+                  Pants
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/products/jackets">
+                  Jackets
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/products/accessories">
+                  Accessories
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title="Prices" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/products/discount">
+                  Discount
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/products/premium">
+                  Premium
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

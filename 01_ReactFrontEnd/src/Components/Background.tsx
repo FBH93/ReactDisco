@@ -8,6 +8,7 @@ export const Background = () => {
         height: '95vh',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        backgroundPosition: 'center center',
       }}
     >
       <div
