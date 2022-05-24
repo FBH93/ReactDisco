@@ -111,7 +111,7 @@ export function NavigationBar() {
                 </Nav.Link>
               )}
               <Nav.Link eventKey="Basket" href="/basket">
-                basket
+                Basket
               </Nav.Link>
             </Nav>
             <Modal
@@ -136,6 +136,7 @@ export function NavigationBar() {
               </ModalHeader>
               <ModalBody>
                 {localStorage.getItem('isLoggedIn') === 'true' ? (
+                  //Add user card here
                   <Button onClick={() => closeAfterLogin()}> Logout </Button>
                 ) : (
                   <LoginForm />
