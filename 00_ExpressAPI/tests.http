@@ -16,6 +16,10 @@ GET http://localhost:3000/products/filter/?style=70s HTTP/1.1
 ###
 GET http://localhost:3000/products/filter/?featured=yes HTTP/1.1
 ###
+GET http://localhost:3000/products/filter/?price=discount HTTP/1.1
+###
+GET http://localhost:3000/products/filter/?price=premium HTTP/1.1
+###
 
 //GET CATEGORIES
 GET http://localhost:3000/categories HTTP/1.1

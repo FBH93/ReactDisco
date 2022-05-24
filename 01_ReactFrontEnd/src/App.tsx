@@ -77,6 +77,18 @@ class App extends React.Component {
                   <ProductGrid filter1={'type=accessories'} filter2={'None'} />
                 }
               />
+              <Route
+                path="/products/premium"
+                element={
+                  <ProductGrid filter1={'price=premium'} filter2={'None'} />
+                }
+              />
+              <Route
+                path="/products/discount"
+                element={
+                  <ProductGrid filter1={'price=discount'} filter2={'None'} />
+                }
+              />
               <Route path="/products/:id" element={<Product />} />
               <Route path="/account" element={<Account />} />
               <Route path="/basket" element={<Basket />} />

@@ -1,10 +1,9 @@
-import ProductsCall from '../Services/ProductsCall'
 import { ProductInterface } from '../Components/Product'
 import Sizometer from './Atoms/Sizometer'
 import { useState, useEffect } from 'react'
 import { CardButton } from './Atoms/CardButton'
 import { Alert } from 'react-bootstrap'
-import { getAPI } from '../Services/ProductsCall'
+import { getAPI,  } from '../Services/ProductsCall'
 import { useAtom } from 'jotai'
 import { sizeAtom } from './store'
 
@@ -18,18 +17,17 @@ function ProductGrid(filter: Filter, props) {
   const [selectedSize, setproductize] = useAtom(sizeAtom)
 
   const API = getAPI(filter)
-  console.log(filter)
+  console.log(API)
 
-  useEffect(() => {
+  useEffect(() =>{
     const fetchProducts = async () => {
-      fetch(API)
+      fetch(API,{method: 'GET'})
         .then((res) => res.json())
         .then((res) => {
           console.log(res) //This prints twice, for some reason??
           setProducts(res)
         })
     }
-
     fetchProducts()
   }, [API])
 
