@@ -10,6 +10,7 @@ import Product from './Components/Product'
 import { Account } from './Components/Account'
 import { Greetings } from './Components/Atoms/Greetings'
 import Headline from './Components/Atoms/Headline'
+import { Home } from './Components/Home'
 
 class App extends React.Component {
   render() {
@@ -23,9 +24,7 @@ class App extends React.Component {
                 path="/"
                 element={
                   <>
-                    <Background />
-                    <Headline text="Featured this month" />
-                    <ProductGrid filter1={'featured=yes'} filter2={'None'} />
+                    <Home />
                   </>
                 }
               />
