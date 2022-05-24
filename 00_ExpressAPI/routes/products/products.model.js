@@ -32,7 +32,8 @@ export async function getByID(productID) {
 }
 
 //GET PRODUCT_BY_FILTER
-export async function getByQuery(style, type, featured) {
+//Values of parameters may be undefined
+export async function getByQuery(style, type, featured, price) {
   let productArray = await getAll()
   let filteredArray
 
@@ -43,7 +44,6 @@ export async function getByQuery(style, type, featured) {
     )
   }
   //check if filter is for price
-  /*
   if (price) {
     if (price == 'premium') {
       filteredArray = productArray.filter(
@@ -56,7 +56,6 @@ export async function getByQuery(style, type, featured) {
       )
     }
   }
-  */
   //Check if style and type are both filled in. Filters on both.
   else if (style && type) {
     filteredArray = productArray

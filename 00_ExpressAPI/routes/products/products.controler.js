@@ -27,18 +27,18 @@ export async function getProductByID(req, res) {
 
 //Handles the /products/filter/?query for type and category. Returns products with given filter.
 export async function getProductsByQuery(req, res) {
-  console.log('retrieving product by filter query....' + res.query)
+  console.log('retrieving product by filter query....')
   try {
-    console.log(res.query.style)
-    console.log(res.query.type)
-    console.log(res.query.featured)
-    //console.log(res.query.price)
-
     let style = req.query.style
+      console.log('style is ' + style)
     let type = req.query.type
+      console.log('type is ' + type)
     let featured = req.query.featured
-    //let price = req.query.price
-    let products = await productsModel.getByQuery(style, type, featured)
+      console.log('featured is ' + featured)
+    let price = req.query.price
+      console.log('price is ' + price)
+
+    let products = await productsModel.getByQuery(style, type, featured, price)
     res.json(products)
   } catch (error) {
     res.status(404).send(error.message)
