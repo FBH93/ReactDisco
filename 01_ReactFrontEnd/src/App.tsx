@@ -7,7 +7,6 @@ import Background from './Components/Background'
 import ProductGrid from './Components/ProductGrid'
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import Product from './Components/Product'
-import { Account } from './Components/Account'
 import { Greetings } from './Components/Atoms/Greetings'
 import Headline from './Components/Atoms/Headline'
 import { Home } from './Components/Home'
@@ -89,7 +88,6 @@ class App extends React.Component {
                 }
               />
               <Route path="/products/:id" element={<Product />} />
-              <Route path="/account" element={<Account />} />
               <Route path="/basket" element={<Basket />} />
             </Routes>
           </div>

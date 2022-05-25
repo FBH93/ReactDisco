@@ -1,44 +1,31 @@
-import { Form } from "react-bootstrap"
+import { Form, Button, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle } from "react-bootstrap"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { loginAtom } from "./store"
 import { useAtom } from "jotai"
-import { getUserData } from "../Services/UserCall"
+import { getUserData } from "../../Services/UserCall"
+import { loginAtom, showModalAtom, signUpAtom } from '../store'
 
-export const LoginForm = () => {
-  const [errorMessages, setErrorMessages] = useState({})
-  const [isSubmitted, setIsSubmitted] = useState(false)
+export const Login = () => {
+
   const [inputEmail, setEmail] = useState("")
   const [inputPassword, setPassword] = useState("")
-  const navigate = useNavigate()
   const [isLogin, setLogin] = useAtom(loginAtom)
-
-  const errors = {
-    uname: "incorrect email",
-    pass: "incorrect password",
-  }
+  const[modal, setModal] = useAtom(showModalAtom)
+  const [signUp, setSignUp] = useAtom(signUpAtom);
 
   const login = async () => {
     //Get user details from API, then check if login is valid for that user.
     let data = await getUserData(inputEmail)
     const password = data.password
     const email = data.email
-    console.log(password)
-    console.log(email)
     if (password !== inputPassword) {
-      setErrorMessages({ name: "pass", message: errors.pass })
       alert("Wrong Password")
     } 
     else {
-      setIsSubmitted(true)
       setLogin(true)
+      localStorage.setItem("firstName", data.fName)
       localStorage.setItem("isLoggedIn", "true")
-      localStorage.setItem("emailLoggedIn", email)
-      localStorage.setItem('firstName', data.firstName)
-      localStorage.setItem('lastName', data.lastName)
-      localStorage.setItem('address', data.address)
-      localStorage.setItem('CID', data.customerId)
-      navigate(0)
+      localStorage.setItem("customerID", data.customerId)
     }
   }
 
@@ -46,8 +33,31 @@ export const LoginForm = () => {
     e.preventDefault()
   }
 
+  function toggleToSignUp() {
+    setModal(false);
+    setSignUp(true);
+  }
+
   return (
-    <div>
+    <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        role="dialog"
+        tabindex="-1"
+        id="loginModal"
+        show={modal}>
+        <ModalHeader>
+          <ModalTitle>DiscoClothing® Members</ModalTitle>
+          <Button
+            variant="secondary"
+            onClick={() => setModal(false)}
+            data-bs-dismiss="modal"
+            aria-label="Close">
+            Close
+          </Button>
+        </ModalHeader>
+        <ModalBody>
       <Form method="post" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col">
@@ -88,6 +98,20 @@ export const LoginForm = () => {
           </div>
         </div>
       </Form>
-    </div>
+      </ModalBody>
+        <ModalFooter>
+            <div className="modal-footer">
+              <span>No account yet?</span>
+              <Button
+                className="btn btn-secondary discoButton"
+                data-bss-hover-animate="pulse"
+                type="submit"
+                onClick={() => toggleToSignUp()}
+              >
+                Register new account
+              </Button>
+            </div>
+        </ModalFooter>
+      </Modal>
   )
 }
