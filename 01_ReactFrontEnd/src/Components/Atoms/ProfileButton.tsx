@@ -70,7 +70,10 @@ export function ProfileButton() {
         <ModalBody>
           {localStorage.getItem('isLoggedIn') === 'true' ? (
             //Add user card here
+            <>
+            <p>USER INFO HERE</p>
             <Button onClick={() => closeAfterLogin()}> Logout </Button>
+            </>
           ) : (
             <LoginForm />
           )}
