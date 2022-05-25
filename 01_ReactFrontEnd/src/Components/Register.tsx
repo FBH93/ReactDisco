@@ -48,6 +48,7 @@ let handleSubmit = async (e) => {
          .catch(err => console.log(err));
          localStorage.setItem("isLoggedIn", "true");
          localStorage.setItem("customerID", customerID.toString());
+        //POST create basket for new user http://localhost:3000/basket/{ID}
 };
 
 return (
