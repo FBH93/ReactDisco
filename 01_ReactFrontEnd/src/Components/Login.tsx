@@ -35,6 +35,9 @@ export const LoginForm = () => {
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("emailLoggedIn", email)
       localStorage.setItem('firstName', data.firstName)
+      localStorage.setItem('lastName', data.lastName)
+      localStorage.setItem('address', data.address)
+      localStorage.setItem('CID', data.customerId)
       navigate(0)
     }
   }

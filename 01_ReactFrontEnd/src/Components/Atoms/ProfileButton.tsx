@@ -1,54 +1,84 @@
 import { useEffect, useState } from "react"
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Nav } from "react-bootstrap"
+import {
+  Button,
+  Card,
+  ListGroup,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  Nav,
+} from "react-bootstrap"
 import { LoginForm } from "../Login"
 import { RegisterForm } from "../Register"
 import { useNavigate } from "react-router-dom"
 
 export interface customer {
-    customerId: string
-    firstName: string
-    lastName: string
-    password: string
-    email: string
-    address: string
-  }
+  customerId: string
+  firstName: string
+  lastName: string
+  password: string
+  email: string
+  address: string
+}
 
 export function ProfileButton() {
-    const [showModal, setShowModal] = useState(false)
-    const [showSignUp, setShowSignup] = useState(false)
-    const navigate = useNavigate()    
-    
-    function closeModal() {
-      setShowModal(false)
-    }
-  
-    function openModal() {
-      setShowModal(true)
-    }
-  
-    function handleSignup() {
-      setShowModal(false)
-      setShowSignup(true)
-    }
-  
-    function closeSignup() {
-      setShowSignup(false)
-    }
-  
-    function closeAfterLogOut() {
-      setShowModal(false)
-      localStorage.setItem('isLoggedIn', 'false')
-      localStorage.removeItem('emailLoggedIn');
-      localStorage.removeItem('firstName');
-      navigate(0)
-    }    
+  const [showModal, setShowModal] = useState(false)
+  const [showSignUp, setShowSignup] = useState(false)
+  const navigate = useNavigate()
 
+  function closeModal() {
+    setShowModal(false)
+  }
+
+  function openModal() {
+    setShowModal(true)
+  }
+
+  function handleSignup() {
+    setShowModal(false)
+    setShowSignup(true)
+  }
+
+  function closeSignup() {
+    setShowSignup(false)
+  }
+
+  function closeAfterLogOut() {
+    setShowModal(false)
+    localStorage.setItem("isLoggedIn", "false")
+    localStorage.removeItem("emailLoggedIn")
+    localStorage.removeItem("firstName")
+    localStorage.removeItem("lastName")
+    localStorage.removeItem("address")
+    localStorage.removeItem("CID")
+    navigate(0)
+  }
+  function showUserInfo() {
     return (
-        <>
-        <Nav>
-        {localStorage.getItem('isLoggedIn') === 'true' ? (
+    <>
+      <Card style={{ width: "18rem" }}>
+        <Card.Header>User Profile:</Card.Header>
+        <ListGroup variant="flush">
+          <ListGroup.Item>Customer ID: {localStorage.getItem("CID")}</ListGroup.Item>
+          <ListGroup.Item>First Name: {localStorage.getItem("firstName")}</ListGroup.Item>
+          <ListGroup.Item>Last Name: {localStorage.getItem("lastName")}</ListGroup.Item>
+          <ListGroup.Item>Email: {localStorage.getItem("emailLoggedIn")}</ListGroup.Item>
+          <ListGroup.Item>Address: {localStorage.getItem("address")}</ListGroup.Item>
+        </ListGroup>
+        <Button onClick={() => closeAfterLogOut()}> Logout </Button>
+      </Card>
+    </>
+    )
+  }
+
+  return (
+    <>
+      <Nav>
+        {localStorage.getItem("isLoggedIn") === "true" ? (
           <Nav.Link eventKey="button" onClick={() => openModal()}>
-              <p>{localStorage.getItem('firstName')}</p>
+            <p>{localStorage.getItem("firstName")}</p>
           </Nav.Link>
         ) : (
           <Nav.Link eventKey="button" onClick={() => openModal()}>
@@ -80,18 +110,17 @@ export function ProfileButton() {
           </Button>
         </ModalHeader>
         <ModalBody>
-          {localStorage.getItem('isLoggedIn') === 'true' ? (
+          {localStorage.getItem("isLoggedIn") === "true" ? (
             //Add user card here
             <>
-            
-            <Button onClick={() => closeAfterLogOut()}> Logout </Button>
+              {showUserInfo()}
             </>
           ) : (
             <LoginForm />
           )}
         </ModalBody>
         <ModalFooter>
-          {localStorage.getItem('isLoggedIn') === 'true' ? null : (
+          {localStorage.getItem("isLoggedIn") === "true" ? null : (
             <div className="modal-footer">
               <span>No account yet?</span>
               <button
@@ -130,10 +159,10 @@ export function ProfileButton() {
           <RegisterForm />
         </ModalBody>
       </Modal>
-      </>
-    )
+    </>
+  )
+}
 
-  }
-  
-  export default ProfileButton
-  
+export default ProfileButton
+
+
