@@ -2,24 +2,7 @@ import { useState, useEffect } from 'react'
 import { Filter } from '../Components/ProductGrid'
 import type { ProductInterface } from '../Components/Product'
 
-/*
-export default function useProductsCall(filter: Filter) {
-  const [productArray, getProducts] = useState([])
-  const API = getAPI(filter)
-  const fetchProducts = () => {
-    fetch(API)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res) //This prints twice, for some reason??
-        getProducts(res)
-      })
-  }
-  useEffect(() => {
-    fetchProducts()
-  }, [])
-  return productArray
-}
-*/
+
 //get products from API
 export function getAPI(filter: Filter) {
   //Return all products if no filter

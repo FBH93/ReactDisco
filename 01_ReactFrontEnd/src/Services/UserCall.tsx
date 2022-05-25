@@ -29,11 +29,3 @@ export const getUserData = async(inputEmail) => {
   })
   return data;
 }
-
-
-/*
-export function getUserNameFromEmail(email: string) {
-  let user = getUserFromAPI(email)
-  return user
-}
-*/

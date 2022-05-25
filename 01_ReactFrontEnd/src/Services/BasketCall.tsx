@@ -31,7 +31,6 @@ export async function getSingleBasket(id: any): Promise<BasketProduct[]> {
   ).then (
     (basket) => basket.products
   )
-  // Parse the response in JSON
 }
 
 export async function removeProductFromBasket(userID:string, pID:number, size:string)  {

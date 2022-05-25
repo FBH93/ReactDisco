@@ -11,6 +11,7 @@ export interface ProductInterface {
   productPrice: number
   style: string
   type: string
+  details: string
 }
 
 const Product = () => {
@@ -50,6 +51,13 @@ const Product = () => {
             <h2 id="discoProductName">{myProduct?.productName}</h2>
             <div className="row">
               <div className="col">
+              <p> {myProduct?.details} </p>
+              <h4
+                  id="discoProductPrice"
+                  style={{ marginBottom: '25px', marginTop: '25px' }}
+                >
+                  {myProduct?.productPrice} DKK
+              </h4>
                 <div
                   className="btn-group btn-group-toggle"
                   style={{ paddingBottom: '16px' }}
@@ -105,16 +113,12 @@ const Product = () => {
                     XL
                   </label>
                 </div>
-                <h2
-                  id="discoProductPrice"
-                  style={{ marginBottom: '25px', marginTop: '25px' }}
-                >
-                  {myProduct?.productPrice} DKK
-                </h2>
               </div>
             </div>
             <div className="row">
-              <CardButton pID={parseInt(id)} size={selectedSize} />
+              <div className="col">
+              <CardButton pID={parseInt(id)} size={selectedSize} /> 
+              </div>
             </div>
           </div>
         </div>
