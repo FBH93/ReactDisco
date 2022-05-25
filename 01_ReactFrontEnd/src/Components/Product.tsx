@@ -24,7 +24,6 @@ const Product = () => {
       const myProduct = await getSingleProduct(id)
       setMyProduct(myProduct)
     }
-
     updateProduct()
   }, [id])
 
