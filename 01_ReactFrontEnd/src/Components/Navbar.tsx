@@ -1,34 +1,14 @@
-import { Navbar, Container, Nav, NavDropdown, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Button} from 'react-bootstrap'
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { useAtom } from 'jotai'
 import { loginAtom, showModalAtom } from './store'
-import { useState } from 'react'
 import { Account } from './Atoms/AccountDetails'
 import { Login } from './Atoms/LoginModal'
 import { Register } from './Atoms/RegisterModal'
 
 export function NavigationBar() {
 
-  const [modal, setModal] = useAtom(showModalAtom);
   const [login, setLogin] = useAtom(loginAtom);
-  const [signUp, setSignUp] = useState(false);
-
-  function handleSignup() {
-    setModal(false);
-    setSignUp(true);
-  }
-
-  function closeSignup() {
-    setSignUp(false);
-    setModal(false);
-  }
-
-  function handleLogOut() {
-    setModal(false);
-    localStorage.setItem("isLoggedIn", "false");
-    localStorage.removeItem("CustomerID");
-    setLogin(false);
-  }
-
+  const [modal, setModal] = useAtom(showModalAtom);
 
   return (
     <div>
