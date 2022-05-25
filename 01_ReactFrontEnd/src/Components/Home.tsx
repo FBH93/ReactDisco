@@ -11,7 +11,7 @@ export const Home = () => {
     <Card className="text-center">
       <Card.Img src="/assets/img/content/img-hero.jpg" />
       <Card.ImgOverlay>
-        <Card bg="light" border="primary" style={{width: '72rem', marginLeft: 'auto', marginRight: 'auto', marginTop: '100px'}}>
+        <Card bg="light" border="primary" style={{width: '72rem', marginLeft: 'auto', marginRight: 'auto', marginTop: '25px'}}>
           <Headline text="Featured this month" />
           <Card.Body>
             <Card.Text>
