@@ -72,7 +72,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
   }
 
   
-  const getTotalPrice = () => {
+  function getTotalPrice(): number {
     let total = 0
     {cart?.map((item) => {total += item.productPrice})}
     return total
@@ -181,7 +181,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
             style={{ padding: '25px' }}
           >
             <p className="fs-4 fw-bold" style={{ marginTop: '12px' }}>
-              Sub-Total: {22} DKK
+              Sub-Total: {getTotalPrice()} DKK
             </p>
           </div>
         </div>
