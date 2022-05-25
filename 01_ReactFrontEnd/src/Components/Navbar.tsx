@@ -1,10 +1,14 @@
-import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
-import ProfileButton from './Atoms/ProfileButton'
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { useAtom } from 'jotai'
+import { loginAtom, showModalAtom } from './store'
+import { Account } from './Atoms/AccountDetails'
+import { Login } from './Atoms/LoginModal'
+import { Register } from './Atoms/RegisterModal'
 
 export function NavigationBar() {
+
+  const [login, setLogin] = useAtom(loginAtom);
+  const [modal, setModal] = useAtom(showModalAtom);
 
   return (
     <div>
@@ -58,10 +62,26 @@ export function NavigationBar() {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <ProfileButton/>
+            <Nav>
+              {login ? (
+                <Nav.Link eventKey="button" onClick={() => setModal(true)}>
+                  <p> Account </p>
+                </Nav.Link>
+              ) : (
+                <Nav.Link eventKey="button" onClick={() => setModal(true)}>
+                  Login
+                </Nav.Link>
+              )}
+              <Nav.Link eventKey="Basket" href="/basket">
+                Basket
+              </Nav.Link>
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      {login ? <Account /> :
+        <Login />}
+      <Register />
     </div>
   )
 }

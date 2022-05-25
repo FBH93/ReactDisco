@@ -7,10 +7,10 @@ import Background from './Components/Background'
 import ProductGrid from './Components/ProductGrid'
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import Product from './Components/Product'
-import { Account } from './Components/Account'
 import { Greetings } from './Components/Atoms/Greetings'
 import Headline from './Components/Atoms/Headline'
 import { Home } from './Components/Home'
+import Account from './Components/Atoms/AccountDetails'
 
 class App extends React.Component {
   render() {
