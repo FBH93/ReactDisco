@@ -30,7 +30,7 @@ async function testSleep(ms:number){
   await sleep(ms);
   console.log("zzz-..huh? I'm awake!")
 }
-
+//TODO: currently theres a bug where two clicks are required for the page to reload. Says there's an unexpected end of json input at UserCall.tsx line 8. Investigate... 
 export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
   
   let has_localProducts: Boolean = false;
