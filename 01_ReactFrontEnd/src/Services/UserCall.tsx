@@ -1,20 +1,5 @@
-import { useState, useEffect } from 'react'
-import { NumericLiteral } from 'typescript'
+import axios from 'axios'
 
-export interface customer {
-  customerId: string
-  firstName: string
-  lastName: string
-  password: string
-  email: string
-  address: string
-}
-//get products from API
-export function getUserFromAPI(email: string) {
-  return fetch( 'http://localhost:3000/customer/' + email)
-    .then((res) => res.json())
-    .then((res) => {console.log(res)})
-}
 
 export function putProductToBasket(userID: string, pID: number, size: string) {
   return fetch(
@@ -31,7 +16,20 @@ export function putProductToBasket(userID: string, pID: number, size: string) {
     })
 }
 
-
+export const getUserData = async(inputEmail) => {
+  const data = axios
+  .get("http://localhost:3000/customer/login/" + inputEmail, {})
+  .then(res => {
+      console.log(res.data)
+      return res.data 
+     
+  })
+  .catch((error) => {
+      console.log(error)
+      alert('Wrong Email');
+  })
+  return data;
+}
 
 
 /*

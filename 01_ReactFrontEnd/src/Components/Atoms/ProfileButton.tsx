@@ -1,13 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Nav } from "react-bootstrap"
 import { LoginForm } from "../Login"
 import { RegisterForm } from "../Register"
+import { useNavigate } from "react-router-dom"
+
+export interface customer {
+    customerId: string
+    firstName: string
+    lastName: string
+    password: string
+    email: string
+    address: string
+  }
 
 export function ProfileButton() {
     const [showModal, setShowModal] = useState(false)
-
     const [showSignUp, setShowSignup] = useState(false)
-  
+    const navigate = useNavigate()    
+    
     function closeModal() {
       setShowModal(false)
     }
@@ -25,18 +35,20 @@ export function ProfileButton() {
       setShowSignup(false)
     }
   
-    function closeAfterLogin() {
+    function closeAfterLogOut() {
       setShowModal(false)
       localStorage.setItem('isLoggedIn', 'false')
-    }
-  
+      localStorage.removeItem('emailLoggedIn');
+      localStorage.removeItem('firstName');
+      navigate(0)
+    }    
+
     return (
         <>
         <Nav>
         {localStorage.getItem('isLoggedIn') === 'true' ? (
           <Nav.Link eventKey="button" onClick={() => openModal()}>
-            {' '}
-            Hello {localStorage.getItem('firstname')}!{' '}
+              <p>{localStorage.getItem('firstName')}</p>
           </Nav.Link>
         ) : (
           <Nav.Link eventKey="button" onClick={() => openModal()}>
@@ -71,8 +83,8 @@ export function ProfileButton() {
           {localStorage.getItem('isLoggedIn') === 'true' ? (
             //Add user card here
             <>
-            <p>USER INFO HERE</p>
-            <Button onClick={() => closeAfterLogin()}> Logout </Button>
+            
+            <Button onClick={() => closeAfterLogOut()}> Logout </Button>
             </>
           ) : (
             <LoginForm />

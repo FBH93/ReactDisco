@@ -1,9 +1,6 @@
 import { Carousel } from "react-bootstrap";
 
-export default function Footer() {
-    const slide1Text = "Hello " + localStorage.getItem('firstname')
-
-
+export default function Caroussel() {
   return (
     <Carousel>
         <Carousel.Item>
@@ -14,13 +11,13 @@ export default function Footer() {
             <Carousel.Caption>
               {localStorage.getItem('isLoggedIn') === 'true' ? (
                   <>
-                  <h3>{slide1Text}</h3>
+                  <h3>Hello {localStorage.getItem('firstName')}</h3>
                   <p>Welcome to a world of disco</p>
                   </>
               ) : (
                   <>
                   <h3>Welcome!</h3>
-                  <p>Consider creating an account</p>
+                  <p>Consider creating an account or logging in</p>
                   </>
               )}
               
