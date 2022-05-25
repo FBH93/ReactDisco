@@ -25,7 +25,7 @@ export const Account = () => {
         id="accountModal"
         show={modal}>
         <ModalHeader>
-          <ModalTitle>DiscoClothing® Members</ModalTitle>
+          <ModalTitle>Hey ! Welcome back to DiscoClothing®</ModalTitle>
           <Button
             variant="secondary"
             onClick={() => setModal(false)}

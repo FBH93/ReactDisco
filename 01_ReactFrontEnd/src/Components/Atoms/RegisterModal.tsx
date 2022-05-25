@@ -52,6 +52,11 @@ function closeSignup() {
     setModal(false);
     }
 
+function toggleToLogin() {
+    setSignUp(false);
+    setModal(true);
+    }
+
 return (
     <Modal
         size="lg"
@@ -63,7 +68,7 @@ return (
         show={signUp}
       >
         <ModalHeader>
-          <ModalTitle> DiscoClothing® Members</ModalTitle>
+          <ModalTitle> Become a DiscoClothing® member today!</ModalTitle>
           <Button
             variant="secondary"
             onClick={() => closeSignup()}
@@ -99,5 +104,17 @@ return (
                     </div>
             </Form>
         </ModalBody>
+        <ModalFooter>
+          <div className="modal-footer">
+            <span>Already have an account?</span>
+            <Button
+                className="btn btn-secondary discoButton"
+                data-bss-hover-animate="pulse"
+                type="submit"
+                onClick={() => toggleToLogin()}>
+                Login
+            </Button>
+          </div>
+        </ModalFooter>
     </Modal>
 )}
