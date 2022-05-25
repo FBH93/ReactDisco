@@ -20,28 +20,21 @@ export interface BasketInterface {
 
 
 export const Basket = () => {
-  const [selectedSize, setProductSize] = useState('')
-  const [isAdded, setIsAdded] = useState(false)
-  
-
 
  let cID = localStorage.getItem('CustomerID')
 
  //see TODO at localStorageCart()
  const [localCart]=useAtom(localCartAtom)
- 
  const [cart, setCart] = useState<BasketProduct[] | null>([])
+ const [totalPrice, setPrice] = useState<{totalPrice: number}>();
 
 
 
  useEffect(() => {
     const getBasket = async () => {
-      console.log("im doing something")
-      const contents = cID? await getSingleBasket(cID): localCart;
-      console.log(contents);
-     setCart(contents)
-    }
-
+    const contents = cID? await getSingleBasket(cID): localCart;
+    setCart(contents)
+  }
     getBasket()
   }, [cID])
 
@@ -79,25 +72,15 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
   }
 
   
-
-
-  // const getTotalPrice = () => {
-  //   let total: number = 0
-  //   cart.forEach((value: string, key: typeProduct) => {
-  //     total += key.productPrice
-  //   })
-  //   return total
-  // }
-
-  // const getCartSize = () => {
-  //   return cart.size
-  // }
+  const getTotalPrice = () => {
+    let total = 0
+    {cart?.map((item) => {total += item.productPrice})}
+    return total
+  }
 
   const getImgPathById = (id: number) => {
     return 'assets/img/products/' + id + '.jpg'
   }
-
-
 
   return (
     <div
