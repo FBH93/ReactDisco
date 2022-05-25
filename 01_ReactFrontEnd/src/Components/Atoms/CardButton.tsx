@@ -25,18 +25,15 @@ export const CardButton: React.FC<CardButtonProps> = ({ pID, size }) => {
   return (
     <>
       <div className="col text-center">
-        <button
+        <Button variant='success'
+          style={{marginTop: '10px'}}
           onClick={(event) => {
             addItem(pID, size)
             alert('Added to basket')
           }}
-          className="btn btn-primary"
-          data-bss-hover-animate="pulse"
-          type="button"
-          style={{ marginBottom: '25px' }}
         >
           Add to cart
-        </button>
+        </Button>
       </div>
     </>
   )
