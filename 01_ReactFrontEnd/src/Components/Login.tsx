@@ -53,6 +53,7 @@ export const LoginForm = () => {
     setIsSubmitted(true);
     setLogin(true);
     localStorage.setItem("isLoggedIn", "true")
+    localStorage.setItem("emailLoggedIn", email)
     navigate(-1);
     }}
    
