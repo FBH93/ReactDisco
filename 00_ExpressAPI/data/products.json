@@ -5,7 +5,8 @@
     "productPrice": 899,
     "style": "sportswear",
     "type": "pants",
-    "featured": "yes"
+    "featured": "yes",
+    "details": "You will be hip and fash with these rocking disco pants"
   },
   {
     "productID": 2,
@@ -13,7 +14,8 @@
     "productPrice": 349,
     "style": "sportswear",
     "type": "jackets",
-    "featured": "no"
+    "featured": "no",
+    "details": "Perfect for any sports activity; especially disco dancing"
   },
   {
     "productID": 3,
@@ -21,7 +23,8 @@
     "productPrice": 149,
     "style": "sportswear",
     "type": "accessories",
-    "featured": "no"
+    "featured": "no",
+    "details": "A discoball is included in the price for this headband. With love from Grandma Disco."
   },
   {
     "productID": 4,
@@ -29,7 +32,8 @@
     "productPrice": 299,
     "style": "sportswear",
     "type": "jackets",
-    "featured": "no"
+    "featured": "no",
+    "details": "This bumperjacket is a steal. Limited amount available!"
   },
   {
     "productID": 5,
@@ -37,7 +41,8 @@
     "productPrice": 299,
     "style": "70s",
     "type": "pants",
-    "featured": "no"
+    "featured": "no",
+    "details": "Custom made by Gucci with sutainable material only"
   },
   {
     "productID": 6,
@@ -45,7 +50,8 @@
     "productPrice": 649,
     "style": "70s",
     "type": "shirt",
-    "featured": "yes"
+    "featured": "yes",
+    "details": "The details on this shirt were created by Gucci himself"
   },
   {
     "productID": 7,
@@ -53,7 +59,8 @@
     "productPrice": 579,
     "style": "space",
     "type": "shirt",
-    "featured": "no"
+    "featured": "no",
+    "details": "The details on this shirt were created by Gucci himself!"
   },
   {
     "productID": 8,
@@ -61,7 +68,8 @@
     "productPrice": 399,
     "style": "space",
     "type": "shirt",
-    "featured": "no"
+    "featured": "no",
+    "details": "Sustainable shirt made by volunteers. We will send 10 DKK to Red Barnet for each shirt bought!"
   },
   {
     "productID": 9,
@@ -69,7 +77,8 @@
     "productPrice": 599,
     "style": "70s",
     "type": "shirt",
-    "featured": "no"
+    "featured": "no",
+    "details": "Spice up your life with this Disco-ball inspired top. Automatically become the life of the party!"
   },
   {
     "productID": 10,
@@ -77,7 +86,8 @@
     "productPrice": 199,
     "style": "80s",
     "type": "shirt",
-    "featured": "no"
+    "featured": "no",
+    "details": "Sustainable shirt made by volunteers from Red Barnet"
   },
   {
     "productID": 11,
@@ -85,7 +95,8 @@
     "productPrice": 799,
     "style": "space",
     "type": "shirt",
-    "featured": "no"
+    "featured": "no",
+    "details": "Make your life a better by saying yes yes yes to glitter glitter glitter"
   },
   {
     "productID": 12,
@@ -93,7 +104,8 @@
     "productPrice": 249,
     "style": "space",
     "type": "shirt",
-    "featured": "no"
+    "featured": "no",
+    "details": "This shirt was designed by a candyshop and a lollipop will be included in the order of each dress sold"
   },
   {
     "productID": 13,
@@ -101,7 +113,8 @@
     "productPrice": 349,
     "style": "space",
     "type": "accessories",
-    "featured": "yes"
+    "featured": "yes",
+    "details": "This. Bra. Is. On. FIRREEEEEEEEEEE. Perfect for lighting candles. Buy 1 get 2."
   },
   {
     "productID": 14,
@@ -109,7 +122,8 @@
     "productPrice": 999,
     "style": "space",
     "type": "shirt",
-    "featured": "no"
+    "featured": "no",
+    "details": "Made of 100% polyester. Very good for the environment!"
   },
   {
     "productID": 15,
@@ -117,6 +131,7 @@
     "productPrice": 199,
     "style": "space",
     "type": "pants",
-    "featured": "no"
+    "featured": "no",
+    "details": "In case you were missing the Coronavirus a little, these Covid-19 inspired pants will make you a the fashionista of the year"
   }
 ]
