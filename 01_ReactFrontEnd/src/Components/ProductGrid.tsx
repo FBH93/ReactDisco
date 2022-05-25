@@ -57,8 +57,8 @@ function ProductGrid(filter: Filter, props) {
                       {product.productPrice + " DKK"}
                     </Card.Subtitle>
                   </a>
-                  <CardButton pID={product.productID} size={selectedSize} />
                   <Sizometer />
+                  <CardButton pID={product.productID} size={selectedSize} />
                 </Card>
               )
             })}

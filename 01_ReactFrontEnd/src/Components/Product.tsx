@@ -116,7 +116,6 @@ const Product = () => {
             </div>
             <div className="row">
               <CardButton pID={parseInt(id)} size={selectedSize} />
-              {/* <div className="col"><button className="btn btn-primary" data-bss-hover-animate="pulse" type="button" onClick={(event) => addItem(id)} style={{ marginBottom: '25px' }}>Add to cart</button></div> */}
             </div>
           </div>
         </div>
