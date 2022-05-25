@@ -30,15 +30,21 @@ class App extends React.Component {
               />
               <Route
                 path="/products"
-                element={<ProductGrid filter1={'None'} filter2={'None'} />}
+                element={
+                  <ProductGrid filter1={'None'} filter2={'None'} />
+                }
               />
               <Route
                 path="/products/70s"
-                element={<ProductGrid filter1={'style=70s'} filter2={'None'} />}
+                element={
+                  <ProductGrid filter1={'style=70s'} filter2={'None'} />
+                }
               />
               <Route
                 path="/products/80s"
-                element={<ProductGrid filter1={'style=80s'} filter2={'None'} />}
+                element={
+                  <ProductGrid filter1={'style=80s'} filter2={'None'} />
+                }
               />
               <Route
                 path="/products/sportswear"
@@ -88,9 +94,24 @@ class App extends React.Component {
                   <ProductGrid filter1={'price=discount'} filter2={'None'} />
                 }
               />
-              <Route path="/products/:id" element={<Product />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/basket" element={<Basket />} />
+              <Route 
+                path="/products/:id" 
+                element={
+                  <Product />
+                } 
+              />
+              <Route 
+                path="/account" 
+                element={
+                  <Account />
+                } 
+              />
+              <Route 
+                path="/basket" 
+                element={
+                  <Basket />
+                } 
+              />
             </Routes>
           </div>
         </BrowserRouter>
