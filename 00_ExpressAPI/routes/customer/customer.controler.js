@@ -19,7 +19,6 @@ export async function postCustomer(req, res) {
     let email = req.body.email
     let pword = req.body.pword
     let addr = req.body.addr
-    console.log(fname)
     await customerModel.createCustomer(
       customerID,
       fname,
