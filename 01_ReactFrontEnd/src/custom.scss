@@ -71,6 +71,10 @@ body {
   border-top: 0 none !important;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
 @media (max-width: 980px) {
   body {
     padding-top: 90;

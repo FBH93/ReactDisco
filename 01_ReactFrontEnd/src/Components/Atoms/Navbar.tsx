@@ -6,6 +6,15 @@ import { Login } from "./LoginModal"
 import { Register } from "./RegisterModal"
 import { useState } from "react"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { library } from "@fortawesome/fontawesome-svg-core"
+import {
+  faRightToBracket,
+  faShoppingBasket,
+} from "@fortawesome/free-solid-svg-icons"
+
+library.add(faRightToBracket, faShoppingBasket)
+
 export function NavigationBar() {
   const [, setModal] = useAtom(showModalAtom)
   const [isLogin, setLogin] = useState("")
@@ -79,11 +88,11 @@ export function NavigationBar() {
                 </Nav.Link>
               ) : (
                 <Nav.Link eventKey="button" onClick={() => setModal(true)}>
-                  Login
+                  <FontAwesomeIcon icon="right-to-bracket" /> Login
                 </Nav.Link>
               )}
               <Nav.Link eventKey="Basket" href="/basket">
-                Basket
+                <FontAwesomeIcon icon="basket-shopping" /> Basket
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

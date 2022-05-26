@@ -10,7 +10,11 @@ import { localCartAtom } from "./store"
 import { getSingleProduct } from "../Services/ProductsCall"
 import { putProductToBasket, getUserDataById } from "../Services/UserCall"
 import { UserInterface } from "./Atoms/LoginModal"
-import { JsxEmit } from "typescript"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { faTrash } from "@fortawesome/free-solid-svg-icons"
+
+library.add(faTrash)
 
 export interface BasketProduct {
   productID: number
@@ -127,7 +131,10 @@ export const Basket = () => {
                   <div className="row text-center">
                     <div className="col">
                       <a href="/">
-                        <button className="btn btn-dark btn-lg" type="button">
+                        <button
+                          className="mt-4 btn btn-dark btn-lg"
+                          type="button"
+                        >
                           Back to the store
                         </button>
                       </a>
@@ -222,7 +229,7 @@ export const Basket = () => {
 
   return (
     <div
-      className="pb-5"
+      className="pb-5 min-vh-100"
       style={{
         width: "100%",
         background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0))",
@@ -295,8 +302,7 @@ export const Basket = () => {
                     className="btn btn-primary"
                     type="button"
                   >
-                    <i className="fa fa-trash fs-2" />
-                    Remove
+                    <FontAwesomeIcon icon="trash" />
                   </button>
                 </div>
               </div>
