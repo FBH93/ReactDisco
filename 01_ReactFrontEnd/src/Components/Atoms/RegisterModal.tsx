@@ -1,4 +1,3 @@
-import React, { useEffect } from "react"
 import { useState } from "react"
 import {
   Form,
@@ -9,12 +8,11 @@ import {
   ModalHeader,
   Button,
 } from "react-bootstrap"
-import { useNavigate } from "react-router"
-import axios from "axios"
-import { loginAtom, showModalAtom, signUpAtom, userAtom } from "../store"
-import { atom, useAtom } from "jotai"
-import { createUserBasket } from "../../Services/BasketCall"
-import { getUserData, createUser } from "../../Services/UserCall"
+
+import { showModalAtom, signUpAtom, userAtom } from "../store"
+import { useAtom } from "jotai"
+
+import { createUser } from "../../Services/UserCall"
 
 export const Register = () => {
   const [inputEmail, setEmail] = useState("")

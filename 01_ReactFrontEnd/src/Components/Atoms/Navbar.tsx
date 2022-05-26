@@ -1,6 +1,6 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap"
 import { useAtom } from "jotai"
-import { loginAtom, showModalAtom } from "../store"
+import { showModalAtom } from "../store"
 import { Account } from "./AccountModal"
 import { Login } from "./LoginModal"
 import { Register } from "./RegisterModal"
@@ -11,9 +11,10 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import {
   faRightToBracket,
   faShoppingBasket,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons"
 
-library.add(faRightToBracket, faShoppingBasket)
+library.add(faRightToBracket, faShoppingBasket, faUser)
 
 export function NavigationBar() {
   const [, setModal] = useAtom(showModalAtom)
@@ -84,7 +85,7 @@ export function NavigationBar() {
             <Nav>
               {isLogin == "true" ? (
                 <Nav.Link eventKey="button" onClick={() => setModal(true)}>
-                  <p> Account </p>
+                  <FontAwesomeIcon icon="user" /> Account
                 </Nav.Link>
               ) : (
                 <Nav.Link eventKey="button" onClick={() => setModal(true)}>

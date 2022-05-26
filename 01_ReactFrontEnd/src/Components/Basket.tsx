@@ -199,7 +199,10 @@ export const Basket = () => {
                 <div className="row text-center">
                   <div className="col">
                     <a href="/">
-                      <button className="btn btn-dark btn-lg" type="button">
+                      <button
+                        className="mt-4 btn btn-dark btn-lg"
+                        type="button"
+                      >
                         Back to the store
                       </button>
                     </a>
