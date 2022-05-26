@@ -1,11 +1,10 @@
 import { useAtom } from 'jotai'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { getSingleBasket, removeProductFromBasket } from '../Services/BasketCall'
 import { localCartAtom } from './store'
-import {ProductInterface} from './Product'
 import { getSingleProduct } from '../Services/ProductsCall'
-import {putProductToBasket} from '../Services/UserCall'
+import { putProductToBasket } from '../Services/UserCall'
 
 export interface BasketProduct{
   productID: number, 

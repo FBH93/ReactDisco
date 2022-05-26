@@ -1,6 +1,3 @@
-import { atom, useAtom } from "jotai"
-import { getUserData } from "../Services/UserCall"
-
 export interface UserInterface {
     firstName: string
     lastName: string
