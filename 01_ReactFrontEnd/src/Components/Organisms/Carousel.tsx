@@ -32,7 +32,7 @@ export default function Caroussel() {
         />
 
         <Carousel.Caption>
-          <Headline text="Fashion goes around and around, but disco stays the same" />
+          <Headline text="Fashion goes around and around, but disco stays the same." />
           <p>DiscoClothing has everything you need to be the grooviest you!</p>
         </Carousel.Caption>
       </Carousel.Item>
