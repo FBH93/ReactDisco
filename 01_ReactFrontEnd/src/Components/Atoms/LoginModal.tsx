@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { atom, useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
 import { loginAtom, showModalAtom, signUpAtom, userAtom } from '../store'
+import { localStorageCart, exportFromLocal, BasketProduct } from '../Basket'
 
 export interface UserInterface {
   firstName: string
@@ -44,6 +45,7 @@ export const Login = () => {
       localStorage.setItem("firstName", data.fName)
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
+      
     }
   }
 
