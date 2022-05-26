@@ -47,8 +47,9 @@ export const createUser = async (
   inputAddress
 ) => {
   let customerID = Math.floor(Math.random() * 100000 + 1)
+
   const data = {
-    customerID: customerID,
+    customerID: customerID.toString(),
     fname: inputFirstName,
     lname: inputName,
     email: inputEmail,
@@ -61,6 +62,7 @@ export const createUser = async (
     .then((res) => console.log(res))
     .catch((err) => console.log(err))
   localStorage.setItem("customerID", customerID.toString())
+  localStorage.setItem("firstName", inputFirstName)
   await createUserBasket(customerID.toString())
 }
 
