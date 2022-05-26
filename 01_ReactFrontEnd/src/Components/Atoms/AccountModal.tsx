@@ -10,17 +10,33 @@ import {
 } from "react-bootstrap"
 import { useAtom } from "jotai"
 import { loginAtom, showModalAtom, userAtom } from "../store"
+import { getUserDataById } from "../../Services/UserCall"
+import { UserInterface } from "./LoginModal"
+import { useState } from "react"
+import { SocketAddress } from "net"
 
 export const Account = () => {
   const [, setLogin] = useAtom(loginAtom)
   const [modal, setModal] = useAtom(showModalAtom)
-  const [userData, setUserData] = useAtom(userAtom)
+  const cID = localStorage.getItem("customerID")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+
+  async function userData() {
+    let user: UserInterface = await getUserDataById(cID)
+    setFirstName(user.firstName)
+    setLastName(user.lastName)
+    setEmail(user.email)
+    setAddress(user.address)
+    return user
+  }
 
   function handleLogOut() {
     setModal(false)
     localStorage.setItem("isLoggedIn", "false")
     localStorage.removeItem("customerID")
-    setUserData(null)
     setLogin(false)
   }
 
@@ -35,9 +51,7 @@ export const Account = () => {
       show={modal}
     >
       <ModalHeader>
-        <ModalTitle>
-          Hey {userData?.firstName}! Welcome back to DiscoClothing®
-        </ModalTitle>
+        <ModalTitle>Hey {}! Welcome back to DiscoClothing®</ModalTitle>
         <Button
           variant="secondary"
           onClick={() => setModal(false)}
@@ -56,7 +70,7 @@ export const Account = () => {
               </p>{" "}
             </Col>
             <Col xs={12} md={8}>
-              <p>{userData?.firstName}</p>{" "}
+              <p>{firstName}</p>{" "}
             </Col>
           </Row>
           <Row>
@@ -66,7 +80,7 @@ export const Account = () => {
               </p>{" "}
             </Col>
             <Col xs={12} md={8}>
-              <p> {userData?.lastName} </p>
+              <p> {lastName} </p>
             </Col>
           </Row>
           <Row>
@@ -76,7 +90,7 @@ export const Account = () => {
               </p>
             </Col>
             <Col xs={12} md={8}>
-              <p>{userData?.address}</p>{" "}
+              <p>{address}</p>{" "}
             </Col>
           </Row>
           <Row>
@@ -86,7 +100,7 @@ export const Account = () => {
               </p>
             </Col>
             <Col xs={12} md={8}>
-              <p> {userData?.email}</p>
+              <p> {email}</p>
             </Col>
           </Row>
         </div>
