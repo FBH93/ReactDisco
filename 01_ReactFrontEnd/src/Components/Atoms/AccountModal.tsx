@@ -12,34 +12,25 @@ import { useAtom } from "jotai"
 import { loginAtom, showModalAtom, userAtom } from "../store"
 import { getUserDataById } from "../../Services/UserCall"
 import { UserInterface } from "./LoginModal"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 export const Account = () => {
   const [, setLogin] = useAtom(loginAtom)
   const [modal, setModal] = useAtom(showModalAtom)
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [address, setAddress] = useState("")
-
-  useEffect(() => {
-    let cID = localStorage.getItem("customerID")
-    const getUserData = async () => {
-      let user = await getUserDataById(cID)
-      console.log(user)
-      setFirstName(user.firstName)
-      setLastName(user.lastName)
-      setEmail(user.email)
-      setAddress(user.address)
-    }
-    getUserData()
-  }, [])
+  const firstName = localStorage.getItem("firstName")
+  const lastName = localStorage.getItem("lastName")
+  const email = localStorage.getItem("email")
+  const address = localStorage.getItem("address")
+  let cID = localStorage.getItem("customerID")
 
   function handleLogOut() {
     setModal(false)
     localStorage.setItem("isLoggedIn", "false")
     localStorage.removeItem("customerID")
     localStorage.removeItem("firstName")
+    localStorage.removeItem("lastName")
+    localStorage.removeItem("email")
+    localStorage.removeItem("address")
     setLogin(false)
     window.location.reload()
   }

@@ -13,7 +13,7 @@ export async function getCustomerById(req, res) {
 
 export async function postCustomer(req, res) {
   try {
-    let customerId = req.body.customerID
+    let customerID = req.body.customerID
     let fname = req.body.fname
     let lname = req.body.lname
     let email = req.body.email
@@ -21,7 +21,7 @@ export async function postCustomer(req, res) {
     let addr = req.body.addr
     console.log(fname)
     await customerModel.createCustomer(
-      customerId,
+      customerID,
       fname,
       lname,
       email,

@@ -4,13 +4,18 @@ import { loginAtom, showModalAtom } from "../store"
 import { Account } from "./AccountModal"
 import { Login } from "./LoginModal"
 import { Register } from "./RegisterModal"
+import { useState } from "react"
 
 export function NavigationBar() {
   const [, setModal] = useAtom(showModalAtom)
-  const login = localStorage.getItem("isLoggedIn")
+  const [isLogin, setLogin] = useState("")
+
+  function getLogin() {
+    setLogin(localStorage.getItem("isLoggedIn")!)
+  }
 
   return (
-    <div>
+    <div onLoad={getLogin}>
       <Navbar
         className="py-4 px-4"
         bg="primary"
@@ -68,7 +73,7 @@ export function NavigationBar() {
               </NavDropdown>
             </Nav>
             <Nav>
-              {login == "true" ? (
+              {isLogin == "true" ? (
                 <Nav.Link eventKey="button" onClick={() => setModal(true)}>
                   <p> Account </p>
                 </Nav.Link>
@@ -84,7 +89,7 @@ export function NavigationBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {login == "true" ? <Account /> : <Login />}
+      {isLogin == "true" ? <Account /> : <Login />}
       <Register />
     </div>
   )
