@@ -55,9 +55,11 @@ export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
 
 export async function localStorageCart(): Promise<BasketProduct[]> {
   let newCart: BasketProduct[] = []
+  let foundSomething: boolean = false;
 
   for (let i = 0; i < localStorage.length; i++) {
     if (localStorage.key(i)?.substring(0, 7) == "product") {
+      foundSomething = true;
       let pID = localStorage.key(i)?.substring(7)
       let singleProduct = await getSingleProduct(pID)
       let localSize: string = localStorage
@@ -74,8 +76,13 @@ export async function localStorageCart(): Promise<BasketProduct[]> {
       newCart.push(productForBasket)
     }
   }
-
+  if(foundSomething){
   return newCart
+  }
+  else{
+    let emptyCart: BasketProduct[] = []
+    return emptyCart;
+  }
 }
 
 export const Basket = () => {
@@ -102,21 +109,25 @@ export const Basket = () => {
   }, [cID]
   )
 
-  useEffect(() => {
-    const getHeading = async () => {
-      const message = await basketHeading()
-      setHeading(message)
-    }
-    getHeading()
-  })
+  // useEffect(() => {
+  //   const getHeading = async () => {
+  //     const message = 
+  //     ? await basketHeading()
+  //     : <></>
+  //     setHeading(message)
+  //   }
+  //   getHeading()
+  // })
 
   
 async function removeFromLocalCart(pID:number): Promise<BasketProduct[]> {
+    let foundItem: string = "";
     for (let i = 0; i < localStorage.length; i++){
       if(localStorage.key(i)?.substring(7) == pID.toString()){        
-        localStorage.removeItem('product'+pID);
+        foundItem = 'product'+pID
       }
     }
+    localStorage.removeItem(foundItem);
     return localStorageCart()
   }
 
@@ -140,34 +151,26 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
 
    
   async function basketHeading() {
-
-    
     let message = <></>
-    if(cID){
-      let user:UserInterface = await getUserDataById(cID);
-      let firstName:string = user.firstName;
-      if (cart) if(cart.length > 0){
-        message = <div>Hello {firstName}. Let's see what's in your basket. </div>
-      }
-      else{
-        message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
-      }
-      
-    }
-    else{
-     
-      if (cart) if(cart.length > 0){
-       
-        message = <div>Let's see what's in your basket. </div>
-      }
-      else{
-
-        message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
-      }
-    }
-
-    return message;
-    
+    // if(cID){
+    //   let user:UserInterface = await getUserDataById(cID);
+    //   let firstName:string = user.firstName;
+    //   if (cart) if(cart.length > 0){
+    //     message = <div>Hello {firstName}. Let's see what's in your basket. </div>
+    //   }
+    //   else{
+    //     message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
+    //   } 
+    // }
+    // else{
+    //   if (cart) if(cart.length != 0){
+    //     message = <div>Let's see what's in your basket. </div>
+    //   }
+    //   else{
+    //     message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
+    //   }
+    // }
+    return <div>hello</div>;
   }
   
   function getTotalPrice(): number {
@@ -205,8 +208,8 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
               className="fs-1 fw-light text-center text-white"
               id="cartHeadline"
             >
-              Let's see what's in your basket.
-            </h1>
+              {heading}
+            </h1> 
           </div>
         </div>
       </div>
