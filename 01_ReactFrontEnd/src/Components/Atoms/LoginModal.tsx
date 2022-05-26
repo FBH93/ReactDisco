@@ -1,7 +1,7 @@
 import { Form, Button, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle } from "react-bootstrap"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { atom, useAtom } from "jotai"
+import { useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
 import { loginAtom, showModalAtom, signUpAtom, userAtom } from '../store'
 
@@ -23,13 +23,6 @@ export const Login = () => {
   const [signUp, setSignUp] = useAtom(signUpAtom);
   const [currentUser, setUser] = useAtom(userAtom);
 
-  useEffect(() => {
-    const updateUser = async () => {
-      const currentUser = await getUserData(inputEmail)
-      setUser(currentUser)
-    }
-    updateUser()
-  }, [inputEmail])
 
   const login = async () => {
     //Get user details from API, then check if login is valid for that user.
@@ -44,7 +37,9 @@ export const Login = () => {
       localStorage.setItem("firstName", data.fName)
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
-    }
+      const currentUser = await getUserData(inputEmail)
+      setUser(currentUser)
+      }
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
