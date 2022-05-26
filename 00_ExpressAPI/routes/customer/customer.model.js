@@ -17,18 +17,18 @@ export async function getAll() {
 }
 
 // GET CUSTOMER BY ID
-export async function getById(customerId) {
+export async function getById(customerID) {
   let customersArray = await getAll();
-  let index = findCustomerByID(customersArray, customerId);
+  let index = findCustomerByID(customersArray, customerID);
   if (index === -1)
-    throw new Error(`No Customer exist with this id ${customerId}`);
+    throw new Error(`No Customer exist with this id ${customerID}`);
   else return customersArray[index];
 }
 
 // GET INDEX IN ARRAY GIVEN ID
-function findCustomerByID(customersArray, customerId) {
+function findCustomerByID(customersArray, customerID) {
   return customersArray.findIndex(
-    (customers) => customers.customerId === customerId
+    (customers) => customers.customerID === customerID
   );
 }
 
@@ -46,11 +46,11 @@ function findCustomerByEmail(customersArray, email) {
   );
 }
 
-export async function createCustomer(customerId, fname, lname, email, pword, addr) {
+export async function createCustomer(customerID, fname, lname, email, pword, addr) {
   let customersArray = await getAll();
-  if (findCustomerByID(customersArray, customerId) !== -1)
-    throw new Error(`Customer #${customerId} already has a user`);
-  let newCustomer = { customerId: customerId, firstName: fname, lastName: lname, email: email, password: pword, address: addr  };
+  if (findCustomerByID(customersArray, customerID) !== -1)
+    throw new Error(`Customer #${customerID} already has a user`);
+  let newCustomer = { customerID: customerID, firstName: fname, lastName: lname, email: email, password: pword, address: addr  };
   customersArray.push(newCustomer);
   await save(customersArray);
 }

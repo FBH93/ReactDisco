@@ -109,20 +109,39 @@ export const Basket = () => {
   useEffect(() => {
     const getHeading = async () => {
       let message = <></>
-      if(cart)if(cart?.length>0){
-        if(cID){message = await basketHeading()}
-        else {message = <div>Let's see what's in your basket. </div>}
-      }
-      else{
-      if(cID){message = await basketHeading()}
-      else {message = <div>Your basket is empty. <a href = "/"><div className="row text-center"><div className="col"><a href="/"><button className="btn btn-dark btn-lg" type="button">Back to the store</button></a></div></div></a></div>}
-      }
+      if (cart)
+        if (cart?.length > 0) {
+          if (cID) {
+            message = await basketHeading()
+          } else {
+            message = <div>Let's see what's in your basket. </div>
+          }
+        } else {
+          if (cID) {
+            message = await basketHeading()
+          } else {
+            message = (
+              <div>
+                Your basket is empty.{" "}
+                <a href="/">
+                  <div className="row text-center">
+                    <div className="col">
+                      <a href="/">
+                        <button className="btn btn-dark btn-lg" type="button">
+                          Back to the store
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            )
+          }
+        }
       setHeading(message)
     }
     getHeading()
   }, [cart])
-
-
 
   async function removeFromLocalCart(pID: number): Promise<BasketProduct[]> {
     let foundItem: string = ""
@@ -157,15 +176,32 @@ export const Basket = () => {
 
   async function basketHeading() {
     let message = <></>
-    if(cID){
-      let user:UserInterface = await getUserDataById(cID);
-      let firstName:string = user.firstName;
-      if (cart) if(cart.length > 0){
-        message = <div>Hello {firstName}. Let's see what's in your basket. </div>
-      }
-      else{
-        message = <div>Your basket is empty, {firstName}. <a href = "/"><div className="row text-center"><div className="col"><a href="/"><button className="btn btn-dark btn-lg" type="button">Back to the store</button></a></div></div></a></div>
-      }
+    if (cID) {
+      let user: UserInterface = await getUserDataById(cID)
+      let firstName: string = user.firstName
+      if (cart)
+        if (cart.length > 0) {
+          message = (
+            <div>Hello {firstName}. Let's see what's in your basket. </div>
+          )
+        } else {
+          message = (
+            <div>
+              Your basket is empty, {firstName}.{" "}
+              <a href="/">
+                <div className="row text-center">
+                  <div className="col">
+                    <a href="/">
+                      <button className="btn btn-dark btn-lg" type="button">
+                        Back to the store
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </a>
+            </div>
+          )
+        }
     }
     return message
   }
@@ -186,10 +222,9 @@ export const Basket = () => {
 
   return (
     <div
+      className="pb-5"
       style={{
         width: "100%",
-        height: "90vh",
-        marginBottom: "50px",
         background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0))",
         backgroundImage: "url(/assets/img/content/img-account.jpg)",
         backgroundSize: "cover",
