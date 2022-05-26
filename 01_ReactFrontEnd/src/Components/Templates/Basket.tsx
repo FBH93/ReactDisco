@@ -3,10 +3,10 @@ import { useState } from "react"
 import {
   getSingleBasket,
   removeProductFromBasket,
-} from "../Services/BasketCall"
-import { getSingleProduct } from "../Services/ProductsCall"
-import { putProductToBasket, getUserDataById } from "../Services/UserCall"
-import { UserInterface } from "./Atoms/LoginModal"
+} from "../../Services/BasketCall"
+import { getSingleProduct } from "../../Services/ProductsCall"
+import { putProductToBasket, getUserDataById } from "../../Services/UserCall"
+import { UserInterface } from "../Organisms/LoginModal"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"

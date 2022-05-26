@@ -1,5 +1,5 @@
 import axios from "axios"
-import { UserInterface } from "../Components/Atoms/LoginModal"
+import { UserInterface } from "../Components/Organisms/LoginModal"
 import { createUserBasket } from "./BasketCall"
 
 export async function putProductToBasket(

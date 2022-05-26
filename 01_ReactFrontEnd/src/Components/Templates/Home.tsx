@@ -1,6 +1,6 @@
-import { Headline } from "./Atoms/Headline"
-import ProductGrid from "./ProductGrid"
-import Carousel from "./Atoms/Carousel"
+import { Headline } from "../Atoms/Headline"
+import ProductGrid from "../Templates/ProductGrid"
+import Carousel from "../Organisms/Carousel"
 
 export const Home = () => {
   return (

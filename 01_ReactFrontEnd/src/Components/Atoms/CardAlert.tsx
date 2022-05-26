@@ -1,4 +1,4 @@
-import { Alert, Modal, Overlay } from "react-bootstrap"
+import { Alert, Modal } from "react-bootstrap"
 import { useAtom } from "jotai"
 import { cardAlertAtom } from "../store"
 

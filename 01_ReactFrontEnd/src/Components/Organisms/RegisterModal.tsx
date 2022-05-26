@@ -9,7 +9,7 @@ import {
   Button,
 } from "react-bootstrap"
 
-import { showModalAtom, signUpAtom, userAtom } from "../store"
+import { showModalAtom, signUpAtom } from "../store"
 import { useAtom } from "jotai"
 
 import { createUser } from "../../Services/UserCall"

@@ -1,6 +1,5 @@
-import { Filter } from "../Components/ProductGrid"
-import type { ProductInterface } from "../Components/Product"
-
+import { Filter } from "../Components/Templates/ProductGrid"
+import type { ProductInterface } from "../Components/Templates/Product"
 //get products from API
 export function getAPI(filter: Filter) {
   //Return all products if no filter

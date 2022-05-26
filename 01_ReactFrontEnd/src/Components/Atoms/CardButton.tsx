@@ -1,4 +1,3 @@
-import React, { Component, useState } from "react"
 import { Button } from "react-bootstrap"
 import { putProductToBasket } from "../../Services/UserCall"
 import { useAtom } from "jotai"

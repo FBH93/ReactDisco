@@ -1,11 +1,11 @@
 import "../src/custom.scss"
 import React from "react"
-import { NavigationBar } from "./Components/Atoms/Navbar"
-import { Basket } from "./Components/Basket"
-import ProductGrid from "./Components/ProductGrid"
+import { NavigationBar } from "./Components/Templates/Navbar"
+import { Basket } from "./Components/Templates/Basket"
+import ProductGrid from "./Components/Templates/ProductGrid"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Product from "./Components/Product"
-import { Home } from "./Components/Home"
+import Product from "./Components/Templates/Product"
+import { Home } from "./Components/Templates/Home"
 
 class App extends React.Component {
   render() {

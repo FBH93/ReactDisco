@@ -1,11 +1,11 @@
-import { ProductInterface } from "../Components/Product"
-import Sizometer from "./Atoms/Sizometer"
+import { ProductInterface } from "./Product"
+import Sizometer from "../Atoms/Sizometer"
 import { useState, useEffect } from "react"
-import { CardButton } from "./Atoms/CardButton"
+import { CardButton } from "../Atoms/CardButton"
 import { Card } from "react-bootstrap"
-import { getAPI } from "../Services/ProductsCall"
+import { getAPI } from "../../Services/ProductsCall"
 import { useAtom } from "jotai"
-import { sizeAtom } from "./store"
+import { sizeAtom } from "../store"
 
 export type Filter = {
   filter1: string

@@ -1,6 +1,6 @@
 import { atom } from "jotai"
-import { UserInterface } from "./Atoms/LoginModal"
-import { BasketProduct } from "./Basket"
+import { UserInterface } from "./Organisms/LoginModal"
+import { BasketProduct } from "./Templates/Basket"
 
 export const loginAtom = atom(false)
 export const cardAlertAtom = atom(false)

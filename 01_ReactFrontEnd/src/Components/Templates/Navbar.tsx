@@ -1,9 +1,9 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap"
 import { useAtom } from "jotai"
 import { showModalAtom } from "../store"
-import { Account } from "./AccountModal"
-import { Login } from "./LoginModal"
-import { Register } from "./RegisterModal"
+import { Account } from "../Organisms/AccountModal"
+import { Login } from "../Organisms/LoginModal"
+import { Register } from "../Organisms/RegisterModal"
 import { useState } from "react"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

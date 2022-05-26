@@ -9,7 +9,7 @@ import {
   Col,
 } from "react-bootstrap"
 import { useAtom } from "jotai"
-import { loginAtom, showModalAtom, userAtom } from "../store"
+import { loginAtom, showModalAtom } from "../store"
 
 export const Account = () => {
   const [, setLogin] = useAtom(loginAtom)

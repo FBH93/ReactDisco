@@ -12,7 +12,7 @@ import { useState } from "react"
 import { useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
 import { showModalAtom, signUpAtom } from "../store"
-import { localStorageCart, exportFromLocal } from "../Basket"
+import { localStorageCart, exportFromLocal } from "../Templates/Basket"
 
 export interface UserInterface {
   firstName: string

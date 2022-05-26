@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { BasketProduct } from "../Components/Basket"
+import { BasketProduct } from "../Components/Templates/Basket"
 
 export default function BasketCall(cID: string) {
   const [basketArray, getBasket] = useState([])
