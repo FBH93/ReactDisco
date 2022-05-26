@@ -39,3 +39,10 @@ export async function removeProductFromBasket(userID:string, pID:number, size:st
         }
         ) 
 };
+
+export async function createUserBasket(userID:string){
+  return fetch('http://localhost:3000/basket/' + userID, {
+          method: 'POST',
+      }
+    )
+}

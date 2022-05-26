@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { loginAtom, showModalAtom, signUpAtom } from '../store';
 import { atom, useAtom } from 'jotai';
+import { createUserBasket } from '../../Services/BasketCall'
 
 export const Register = () => {
 
@@ -39,6 +40,8 @@ let handleSubmit = async (e) => {
          localStorage.setItem("customerID", customerID.toString());
          setLogin(true);
          setModal(false);
+        await createUserBasket(customerID.toString());
+
          
 };
 
