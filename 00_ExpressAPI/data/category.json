@@ -1,14 +1,14 @@
 [
-    {
-      "name" : "style",
-      "categories" : ["sportswear", "70s", "space", "80s"]
-    },
-    {
-      "name" : "type",
-      "categories" : ["pants", "jackets", "accessories", "shirt"]
-    },
-    {
-      "name" : "size",
-      "categories" : ["XS", "S", "M", "L", "XL"]
-    }
-  ]
+  {
+    "name": "style",
+    "categories": ["sportswear", "70s", "space", "80s"]
+  },
+  {
+    "name": "type",
+    "categories": ["pants", "jackets", "accessories", "shirt"]
+  },
+  {
+    "name": "size",
+    "categories": ["XS", "S", "M", "L", "XL"]
+  }
+]
