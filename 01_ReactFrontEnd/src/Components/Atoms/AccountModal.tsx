@@ -23,7 +23,7 @@ export const Account = () => {
   const [address, setAddress] = useState("")
 
   useEffect(() => {
-    const cID = localStorage.getItem("customerID")
+    let cID = localStorage.getItem("customerID")
     const getUserData = async () => {
       let user = await getUserDataById(cID)
       console.log(user)
@@ -33,12 +33,13 @@ export const Account = () => {
       setAddress(user.address)
     }
     getUserData()
-  })
+  }, [])
 
   function handleLogOut() {
     setModal(false)
     localStorage.setItem("isLoggedIn", "false")
     localStorage.removeItem("customerID")
+    localStorage.removeItem("firstName")
     setLogin(false)
     window.location.reload()
   }
