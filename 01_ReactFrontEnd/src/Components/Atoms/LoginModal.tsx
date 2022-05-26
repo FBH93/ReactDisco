@@ -8,11 +8,11 @@ import {
   ModalTitle,
   Alert,
 } from "react-bootstrap"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
-import { emailAlertAtom, showModalAtom, signUpAtom, userAtom } from "../store"
-import { localStorageCart, exportFromLocal, BasketProduct } from "../Basket"
+import { emailAlertAtom, showModalAtom, signUpAtom } from "../store"
+import { localStorageCart, exportFromLocal } from "../Basket"
 
 export interface UserInterface {
   firstName: string
@@ -86,7 +86,7 @@ export const Login = () => {
             dismissible
           >
             {" "}
-            Wrong Password! Please try again{" "}
+            Wrong Login Details! Please try again{" "}
           </Alert>
           <Alert
             show={emailAlert}
