@@ -3,7 +3,7 @@ import { UserInterface } from "./Atoms/LoginModal"
 import { BasketProduct } from "./Basket"
 
 export const loginAtom = atom(false)
-export const emailAlertAtom = atom(false)
+export const cardAlertAtom = atom(false)
 export const showModalAtom = atom(false)
 export const signUpAtom = atom(false)
 export const userAtom = atom<UserInterface | null>(null)
