@@ -44,7 +44,7 @@ export const Login = () => {
       localStorage.setItem("email", data.email)
       localStorage.setItem("address", data.address)
       setModal(false)
-      exportFromLocal(data.customerId, await localStorageCart())
+      await exportFromLocal(data.customerID, await localStorageCart())
       window.location.reload()
     }
   }
