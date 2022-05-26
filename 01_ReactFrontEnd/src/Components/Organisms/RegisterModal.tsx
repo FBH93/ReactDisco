@@ -74,7 +74,7 @@ export const Register = () => {
         </Button>
       </ModalHeader>
       <ModalBody>
-        <Form method="post">
+        <Form method="post" onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-6">
               <label className="form-label">First Name*</label>
@@ -110,7 +110,9 @@ export const Register = () => {
             </div>
             <div className="row disco-form-row">
               <div className="col-12">
-                <label className="form-label">E-Mail*</label>
+                <label className="form-label" typeof="email">
+                  E-Mail*
+                </label>
                 <input
                   className="form-control"
                   type="email"
@@ -159,7 +161,6 @@ export const Register = () => {
                 data-bss-hover-animate="pulse"
                 id="discoRegister"
                 type="submit"
-                onClick={handleSubmit}
               >
                 Register
               </button>
