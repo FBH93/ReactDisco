@@ -12,8 +12,7 @@ import { useAtom } from "jotai"
 import { loginAtom, showModalAtom, userAtom } from "../store"
 import { getUserDataById } from "../../Services/UserCall"
 import { UserInterface } from "./LoginModal"
-import { useState } from "react"
-import { SocketAddress } from "net"
+import { useEffect, useState } from "react"
 
 export const Account = () => {
   const [, setLogin] = useAtom(loginAtom)
@@ -24,14 +23,16 @@ export const Account = () => {
   const [email, setEmail] = useState("")
   const [address, setAddress] = useState("")
 
-  async function userData() {
-    let user: UserInterface = await getUserDataById(cID)
-    setFirstName(user.firstName)
-    setLastName(user.lastName)
-    setEmail(user.email)
-    setAddress(user.address)
-    return user
-  }
+  useEffect(() => {
+    const getUserData = async () => {
+      let user = await getUserDataById(cID)
+      setFirstName(user.firstName)
+      setLastName(user.lastName)
+      setEmail(user.email)
+      setAddress(user.address)
+    }
+    getUserData()
+  })
 
   function handleLogOut() {
     setModal(false)

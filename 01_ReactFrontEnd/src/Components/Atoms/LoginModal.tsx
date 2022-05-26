@@ -39,6 +39,7 @@ export const Login = () => {
     } else {
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
+      localStorage.setItem("firstName", data.firstName)
       setModal(false)
       exportFromLocal(data.customerId, await localStorageCart())
     }
