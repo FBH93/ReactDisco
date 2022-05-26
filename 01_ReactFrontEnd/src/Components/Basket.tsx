@@ -113,9 +113,10 @@ export const Basket = () => {
         if(cID){message = await basketHeading()}
         else {message = <div>Let's see what's in your basket. </div>}
       }
+      else{
       if(cID){message = await basketHeading()}
       else {message = <div>Your basket is empty. <a href = "/"><div className="row text-center"><div className="col"><a href="/"><button className="btn btn-dark btn-lg" type="button">Back to the store</button></a></div></div></a></div>}
-      
+      }
       setHeading(message)
     }
     getHeading()
