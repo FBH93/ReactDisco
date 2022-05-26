@@ -39,11 +39,17 @@ export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
          has_localProducts = true;     
          localStorage.removeItem(localStorage.key(i)!);
        }
-    }
-    if(cart && has_localProducts == true)for(let i = 0; i < cart?.length; i++){
-      console.log("cID= "+cID + "productid: " + cart[i].productID + "size: " +cart[i].size)
+  }
+  if(cart && has_localProducts == true)for(let i = 0; i < cart?.length; i++){
+    console.log("cID= "+cID + "productid: " + cart[i].productID + "size: " +cart[i].size)
+    try {
       await putProductToBasket(cID, cart[i].productID, cart[i].size)      
-    } 
+  
+    } catch (error) {
+      console.log(error)
+    }    
+    
+  } 
 }
 
 
