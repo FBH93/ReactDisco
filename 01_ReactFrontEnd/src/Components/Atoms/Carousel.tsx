@@ -14,7 +14,7 @@ export default function Caroussel() {
           {localStorage.getItem("isLoggedIn") === "true" ? (
             <>
               <h3>Hello {localStorage.getItem("firstName")}</h3>
-              <p>Welcome to a world of disco</p>
+              <p>Welcome to a blast from the past.</p>
             </>
           ) : (
             <>
