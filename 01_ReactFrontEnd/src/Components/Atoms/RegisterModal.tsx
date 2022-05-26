@@ -40,16 +40,10 @@ export const Register = () => {
     handleSignup()
   }
 
-  const updateUser = async () => {
-    const currentUser = await getUserData(inputEmail)
-    setUser(currentUser)
-  }
-
   function handleSignup() {
     setModal(false)
     setSignUp(false)
     localStorage.setItem("isLoggedIn", "true")
-    updateUser()
   }
 
   function closeSignup() {
