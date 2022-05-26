@@ -37,14 +37,6 @@ export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
   }
   if (cart && has_localProducts == true)
     for (let i = 0; i < cart?.length; i++) {
-      console.log(
-        "cID= " +
-          cID +
-          "productid: " +
-          cart[i].productID +
-          "size: " +
-          cart[i].size
-      )
       try {
         await putProductToBasket(cID, cart[i].productID, cart[i].size)
       } catch (error) {

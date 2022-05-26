@@ -58,7 +58,7 @@ export const Register = () => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       role="dialog"
-      tabindex="-1"
+      tabIndex="-1"
       id="signupModal"
       show={signUp}
     >
