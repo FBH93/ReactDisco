@@ -24,7 +24,7 @@ function ProductGrid(filter: Filter, props) {
       fetch(API, { method: "GET" })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res) //This prints twice, for some reason??
+          console.log(res)
           setProducts(res)
         })
     }
