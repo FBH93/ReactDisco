@@ -1,4 +1,3 @@
-import { useRef } from "react"
 import { Alert, Modal, Overlay } from "react-bootstrap"
 import { useAtom } from "jotai"
 import { cardAlertAtom } from "../store"
@@ -11,15 +10,15 @@ export const CardAlert = () => {
       <Modal show={show}>
         <Alert
           show={show}
-          variant="success"
+          variant="primary"
           onClose={() => setShow(false)}
           style={{
             position: "absolute",
           }}
           dismissible
         >
-          Success! You added an item to your basket, have fun with your new
-          DiscoClothing
+          Success! You added an item to your basket. Enjoy your new
+          DiscoClothing®!
         </Alert>
       </Modal>
     </div>

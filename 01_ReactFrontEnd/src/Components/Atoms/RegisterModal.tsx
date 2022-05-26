@@ -108,15 +108,17 @@ export const Register = () => {
                 required
               />
             </div>
-            <div className="col-12">
-              <label className="form-label">E-Mail*</label>
-              <input
-                className="form-control"
-                type="email"
-                id="email"
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
+            <div className="row disco-form-row">
+              <div className="col-12">
+                <label className="form-label">E-Mail*</label>
+                <input
+                  className="form-control"
+                  type="email"
+                  id="email"
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                />
+              </div>
             </div>
           </div>
           <div className="row disco-form-row">
