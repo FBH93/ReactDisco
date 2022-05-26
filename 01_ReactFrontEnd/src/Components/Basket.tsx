@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { getSingleBasket, removeProductFromBasket } from '../Services/BasketCall'
+import { getSingleBasket, removeProductFromBasket, createUserBasket } from '../Services/BasketCall'
 import { localCartAtom } from './store'
 import {ProductInterface} from './Product'
 import { getSingleProduct } from '../Services/ProductsCall'
@@ -21,15 +21,10 @@ export interface BasketInterface {
   products: BasketProduct[]
 }
 
-async function sleep(ms:number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function testlogger(str: string){
+  console.log(str)
 }
 
-async function testSleep(ms:number){
-  console.log("zzz");
-  await sleep(ms);
-  console.log("zzz-..huh? I'm awake!")
-}
 //TODO: currently theres a bug where two clicks are required for the page to reload. Says there's an unexpected end of json input at UserCall.tsx line 8. Investigate... 
 export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
   
@@ -50,6 +45,11 @@ export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
     }    
     
   } 
+}
+
+//create new basket on user creation
+async function testCreateBasket(cID: string){
+  await createUserBasket(cID);
 }
 
 
@@ -177,7 +177,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
           }}
         >
           <div className="col d-flex d-md-flex d-xxl-flex justify-content-center align-items-center justify-content-md-center justify-content-xxl-center align-items-xxl-center">
-            <img src={getImgPathById(productID)} width="90x" />
+            <a href={"/products/" + productID}><img src={getImgPathById(productID)} width="90x" />  </a>
           </div>
           <div className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center">
             <h1 className="fs-4" style={{ marginTop: '5px' }}>
@@ -263,14 +263,14 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
           test log out
         </button>{' '}
       </div>
-      <div className="testTimer">
+      <div className="testCreateBasket">
         {' '}
         <button
-          onClick={() => testSleep(1000)}
+          onClick={async () => await testCreateBasket("3")}
           className="btn btn-primary"
           type="button"
         >
-          test sleep
+          test createBasket
         </button>{' '}
       </div>
       <div className="container" id="discoSaleButtonContent" />
