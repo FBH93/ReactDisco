@@ -1,6 +1,7 @@
 import axios from "axios"
 import { UserInterface } from "../Components/Organisms/LoginModal"
-import { createUserBasket } from "./BasketCall"
+import { createUserBasket  } from "./BasketCall"
+import { localStorageCart, exportFromLocal } from '../Components/Templates/Basket'
 
 export async function putProductToBasket(
   userID: string,
@@ -66,6 +67,7 @@ export const createUser = async (
   localStorage.setItem("address", inputAddress)
   localStorage.setItem("isLoggedIn", "true")
   await createUserBasket(customerID.toString())
+  await exportFromLocal(data.customerID, await localStorageCart())
 }
 
 export async function getUserDataById(id: any): Promise<UserInterface> {
