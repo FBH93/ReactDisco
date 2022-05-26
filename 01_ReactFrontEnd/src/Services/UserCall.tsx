@@ -61,6 +61,9 @@ export const createUser = async (
     .catch((err) => console.log(err))
   localStorage.setItem("customerID", customerID.toString())
   localStorage.setItem("firstName", inputFirstName)
+  localStorage.setItem("lastName", inputName)
+  localStorage.setItem("email", inputEmail)
+  localStorage.setItem("address", inputAddress)
   await createUserBasket(customerID.toString())
 }
 

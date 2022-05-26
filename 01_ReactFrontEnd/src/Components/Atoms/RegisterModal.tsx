@@ -38,12 +38,12 @@ export const Register = () => {
       inputAddress
     )
     handleSignup()
+    window.location.reload()
   }
 
   function handleSignup() {
     setModal(false)
     setSignUp(false)
-    localStorage.setItem("isLoggedIn", "true")
   }
 
   function closeSignup() {

@@ -1,22 +1,29 @@
-import { useState } from "react"
-import { Alert, Button } from "react-bootstrap"
+import { useRef, useState } from "react"
+import { Alert, Modal, Overlay } from "react-bootstrap"
 import { render } from "react-dom"
 import { useAtom } from "jotai"
 import { cardAlertAtom } from "../store"
 
 export const CardAlert = () => {
   const [show, setShow] = useAtom(cardAlertAtom)
+  const target = useRef(null)
 
   return (
-    <>
-      <Alert
-        show={show}
-        variant="primary"
-        onClose={() => setShow(false)}
-        dismissible
-      >
-        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-      </Alert>
-    </>
+    <div onClick={() => setShow(false)}>
+      <Modal show={show}>
+        <Alert
+          show={show}
+          variant="success"
+          onClose={() => setShow(false)}
+          style={{
+            position: "absolute",
+          }}
+          dismissible
+        >
+          Success! You added an item to your basket, have fun with your new
+          DiscoClothing
+        </Alert>
+      </Modal>
+    </div>
   )
 }
