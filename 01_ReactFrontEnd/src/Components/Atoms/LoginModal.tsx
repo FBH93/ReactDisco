@@ -11,7 +11,7 @@ import {
 import { useState } from "react"
 import { useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
-import { emailAlertAtom, showModalAtom, signUpAtom } from "../store"
+import { showModalAtom, signUpAtom } from "../store"
 import { localStorageCart, exportFromLocal } from "../Basket"
 
 export interface UserInterface {
@@ -29,7 +29,6 @@ export const Login = () => {
   const [modal, setModal] = useAtom(showModalAtom)
   const [, setSignUp] = useAtom(signUpAtom)
   const [showAlert, setShow] = useState(false)
-  const [emailAlert] = useAtom(emailAlertAtom)
 
   const login = async () => {
     let data = await getUserData(inputEmail)
@@ -89,15 +88,6 @@ export const Login = () => {
           >
             {" "}
             Wrong Login Details! Please try again{" "}
-          </Alert>
-          <Alert
-            show={emailAlert}
-            variant="danger"
-            onClose={() => setShow(false)}
-            dismissible
-          >
-            {" "}
-            Wrong Password! Please try again{" "}
           </Alert>
           <Form method="post" onSubmit={handleSubmit}>
             <div className="row">

@@ -1,6 +1,4 @@
 import axios from "axios"
-import { emailAlertAtom } from "../Components/store"
-import { useAtom } from "jotai"
 import { UserInterface } from "../Components/Atoms/LoginModal"
 import { createUserBasket } from "./BasketCall"
 

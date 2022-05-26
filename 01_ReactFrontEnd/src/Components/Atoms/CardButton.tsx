@@ -1,6 +1,9 @@
 import React, { Component, useState } from "react"
 import { Button } from "react-bootstrap"
 import { putProductToBasket } from "../../Services/UserCall"
+import { useAtom } from "jotai"
+import { cardAlertAtom } from "../store"
+import { CardAlert } from "./CardAlert"
 
 type CardButtonProps = {
   pID: number
@@ -8,6 +11,7 @@ type CardButtonProps = {
 }
 
 export const CardButton: React.FC<CardButtonProps> = ({ pID, size }) => {
+  const [, setAlert] = useAtom(cardAlertAtom)
   const addItem = (pID: number, size: string) => {
     if (localStorage.getItem("customerID")) {
       let cID = localStorage.getItem("customerID")
@@ -27,11 +31,12 @@ export const CardButton: React.FC<CardButtonProps> = ({ pID, size }) => {
           className="my-3"
           onClick={(event) => {
             addItem(pID, size)
-            alert("Added to basket")
+            setAlert(true)
           }}
         >
           Add to cart
         </Button>
+        <CardAlert />
       </div>
     </>
   )
