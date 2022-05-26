@@ -1,9 +1,10 @@
 import { Form, Button, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle } from "react-bootstrap"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useAtom } from "jotai"
+import { atom, useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
 import { loginAtom, showModalAtom, signUpAtom } from '../store'
+
 
 export const Login = () => {
 
@@ -26,6 +27,7 @@ export const Login = () => {
       localStorage.setItem("firstName", data.fName)
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
+      
     }
   }
 

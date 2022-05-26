@@ -4,6 +4,7 @@ import { BasketProduct } from './Basket'
 export const loginAtom = atom(false)
 export const showModalAtom = atom(false)
 export const signUpAtom = atom(false)
+
 export const sizeAtom = atom('S')
 export const localCartAtom = atom<BasketProduct[] | null>([ {
     productID: 1,

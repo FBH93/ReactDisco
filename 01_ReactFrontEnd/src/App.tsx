@@ -10,7 +10,6 @@ import Product from './Components/Product'
 import { Greetings } from './Components/Atoms/Greetings'
 import Headline from './Components/Atoms/Headline'
 import { Home } from './Components/Home'
-import Account from './Components/Atoms/AccountDetails'
 
 class App extends React.Component {
   render() {
@@ -98,12 +97,6 @@ class App extends React.Component {
                 path="/products/:id" 
                 element={
                   <Product />
-                } 
-              />
-              <Route 
-                path="/account" 
-                element={
-                  <Account />
                 } 
               />
               <Route 

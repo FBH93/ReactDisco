@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { useAtom } from 'jotai'
 import { loginAtom, showModalAtom } from './store'
-import { Account } from './Atoms/AccountDetails'
+import { Account } from './Atoms/AccountModal'
 import { Login } from './Atoms/LoginModal'
 import { Register } from './Atoms/RegisterModal'
 
