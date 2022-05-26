@@ -1,12 +1,10 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { Alert, Modal, Overlay } from "react-bootstrap"
-import { render } from "react-dom"
 import { useAtom } from "jotai"
 import { cardAlertAtom } from "../store"
 
 export const CardAlert = () => {
   const [show, setShow] = useAtom(cardAlertAtom)
-  const target = useRef(null)
 
   return (
     <div onClick={() => setShow(false)}>

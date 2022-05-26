@@ -10,9 +10,6 @@ import {
 } from "react-bootstrap"
 import { useAtom } from "jotai"
 import { loginAtom, showModalAtom, userAtom } from "../store"
-import { getUserDataById } from "../../Services/UserCall"
-import { UserInterface } from "./LoginModal"
-import { useCallback, useEffect, useState } from "react"
 
 export const Account = () => {
   const [, setLogin] = useAtom(loginAtom)
@@ -21,7 +18,6 @@ export const Account = () => {
   const lastName = localStorage.getItem("lastName")
   const email = localStorage.getItem("email")
   const address = localStorage.getItem("address")
-  let cID = localStorage.getItem("customerID")
 
   function handleLogOut() {
     setModal(false)

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import { Filter } from "../Components/ProductGrid"
 import type { ProductInterface } from "../Components/Product"
 

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react"
 import { useState } from "react"
 import {
   Form,
@@ -9,12 +8,11 @@ import {
   ModalHeader,
   Button,
 } from "react-bootstrap"
-import { useNavigate } from "react-router"
-import axios from "axios"
-import { loginAtom, showModalAtom, signUpAtom, userAtom } from "../store"
-import { atom, useAtom } from "jotai"
-import { createUserBasket } from "../../Services/BasketCall"
-import { getUserData, createUser } from "../../Services/UserCall"
+
+import { showModalAtom, signUpAtom, userAtom } from "../store"
+import { useAtom } from "jotai"
+
+import { createUser } from "../../Services/UserCall"
 
 export const Register = () => {
   const [inputEmail, setEmail] = useState("")
@@ -22,11 +20,9 @@ export const Register = () => {
   const [inputFirstName, setFirstName] = useState("")
   const [inputName, setName] = useState("")
   const [inputAddress, setAddress] = useState("")
-  const [inputConfirmPas, setConfirmPas] = useState("")
+  const [, setConfirmPas] = useState("")
   const [, setModal] = useAtom(showModalAtom)
   const [signUp, setSignUp] = useAtom(signUpAtom)
-  const [, setUser] = useAtom(userAtom)
-  const [isClicked, setClicked] = useState(true)
 
   let handleSubmit = async (e) => {
     e.preventDefault()
