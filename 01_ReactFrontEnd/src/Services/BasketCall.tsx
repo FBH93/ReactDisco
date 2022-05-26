@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { BasketInterface, BasketProduct } from '../Components/Basket'
+import { useState, useEffect } from "react"
+import { BasketInterface, BasketProduct } from "../Components/Basket"
 
 export default function BasketCall(cID: string) {
   const [basketArray, getBasket] = useState([])
@@ -20,29 +20,36 @@ export default function BasketCall(cID: string) {
 }
 
 function getAPI(cID: string) {
-  console.log('calling with id: ' + cID)
-  return 'http://localhost:3000/basket/' + cID
+  console.log("calling with id: " + cID)
+  return "http://localhost:3000/basket/" + cID
 }
 
 export async function getSingleBasket(id: any): Promise<BasketProduct[]> {
-  return fetch('http://localhost:3000/basket/' + id).then((response) =>
-    response.json()
-    
-  ).then (
-    (basket) => basket.products
+  return fetch("http://localhost:3000/basket/" + id)
+    .then((response) => response.json())
+    .then((basket) => basket.products)
+}
+
+export async function removeProductFromBasket(
+  userID: string,
+  pID: number,
+  size: string
+) {
+  return fetch(
+    "http://localhost:3000/basket/" +
+      userID +
+      "/?productID=" +
+      pID +
+      "&size=" +
+      size,
+    {
+      method: "DELETE",
+    }
   )
 }
 
-export async function removeProductFromBasket(userID:string, pID:number, size:string)  {
-  return fetch('http://localhost:3000/basket/' + userID + '/?productID=' + pID +'&size=' + size, {
-          method: 'DELETE',
-        }
-        ) 
-};
-
-export async function createUserBasket(userID:string){
-  return fetch('http://localhost:3000/basket/' + userID, {
-          method: 'POST',
-      }
-    )
+export async function createUserBasket(userID: string) {
+  return fetch("http://localhost:3000/basket/" + userID, {
+    method: "POST",
+  })
 }

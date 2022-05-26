@@ -9,8 +9,8 @@ type CardButtonProps = {
 
 export const CardButton: React.FC<CardButtonProps> = ({ pID, size }) => {
   const addItem = (pID: number, size: string) => {
-    if (localStorage.getItem('customerID')) {
-      let cID = localStorage.getItem('customerID')
+    if (localStorage.getItem("customerID")) {
+      let cID = localStorage.getItem("customerID")
       if (cID) {
         putProductToBasket(cID, pID, size)
       }

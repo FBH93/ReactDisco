@@ -1,12 +1,16 @@
-import { useAtom } from 'jotai'
-import { ReactElement, ReactNode, useEffect } from 'react'
-import { useState } from 'react'
-import { getSingleBasket, removeProductFromBasket, createUserBasket } from '../Services/BasketCall'
-import { localCartAtom } from './store'
-import { getSingleProduct } from '../Services/ProductsCall'
-import { putProductToBasket, getUserDataById } from '../Services/UserCall'
-import { UserInterface } from './Atoms/LoginModal'
-import { JsxEmit } from 'typescript'
+import { useAtom } from "jotai"
+import { ReactElement, ReactNode, useEffect } from "react"
+import { useState } from "react"
+import {
+  getSingleBasket,
+  removeProductFromBasket,
+  createUserBasket,
+} from "../Services/BasketCall"
+import { localCartAtom } from "./store"
+import { getSingleProduct } from "../Services/ProductsCall"
+import { putProductToBasket, getUserDataById } from "../Services/UserCall"
+import { UserInterface } from "./Atoms/LoginModal"
+import { JsxEmit } from "typescript"
 
 export interface BasketProduct {
   productID: number
@@ -52,14 +56,13 @@ export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
     }
 }
 
-
 export async function localStorageCart(): Promise<BasketProduct[]> {
   let newCart: BasketProduct[] = []
-  let foundSomething: boolean = false;
+  let foundSomething: boolean = false
 
   for (let i = 0; i < localStorage.length; i++) {
     if (localStorage.key(i)?.substring(0, 7) == "product") {
-      foundSomething = true;
+      foundSomething = true
       let pID = localStorage.key(i)?.substring(7)
       let singleProduct = await getSingleProduct(pID)
       let localSize: string = localStorage
@@ -76,29 +79,24 @@ export async function localStorageCart(): Promise<BasketProduct[]> {
       newCart.push(productForBasket)
     }
   }
-  if(foundSomething){
-  return newCart
-  }
-  else{
+  if (foundSomething) {
+    return newCart
+  } else {
     let emptyCart: BasketProduct[] = []
-    return emptyCart;
+    return emptyCart
   }
 }
 
 export const Basket = () => {
+  let cID = localStorage.getItem("customerID")
 
+  //see TODO at localStorageCart()
+  const [localCart] = useAtom(localCartAtom)
+  const [cart, setCart] = useState<BasketProduct[] | null>([])
+  const [heading, setHeading] = useState(<></>)
+  const [totalPrice, setPrice] = useState<{ totalPrice: number }>()
 
- let cID = localStorage.getItem('customerID')
-
- //see TODO at localStorageCart()
- const [localCart]=useAtom(localCartAtom)
- const [cart, setCart] = useState<BasketProduct[] | null>([]);
- const [heading, setHeading] = useState(<></>);
- const [totalPrice, setPrice] = useState<{totalPrice: number}>();
-
-
-
- useEffect(() => {
+  useEffect(() => {
     const getBasket = async () => {
       const contents = cID
         ? await getSingleBasket(cID)
@@ -106,12 +104,11 @@ export const Basket = () => {
       setCart(contents)
     }
     getBasket()
-  }, [cID]
-  )
+  }, [cID])
 
   // useEffect(() => {
   //   const getHeading = async () => {
-  //     const message = 
+  //     const message =
   //     ? await basketHeading()
   //     : <></>
   //     setHeading(message)
@@ -119,37 +116,37 @@ export const Basket = () => {
   //   getHeading()
   // })
 
-  
-async function removeFromLocalCart(pID:number): Promise<BasketProduct[]> {
-    let foundItem: string = "";
-    for (let i = 0; i < localStorage.length; i++){
-      if(localStorage.key(i)?.substring(7) == pID.toString()){        
-        foundItem = 'product'+pID
+  async function removeFromLocalCart(pID: number): Promise<BasketProduct[]> {
+    let foundItem: string = ""
+    for (let i = 0; i < localStorage.length; i++) {
+      if (localStorage.key(i)?.substring(7) == pID.toString()) {
+        foundItem = "product" + pID
       }
     }
-    localStorage.removeItem(foundItem);
+    localStorage.removeItem(foundItem)
     return localStorageCart()
   }
 
+  async function removeFromCart(
+    cID: string,
+    pID: number,
+    size: string
+  ): Promise<BasketProduct[]> {
+    await removeProductFromBasket(cID, pID, size)
+    return await getSingleBasket(cID)
+  }
 
-
-async function removeFromCart(cID:string, pID:number, size:string): Promise<BasketProduct[]> {
-  await removeProductFromBasket(cID, pID, size);
-  return await getSingleBasket(cID);
-}
-
-  async function pseudoLogin (cID: string) {
-    localStorage.setItem('customerID', cID)
-    await exportFromLocal(cID, cart!)     
+  async function pseudoLogin(cID: string) {
+    localStorage.setItem("customerID", cID)
+    await exportFromLocal(cID, cart!)
     window.location.reload()
   }
 
   const pseudoLogout = () => {
-    localStorage.removeItem('customerID')
+    localStorage.removeItem("customerID")
     window.location.reload()
   }
 
-   
   async function basketHeading() {
     let message = <></>
     // if(cID){
@@ -160,7 +157,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
     //   }
     //   else{
     //     message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
-    //   } 
+    //   }
     // }
     // else{
     //   if (cart) if(cart.length != 0){
@@ -170,9 +167,9 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
     //     message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
     //   }
     // }
-    return <div>hello</div>;
+    return <div>hello</div>
   }
-  
+
   function getTotalPrice(): number {
     let total = 0
     {
@@ -209,7 +206,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
               id="cartHeadline"
             >
               {heading}
-            </h1> 
+            </h1>
           </div>
         </div>
       </div>
@@ -319,7 +316,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
           test log out
         </button>{" "}
       </div>
-      
+
       <div className="container" id="discoSaleButtonContent" />
     </div>
   )
