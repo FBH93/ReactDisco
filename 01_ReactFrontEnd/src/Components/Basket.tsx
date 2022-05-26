@@ -110,14 +110,18 @@ export const Basket = () => {
     const getHeading = async () => {
       let message = <></>
       if(cart)if(cart?.length>0){
-        message = await basketHeading()
+        if(cID){message = await basketHeading()}
+        else {message = <div>Let's see what's in your basket. </div>}
       }
-      
+      if(cID){message = await basketHeading()}
+      else {message = <div>Your basket is empty. <a href = "/"><div className="row text-center"><div className="col"><a href="/"><button className="btn btn-dark btn-lg" type="button">Back to the store</button></a></div></div></a></div>}
       
       setHeading(message)
     }
     getHeading()
   }, [cart])
+
+
 
   async function removeFromLocalCart(pID: number): Promise<BasketProduct[]> {
     let foundItem: string = ""
@@ -159,15 +163,7 @@ export const Basket = () => {
         message = <div>Hello {firstName}. Let's see what's in your basket. </div>
       }
       else{
-        message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
-      }
-    }
-    else{
-      if (cart) if(cart.length != 0){
-        message = <div>Let's see what's in your basket. </div>
-      }
-      else{
-        message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
+        message = <div>Your basket is empty, {firstName}. <a href = "/"><div className="row text-center"><div className="col"><a href="/"><button className="btn btn-dark btn-lg" type="button">Back to the store</button></a></div></div></a></div>
       }
     }
     return message
