@@ -1,12 +1,9 @@
-import { useAtom } from "jotai"
-import { ReactElement, ReactNode, useEffect } from "react"
+import { useEffect } from "react"
 import { useState } from "react"
 import {
   getSingleBasket,
   removeProductFromBasket,
-  createUserBasket,
 } from "../Services/BasketCall"
-import { localCartAtom } from "./store"
 import { getSingleProduct } from "../Services/ProductsCall"
 import { putProductToBasket, getUserDataById } from "../Services/UserCall"
 import { UserInterface } from "./Atoms/LoginModal"
@@ -28,10 +25,6 @@ export interface BasketProduct {
 export interface BasketInterface {
   customerID: string
   products: BasketProduct[]
-}
-
-function testlogger(str: string) {
-  console.log(str)
 }
 
 export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
@@ -95,10 +88,8 @@ export const Basket = () => {
   let cID = localStorage.getItem("customerID")
 
   //see TODO at localStorageCart()
-  const [localCart] = useAtom(localCartAtom)
   const [cart, setCart] = useState<BasketProduct[] | null>([])
   const [heading, setHeading] = useState(<></>)
-  const [totalPrice, setPrice] = useState<{ totalPrice: number }>()
 
   useEffect(() => {
     const getBasket = async () => {
@@ -168,17 +159,6 @@ export const Basket = () => {
   ): Promise<BasketProduct[]> {
     await removeProductFromBasket(cID, pID, size)
     return await getSingleBasket(cID)
-  }
-
-  async function pseudoLogin(cID: string) {
-    localStorage.setItem("customerID", cID)
-    await exportFromLocal(cID, cart!)
-    window.location.reload()
-  }
-
-  const pseudoLogout = () => {
-    localStorage.removeItem("customerID")
-    window.location.reload()
   }
 
   async function basketHeading() {

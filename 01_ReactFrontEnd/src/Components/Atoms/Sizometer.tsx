@@ -2,7 +2,7 @@ import { useAtom } from "jotai"
 import { sizeAtom } from "../store"
 
 const Sizometer = () => {
-  const [selectedSize, setproductSize] = useAtom(sizeAtom)
+  const [, setproductSize] = useAtom(sizeAtom)
   return (
     <>
       <div className="row text-center mt-5">

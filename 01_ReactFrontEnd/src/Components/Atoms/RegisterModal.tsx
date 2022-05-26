@@ -20,11 +20,9 @@ export const Register = () => {
   const [inputFirstName, setFirstName] = useState("")
   const [inputName, setName] = useState("")
   const [inputAddress, setAddress] = useState("")
-  const [inputConfirmPas, setConfirmPas] = useState("")
+  const [, setConfirmPas] = useState("")
   const [, setModal] = useAtom(showModalAtom)
   const [signUp, setSignUp] = useAtom(signUpAtom)
-  const [, setUser] = useAtom(userAtom)
-  const [isClicked, setClicked] = useState(true)
 
   let handleSubmit = async (e) => {
     e.preventDefault()

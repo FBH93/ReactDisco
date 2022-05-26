@@ -5,7 +5,6 @@ import { cardAlertAtom } from "../store"
 
 export const CardAlert = () => {
   const [show, setShow] = useAtom(cardAlertAtom)
-  const target = useRef(null)
 
   return (
     <div onClick={() => setShow(false)}>

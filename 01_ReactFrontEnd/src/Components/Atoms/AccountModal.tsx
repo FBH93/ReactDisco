@@ -18,7 +18,6 @@ export const Account = () => {
   const lastName = localStorage.getItem("lastName")
   const email = localStorage.getItem("email")
   const address = localStorage.getItem("address")
-  let cID = localStorage.getItem("customerID")
 
   function handleLogOut() {
     setModal(false)
