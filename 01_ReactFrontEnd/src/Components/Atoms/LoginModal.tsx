@@ -138,7 +138,7 @@ export const Login = () => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <div className="modal-footer">
+          <div className="modal-footer ">
             <span>No account yet?</span>
             <Button
               className="btn btn-secondary discoButton"

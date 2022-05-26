@@ -243,7 +243,7 @@ export const Basket = () => {
           <div className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" />
           <div className="col d-flex justify-content-center align-items-center align-items-xxl-center" />
           <div className="col d-flex justify-content-center align-items-center">
-            <p className="fs-4 fw-light" style={{ marginTop: "12px" }}>
+            <p className="fs-5 fw-light" style={{ marginTop: "12px" }}>
               {cart?.length} items in your cart
             </p>
           </div>
@@ -251,7 +251,7 @@ export const Basket = () => {
             className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center"
             style={{ padding: "25px" }}
           >
-            <p className="fs-4 fw-bold" style={{ marginTop: "12px" }}>
+            <p className="fs-5 fw-bold" style={{ marginTop: "12px" }}>
               Sub-Total: {getTotalPrice()} DKK
             </p>
           </div>
