@@ -17,15 +17,16 @@ import { useEffect, useState } from "react"
 export const Account = () => {
   const [, setLogin] = useAtom(loginAtom)
   const [modal, setModal] = useAtom(showModalAtom)
-  const cID = localStorage.getItem("customerID")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [address, setAddress] = useState("")
 
   useEffect(() => {
+    const cID = localStorage.getItem("customerID")
     const getUserData = async () => {
       let user = await getUserDataById(cID)
+      console.log(user)
       setFirstName(user.firstName)
       setLastName(user.lastName)
       setEmail(user.email)
@@ -52,7 +53,7 @@ export const Account = () => {
       show={modal}
     >
       <ModalHeader>
-        <ModalTitle>Hey {}! Welcome back to DiscoClothing®</ModalTitle>
+        <ModalTitle>Hey {firstName}! Welcome back to DiscoClothing®</ModalTitle>
         <Button
           variant="secondary"
           onClick={() => setModal(false)}
