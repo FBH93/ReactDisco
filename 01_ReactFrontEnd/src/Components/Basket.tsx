@@ -295,28 +295,6 @@ export const Basket = () => {
           </div>
         </div>
       </div>
-      {/* delete the two buttons below later */}
-      <div className="testLogin">
-        {" "}
-        <button
-          onClick={async () => await pseudoLogin("1")}
-          className="btn btn-primary"
-          type="button"
-        >
-          test log in
-        </button>{" "}
-      </div>
-      <div className="testLogout">
-        {" "}
-        <button
-          onClick={() => pseudoLogout()}
-          className="btn btn-primary"
-          type="button"
-        >
-          test log out
-        </button>{" "}
-      </div>
-
       <div className="container" id="discoSaleButtonContent" />
     </div>
   )
