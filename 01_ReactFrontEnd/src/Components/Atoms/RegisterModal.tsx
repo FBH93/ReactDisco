@@ -3,9 +3,10 @@ import { useState } from "react";
 import {Form, Modal, ModalBody, ModalFooter, ModalTitle, ModalHeader, Button} from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { loginAtom, showModalAtom, signUpAtom } from '../store';
+import { loginAtom, showModalAtom, signUpAtom, userAtom } from '../store';
 import { atom, useAtom } from 'jotai';
-import { createUserBasket } from '../../Services/BasketCall'
+import { createUserBasket } from '../../Services/BasketCall';
+import { getUserData, createUser } from '../../Services/UserCall';
 
 export const Register = () => {
 
@@ -15,39 +16,22 @@ const [inputFirstName, setFirstName] = useState("");
 const [inputName, setName] = useState("");
 const [inputAddress, setAddress] = useState("");
 const [inputConfirmPas, setConfirmPas] = useState("");
+
 const [login, setLogin] = useAtom(loginAtom);
 const [modal, setModal] = useAtom(showModalAtom);
 const [signUp, setSignUp] = useAtom(signUpAtom);
+const [currentUser, setUser] = useAtom(userAtom);
 
 let handleSubmit = async (e) => {
         e.preventDefault();
-        let customerID = Math.floor((Math.random() * 100000) + 1);
-        const data = {
-          customerID: customerID,
-          fname: inputFirstName,
-          lname: inputName,
-          email: inputEmail,
-          pword: inputPassword,
-          addr: inputAddress 
-        };
-        //POST call to API to create user from input data
-         axios
-         .post("http://localhost:3000/customer/", data)
-         .then(res => console.log(res))
-         .catch(err => console.log(err));
-         localStorage.setItem("isLoggedIn", "true");
-         localStorage.setItem("firstName", inputFirstName);
-         localStorage.setItem("customerID", customerID.toString());
-         setLogin(true);
-         setModal(false);
-        await createUserBasket(customerID.toString());
-
-         
+        createUser(inputFirstName, inputName, inputEmail, inputPassword, inputAddress)
+        handleSignup();
 };
 
 function handleSignup() {
     setModal(false);
-    setSignUp(true);
+    setSignUp(false);
+    setLogin(true);
     }
 
 function closeSignup() {

@@ -4,11 +4,12 @@ import { loginAtom, showModalAtom } from './store'
 import { Account } from './Atoms/AccountModal'
 import { Login } from './Atoms/LoginModal'
 import { Register } from './Atoms/RegisterModal'
+import { useState } from 'react'
 
 export function NavigationBar() {
 
-  const [login, setLogin] = useAtom(loginAtom);
   const [modal, setModal] = useAtom(showModalAtom);
+  const [login, setLogin] = useAtom(loginAtom);
 
   return (
     <div>

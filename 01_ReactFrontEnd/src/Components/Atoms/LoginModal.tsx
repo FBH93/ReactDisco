@@ -1,5 +1,5 @@
-import { Form, Button, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle } from "react-bootstrap"
-import { useState } from "react"
+import { Form, Button, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle, Alert } from "react-bootstrap"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
@@ -17,31 +17,37 @@ export interface UserInterface {
 
 export const Login = () => {
 
-  const [inputEmail, setEmail] = useState("")
-  const [inputPassword, setPassword] = useState("")
-  const [isLogin, setLogin] = useAtom(loginAtom)
-  const[modal, setModal] = useAtom(showModalAtom)
+  const [inputEmail, setEmail] = useState("");
+  const [inputPassword, setPassword] = useState("");
+  const [isLogin, setLogin] = useAtom(loginAtom);
+  const [modal, setModal] = useAtom(showModalAtom);
   const [signUp, setSignUp] = useAtom(signUpAtom);
   const [currentUser, setUser] = useAtom(userAtom);
-
+  const [value] = useAtom(userAtom);
+  const [showAlert, setShow] = useState(false);
 
   const login = async () => {
-    //Get user details from API, then check if login is valid for that user.
     let data = await getUserData(inputEmail)
+    console.log(data)
     const password = data.password
-    const email = data.email
     if (password !== inputPassword) {
-      alert("Wrong Password")
+      setShow(true)
     } 
     else {
       setLogin(true)
-      localStorage.setItem("firstName", data.fName)
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
-      const currentUser = await getUserData(inputEmail)
-      setUser(currentUser)
       }
   }
+
+  useEffect(() => {
+    const updateUser = async () => {
+      const currentUser = await getUserData(inputEmail)
+      setUser(currentUser)
+    }
+    updateUser()
+  }, [inputEmail])
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -53,6 +59,7 @@ export const Login = () => {
   }
 
   return (
+    <div>
     <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -72,6 +79,7 @@ export const Login = () => {
           </Button>
         </ModalHeader>
         <ModalBody>
+        <Alert show={showAlert} variant="danger" onClose={() => setShow(false)} dismissible> Wrong Password! Please try again </Alert>
       <Form method="post" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col">
@@ -127,5 +135,6 @@ export const Login = () => {
             </div>
         </ModalFooter>
       </Modal>
+    </div>
   )
 }
