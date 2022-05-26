@@ -9,10 +9,9 @@ import {
   Alert,
 } from "react-bootstrap"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
-import { loginAtom, showModalAtom, signUpAtom, userAtom } from "../store"
+import { emailAlertAtom, showModalAtom, signUpAtom, userAtom } from "../store"
 import { localStorageCart, exportFromLocal, BasketProduct } from "../Basket"
 
 export interface UserInterface {
@@ -27,33 +26,22 @@ export interface UserInterface {
 export const Login = () => {
   const [inputEmail, setEmail] = useState("")
   const [inputPassword, setPassword] = useState("")
-  const [isLogin, setLogin] = useAtom(loginAtom)
   const [modal, setModal] = useAtom(showModalAtom)
-  const [signUp, setSignUp] = useAtom(signUpAtom)
-  const [currentUser, setUser] = useAtom(userAtom)
-  const [value] = useAtom(userAtom)
+  const [, setSignUp] = useAtom(signUpAtom)
   const [showAlert, setShow] = useState(false)
+  const [emailAlert] = useAtom(emailAlertAtom)
 
   const login = async () => {
     let data = await getUserData(inputEmail)
-    console.log(data)
     const password = data.password
     if (password !== inputPassword) {
       setShow(true)
     } else {
-      setLogin(true)
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
+      setModal(false)
     }
   }
-
-  useEffect(() => {
-    const updateUser = async () => {
-      const currentUser = await getUserData(inputEmail)
-      setUser(currentUser)
-    }
-    updateUser()
-  }, [inputEmail])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -89,6 +77,15 @@ export const Login = () => {
         <ModalBody>
           <Alert
             show={showAlert}
+            variant="danger"
+            onClose={() => setShow(false)}
+            dismissible
+          >
+            {" "}
+            Wrong Password! Please try again{" "}
+          </Alert>
+          <Alert
+            show={emailAlert}
             variant="danger"
             onClose={() => setShow(false)}
             dismissible
