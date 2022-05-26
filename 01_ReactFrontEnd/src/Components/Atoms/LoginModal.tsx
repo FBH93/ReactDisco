@@ -33,14 +33,17 @@ export const Login = () => {
 
   const login = async () => {
     let data = await getUserData(inputEmail)
+    console.log(data)
     const password = data.password
     if (password !== inputPassword) {
       setShow(true)
     } else {
       localStorage.setItem("isLoggedIn", "true")
-      localStorage.setItem("customerID", data.customerId)
+      localStorage.setItem("customerID", data.customerID)
+      localStorage.setItem("firstName", data.firstName)
       setModal(false)
       exportFromLocal(data.customerId, await localStorageCart())
+      window.location.reload()
     }
   }
 
