@@ -1,9 +1,12 @@
 import { atom } from 'jotai'
+import { UserInterface } from './Atoms/LoginModal'
 import { BasketProduct } from './Basket'
 
 export const loginAtom = atom(false)
 export const showModalAtom = atom(false)
 export const signUpAtom = atom(false)
+export const userAtom = atom<UserInterface | null>(null)
+
 export const sizeAtom = atom('S')
 export const localCartAtom = atom<BasketProduct[] | null>([ {
     productID: 1,
