@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getSingleProduct } from "../Services/ProductsCall"
 import { CardButton } from "./Atoms/CardButton"
+import Sizometer from "./Atoms/Sizometer"
 import { sizeAtom } from "./store"
 
 export interface ProductInterface {
@@ -16,7 +17,7 @@ export interface ProductInterface {
 
 const Product = () => {
   let { id } = useParams()
-  const [selectedSize, setproductize] = useAtom(sizeAtom)
+  const [selectedSize, setproductSize] = useAtom(sizeAtom)
 
   const [myProduct, setMyProduct] = useState<ProductInterface | null>(null)
 
@@ -58,61 +59,7 @@ const Product = () => {
                 >
                   {myProduct?.productPrice} DKK
                 </h4>
-                <div
-                  className="btn-group btn-group-toggle"
-                  style={{ paddingBottom: "16px" }}
-                  data-toggle="buttons"
-                >
-                  <label className="btn btn-secondary">
-                    <input
-                      type="radio"
-                      name="size"
-                      id="S"
-                      autoComplete="off"
-                      onClick={(event) => {
-                        setproductize("S")
-                      }}
-                      defaultChecked
-                    />{" "}
-                    S
-                  </label>
-                  <label className="btn btn-secondary">
-                    <input
-                      type="radio"
-                      name="size"
-                      id="M"
-                      autoComplete="off"
-                      onClick={(event) => {
-                        setproductize("M")
-                      }}
-                    />{" "}
-                    M
-                  </label>
-                  <label className="btn btn-secondary">
-                    <input
-                      type="radio"
-                      name="size"
-                      id="L"
-                      autoComplete="off"
-                      onClick={(event) => {
-                        setproductize("L")
-                      }}
-                    />{" "}
-                    L
-                  </label>
-                  <label className="btn btn-secondary">
-                    <input
-                      type="radio"
-                      name="size"
-                      id="XL"
-                      autoComplete="off"
-                      onClick={(event) => {
-                        setproductize("XL")
-                      }}
-                    />{" "}
-                    XL
-                  </label>
-                </div>
+                <Sizometer />
               </div>
             </div>
             <div className="row">
