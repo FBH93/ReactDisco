@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { UserInterface } from '../Components/Atoms/LoginModal'
 
 export async function putProductToBasket(userID: string, pID: number, size: string) {
   return fetch('http://localhost:3000/basket/' + userID + '/?productID=' + pID +'&size=' + size, {
@@ -24,4 +25,10 @@ export const getUserData = async(inputEmail) => {
       alert('Wrong Email');
   })
   return data;
+}
+
+export async function getUserDataById(id: any): Promise<UserInterface> {
+  return fetch('http://localhost:3000/customer/' + id).then((response) =>
+    response.json()
+  ) // Parse the response in JSON
 }

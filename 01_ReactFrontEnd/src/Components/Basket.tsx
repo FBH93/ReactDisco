@@ -1,10 +1,12 @@
 import { useAtom } from 'jotai'
-import { useEffect } from 'react'
+import { ReactElement, ReactNode, useEffect } from 'react'
 import { useState } from 'react'
 import { getSingleBasket, removeProductFromBasket, createUserBasket } from '../Services/BasketCall'
 import { localCartAtom } from './store'
 import { getSingleProduct } from '../Services/ProductsCall'
-import { putProductToBasket } from '../Services/UserCall'
+import { putProductToBasket, getUserDataById } from '../Services/UserCall'
+import { UserInterface } from './Atoms/LoginModal'
+import { JsxEmit } from 'typescript'
 
 export interface BasketProduct{
   productID: number, 
@@ -24,7 +26,7 @@ function testlogger(str: string){
   console.log(str)
 }
 
-//TODO: currently theres a bug where two clicks are required for the page to reload. Says there's an unexpected end of json input at UserCall.tsx line 8. Investigate... 
+
 export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
   
   let has_localProducts: Boolean = false;
@@ -46,10 +48,6 @@ export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
   } 
 }
 
-//create new basket on user creation
-async function testCreateBasket(cID: string){
-  await createUserBasket(cID);
-}
 
 
 export async function localStorageCart(): Promise<BasketProduct[]> {
@@ -78,11 +76,12 @@ export async function localStorageCart(): Promise<BasketProduct[]> {
 
 export const Basket = () => {
 
- let cID = localStorage.getItem('CustomerID')
+ let cID = localStorage.getItem('customerID')
 
  //see TODO at localStorageCart()
  const [localCart]=useAtom(localCartAtom)
- const [cart, setCart] = useState<BasketProduct[] | null>([])
+ const [cart, setCart] = useState<BasketProduct[] | null>([]);
+ const [heading, setHeading] = useState(<></>);
  const [totalPrice, setPrice] = useState<{totalPrice: number}>();
 
 
@@ -93,10 +92,16 @@ export const Basket = () => {
     setCart(contents)
   }
     getBasket()
-  }, [cID])
+  }, [cID]
+  )
 
-  
-  
+  useEffect(() => {
+    const getHeading = async () => {
+      const message = await basketHeading()
+      setHeading(message)
+    }
+    getHeading()
+  })
 
   
 async function removeFromLocalCart(pID:number): Promise<BasketProduct[]> {
@@ -109,23 +114,53 @@ async function removeFromLocalCart(pID:number): Promise<BasketProduct[]> {
 }
 
 
-
 async function removeFromCart(cID:string, pID:number, size:string): Promise<BasketProduct[]> {
   await removeProductFromBasket(cID, pID, size);
   return await getSingleBasket(cID);
 }
 
   async function pseudoLogin (cID: string) {
-    localStorage.setItem('CustomerID', cID)
+    localStorage.setItem('customerID', cID)
     await exportFromLocal(cID, cart!)     
     window.location.reload()
   }
 
   const pseudoLogout = () => {
-    localStorage.removeItem('CustomerID')
+    localStorage.removeItem('customerID')
     window.location.reload()
   }
 
+   
+  async function basketHeading() {
+
+    
+    let message = <></>
+    if(cID){
+      let user:UserInterface = await getUserDataById(cID);
+      let firstName:string = user.firstName;
+      if (cart) if(cart.length > 0){
+        message = <div>Hello {firstName}. Let's see what's in your basket. </div>
+      }
+      else{
+        message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
+      }
+      
+    }
+    else{
+     
+      if (cart) if(cart.length > 0){
+       
+        message = <div>Let's see what's in your basket. </div>
+      }
+      else{
+
+        message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
+      }
+    }
+
+    return message;
+    
+  }
   
   function getTotalPrice(): number {
     let total = 0
@@ -156,7 +191,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
               className="fs-1 fw-light text-center text-white"
               id="cartHeadline"
             >
-              Let's see what's in your basket.
+              {heading}
             </h1>
           </div>
         </div>
@@ -164,7 +199,7 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
       <div className="container" id="discoCartContent">
         {/* insert products here */}
         <div>{cart?.map(({productID,size, productName, productPrice}) => {
-
+        
       return(
         <div
           className="row row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row-cols-xl-5 row-cols-xxl-5 justify-content-start"
@@ -181,12 +216,13 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
           <div className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center">
             <h1 className="fs-4" style={{ marginTop: '5px' }}>
               {' '}
-              {productName}{' '}
+              {productName}{' '} 
             </h1>
           </div>
           <div className="col d-flex justify-content-center align-items-center align-items-xxl-center">
             <p className="fs-4 fw-light" style={{ marginTop: '12px' }}>
               {productPrice}
+    
             </p>
           </div>
           <div className="col d-flex justify-content-center align-items-center">
@@ -262,19 +298,14 @@ async function removeFromCart(cID:string, pID:number, size:string): Promise<Bask
           test log out
         </button>{' '}
       </div>
-      <div className="testCreateBasket">
-        {' '}
-        <button
-          onClick={async () => await testCreateBasket("3")}
-          className="btn btn-primary"
-          type="button"
-        >
-          test createBasket
-        </button>{' '}
-      </div>
+     
       <div className="container" id="discoSaleButtonContent" />
     </div>
   )
 }
 
 export default Basket
+function async() {
+  throw new Error('Function not implemented.')
+}
+

@@ -22,8 +22,9 @@ const [signUp, setSignUp] = useAtom(signUpAtom);
 let handleSubmit = async (e) => {
         e.preventDefault();
         let customerID = Math.floor((Math.random() * 100000) + 1);
+        
         const data = {
-          customerID: customerID,
+          customerID: customerID.toString(),
           fname: inputFirstName,
           lname: inputName,
           email: inputEmail,

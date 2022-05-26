@@ -40,6 +40,8 @@ export const Login = () => {
       localStorage.setItem("customerID", data.customerId)
       const currentUser = await getUserData(inputEmail)
       setUser(currentUser)
+
+      exportFromLocal(data.customerId, await localStorageCart())
       }
   }
 
