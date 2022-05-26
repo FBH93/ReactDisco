@@ -1,7 +1,7 @@
 import "../src/custom.scss"
 import "animate.css/animate.css"
 import React from "react"
-import { NavigationBar } from "./Components/Navbar"
+import { NavigationBar } from "./Components/Atoms/Navbar"
 import { Basket } from "./Components/Basket"
 import ProductGrid from "./Components/ProductGrid"
 import { BrowserRouter, Routes, Route } from "react-router-dom"

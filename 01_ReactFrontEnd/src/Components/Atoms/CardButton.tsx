@@ -1,8 +1,5 @@
 import React, { Component, useState } from "react"
 import { Button } from "react-bootstrap"
-import Alert from "react-bootstrap/Alert"
-import { addSyntheticTrailingComment } from "typescript"
-import { Basket } from "../Basket"
 import { putProductToBasket } from "../../Services/UserCall"
 
 type CardButtonProps = {
