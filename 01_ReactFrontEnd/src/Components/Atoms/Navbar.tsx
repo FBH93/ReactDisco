@@ -33,7 +33,7 @@ export function NavigationBar() {
         variant="dark"
         expand="lg"
       >
-        <Container>
+        <Container className="col-5">
           <Navbar.Brand href="/">
             <img
               src="../assets/img/logo/logo-discoclothing--white.svg"
