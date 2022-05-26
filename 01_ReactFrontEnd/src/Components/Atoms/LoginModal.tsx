@@ -1,10 +1,19 @@
-import { Form, Button, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle } from "react-bootstrap"
-import { useState } from "react"
+import {
+  Form,
+  Button,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  ModalTitle,
+  Alert,
+} from "react-bootstrap"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAtom } from "jotai"
 import { getUserData } from "../../Services/UserCall"
-import { loginAtom, showModalAtom, signUpAtom, userAtom } from '../store'
-import { localStorageCart, exportFromLocal, BasketProduct } from '../Basket'
+import { loginAtom, showModalAtom, signUpAtom, userAtom } from "../store"
+import { localStorageCart, exportFromLocal, BasketProduct } from "../Basket"
 
 export interface UserInterface {
   firstName: string
@@ -16,118 +25,127 @@ export interface UserInterface {
 }
 
 export const Login = () => {
-
   const [inputEmail, setEmail] = useState("")
   const [inputPassword, setPassword] = useState("")
   const [isLogin, setLogin] = useAtom(loginAtom)
-  const[modal, setModal] = useAtom(showModalAtom)
-  const [signUp, setSignUp] = useAtom(signUpAtom);
-  const [currentUser, setUser] = useAtom(userAtom);
-
+  const [modal, setModal] = useAtom(showModalAtom)
+  const [signUp, setSignUp] = useAtom(signUpAtom)
+  const [currentUser, setUser] = useAtom(userAtom)
+  const [value] = useAtom(userAtom)
+  const [showAlert, setShow] = useState(false)
 
   const login = async () => {
-    //Get user details from API, then check if login is valid for that user.
     let data = await getUserData(inputEmail)
+    console.log(data)
     const password = data.password
-    const email = data.email
     if (password !== inputPassword) {
-      alert("Wrong Password")
-    } 
-    else {
+      setShow(true)
+    } else {
       setLogin(true)
-      localStorage.setItem("firstName", data.fName)
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
-      const currentUser = await getUserData(inputEmail)
-      setUser(currentUser)
-
       exportFromLocal(data.customerId, await localStorageCart())
-      }
+    }
   }
+
+  
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
 
   function toggleToSignUp() {
-    setModal(false);
-    setSignUp(true);
+    setModal(false)
+    setSignUp(true)
   }
 
   return (
-    <Modal
+    <div>
+      <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         role="dialog"
         tabindex="-1"
         id="loginModal"
-        show={modal}>
+        show={modal}
+      >
         <ModalHeader>
           <ModalTitle>DiscoClothing® Members</ModalTitle>
           <Button
             variant="secondary"
             onClick={() => setModal(false)}
             data-bs-dismiss="modal"
-            aria-label="Close">
+            aria-label="Close"
+          >
             Close
           </Button>
         </ModalHeader>
         <ModalBody>
-      <Form method="post" onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col">
-            <label className="form-label">E-Mail</label>
-            <input
-              className="form-control"
-              autoFocus
-              type="email"
-              id="loginEmail"
-              onChange={(event) => setEmail(event.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <div className="row disco-form-row">
-          <div className="col">
-            <label className="form-label">Password</label>
-            <input
-              className="form-control"
-              type="password"
-              id="loginPass"
-              name="password"
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <div className="row disco-form-row" style={{ paddingTop: "16px" }}>
-          <div className="col">
-            <button
-              className="btn btn-primary discoButton"
-              data-bss-hover-animate="pulse"
-              type="button"
-              onClick={login}
-            >
-              Login
-            </button>
-          </div>
-        </div>
-      </Form>
-      </ModalBody>
-        <ModalFooter>
-            <div className="modal-footer">
-              <span>No account yet?</span>
-              <Button
-                className="btn btn-secondary discoButton"
-                data-bss-hover-animate="pulse"
-                type="submit"
-                onClick={() => toggleToSignUp()}
-              >
-                Register new account
-              </Button>
+          <Alert
+            show={showAlert}
+            variant="danger"
+            onClose={() => setShow(false)}
+            dismissible
+          >
+            {" "}
+            Wrong Password! Please try again{" "}
+          </Alert>
+          <Form method="post" onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col">
+                <label className="form-label">E-Mail</label>
+                <input
+                  className="form-control"
+                  autoFocus
+                  type="email"
+                  id="loginEmail"
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                />
+              </div>
             </div>
+            <div className="row disco-form-row">
+              <div className="col">
+                <label className="form-label">Password</label>
+                <input
+                  className="form-control"
+                  type="password"
+                  id="loginPass"
+                  name="password"
+                  onChange={(event) => setPassword(event.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className="row disco-form-row" style={{ paddingTop: "16px" }}>
+              <div className="col">
+                <button
+                  className="btn btn-primary discoButton"
+                  data-bss-hover-animate="pulse"
+                  type="button"
+                  onClick={login}
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <div className="modal-footer ">
+            <span>No account yet?</span>
+            <Button
+              className="btn btn-secondary discoButton"
+              data-bss-hover-animate="pulse"
+              type="submit"
+              onClick={() => toggleToSignUp()}
+            >
+              Register new account
+            </Button>
+          </div>
         </ModalFooter>
       </Modal>
+    </div>
   )
 }
