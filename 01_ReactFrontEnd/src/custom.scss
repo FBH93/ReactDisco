@@ -1,0 +1,80 @@
+$primary: #53736a;
+$secondary: #6c757d;
+$success: #3e8d63;
+$info: #7854e4;
+$warning: #b8c924;
+$danger: #d62518;
+$light: #f8f9fa;
+$dark: #343a40;
+
+//custom colors
+$accent: #da6d25;
+
+// this is used to map colors. change accordingly.
+$theme-colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+  light: $light,
+  dark: $dark,
+  // additional colors
+  accent: $accent,
+  // now bg-accent,btn-accent,etc.. can be called
+);
+
+body {
+  padding-top: 90px;
+}
+
+.discoCarousel {
+  margin-top: -120px;
+}
+
+.bg-dark {
+  --bs-bg-opacity: 1;
+  background-color: #53736a !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("../public/assets/img/bar.svg");
+}
+
+.btn-primary {
+  background-color: #53736a !important;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #455f58 !important;
+  color: #fff;
+}
+
+.form-control:focus {
+  border-color: #53736a !important;
+  box-shadow: 0 0 0 0.25rem rgba(83, 115, 106, 0.2);
+}
+
+.btn-primary:focus {
+  border-color: #53736a !important;
+  box-shadow: 0 0 0 0.25rem rgba(83, 115, 106, 0.2);
+}
+
+.disco-form-row {
+  padding-top: 16px;
+}
+
+@media (max-width: 980px) {
+  body {
+    padding-top: 90;
+  }
+
+  .discoCarousel {
+    margin-top: 80px;
+  }
+}
+
+@import "~bootstrap/scss/bootstrap.scss";

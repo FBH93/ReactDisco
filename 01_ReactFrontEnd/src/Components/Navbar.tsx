@@ -13,7 +13,7 @@ export function NavigationBar() {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar className="py-4" bg="primary" fixed="top" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand href="/">
             <img
@@ -25,10 +25,10 @@ export function NavigationBar() {
           </Navbar.Brand>
         </Container>
         <Container>
-          <Navbar.Brand href="/">Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/products">All Products</Nav.Link>
               <NavDropdown title="Styles" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/products/70s">70s</NavDropdown.Item>
