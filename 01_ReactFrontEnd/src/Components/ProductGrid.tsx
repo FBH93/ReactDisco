@@ -33,35 +33,34 @@ function ProductGrid(filter: Filter, props) {
 
   if (products) {
     return (
-          <div className="container discoGrid justify-content-center d-flex flex-wrap mt-5">
-            {products.map((product, i) => {
-              return (
-                <Card
-                  className="text-center"
-                  bg="light"
-                  border="light"
-                  style={{ width: "18rem", margin: "5px" }}
-                >
-                  <a
-                    className="shopGridLink"
-                    href={"/products/" + product.productID}
-                    style={{ color: "#455f58" }}
-                  >
-                    <Card.Img
-                      variant="top"
-                      src={"/assets/img/products/" + product.productID + ".jpg"}
-                    />
-                    <Card.Title>{product.productName}</Card.Title>
-                    <Card.Subtitle>
-                      {product.productPrice + " DKK"}
-                    </Card.Subtitle>
-                  </a>
-                  <Sizometer />
-                  <CardButton pID={product.productID} size={selectedSize} />
-                </Card>
-              )
-            })}
-          </div>
+      <div className="container discoGrid justify-content-center d-flex flex-wrap my-5">
+        {products.map((product, i) => {
+          return (
+            <Card
+              className="text-center"
+              bg="light"
+              border="light"
+              style={{ width: "18rem", margin: "5px" }}
+            >
+              <a
+                className="shopGridLink"
+                href={"/products/" + product.productID}
+                style={{ color: "#455f58" }}
+              >
+                <Card.Img
+                  variant="top"
+                  src={"/assets/img/products/" + product.productID + ".jpg"}
+                  className="mb-5"
+                />
+                <Card.Title>{product.productName}</Card.Title>
+                <Card.Subtitle>{product.productPrice + " DKK"}</Card.Subtitle>
+              </a>
+              <Sizometer />
+              <CardButton pID={product.productID} size={selectedSize} />
+            </Card>
+          )
+        })}
+      </div>
     )
   } else return <div> FAULTY FILTER </div>
 }

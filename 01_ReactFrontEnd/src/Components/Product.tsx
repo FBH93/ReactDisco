@@ -1,9 +1,9 @@
-import { useAtom } from 'jotai'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getSingleProduct } from '../Services/ProductsCall'
-import { CardButton } from './Atoms/CardButton'
-import { sizeAtom } from './store'
+import { useAtom } from "jotai"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { getSingleProduct } from "../Services/ProductsCall"
+import { CardButton } from "./Atoms/CardButton"
+import { sizeAtom } from "./store"
 
 export interface ProductInterface {
   productID: number
@@ -34,7 +34,7 @@ const Product = () => {
 
   return (
     <div>
-      <div className="container text-center">
+      <div className="container text-center mt-5">
         <div className="row">
           <div className="col">
             <div
@@ -42,8 +42,8 @@ const Product = () => {
               style={{
                 background:
                   'url("../assets/img/products/' + id + '.jpg") no-repeat',
-                backgroundSize: 'contain',
-                height: '512px',
+                backgroundSize: "contain",
+                height: "512px",
               }}
             />
           </div>
@@ -51,16 +51,16 @@ const Product = () => {
             <h2 id="discoProductName">{myProduct?.productName}</h2>
             <div className="row">
               <div className="col">
-              <p> {myProduct?.details} </p>
-              <h4
+                <p> {myProduct?.details} </p>
+                <h4
                   id="discoProductPrice"
-                  style={{ marginBottom: '25px', marginTop: '25px' }}
+                  style={{ marginBottom: "25px", marginTop: "25px" }}
                 >
                   {myProduct?.productPrice} DKK
-              </h4>
+                </h4>
                 <div
                   className="btn-group btn-group-toggle"
-                  style={{ paddingBottom: '16px' }}
+                  style={{ paddingBottom: "16px" }}
                   data-toggle="buttons"
                 >
                   <label className="btn btn-secondary">
@@ -70,10 +70,10 @@ const Product = () => {
                       id="S"
                       autoComplete="off"
                       onClick={(event) => {
-                        setproductize('S')
+                        setproductize("S")
                       }}
                       defaultChecked
-                    />{' '}
+                    />{" "}
                     S
                   </label>
                   <label className="btn btn-secondary">
@@ -83,9 +83,9 @@ const Product = () => {
                       id="M"
                       autoComplete="off"
                       onClick={(event) => {
-                        setproductize('M')
+                        setproductize("M")
                       }}
-                    />{' '}
+                    />{" "}
                     M
                   </label>
                   <label className="btn btn-secondary">
@@ -95,9 +95,9 @@ const Product = () => {
                       id="L"
                       autoComplete="off"
                       onClick={(event) => {
-                        setproductize('L')
+                        setproductize("L")
                       }}
-                    />{' '}
+                    />{" "}
                     L
                   </label>
                   <label className="btn btn-secondary">
@@ -107,9 +107,9 @@ const Product = () => {
                       id="XL"
                       autoComplete="off"
                       onClick={(event) => {
-                        setproductize('XL')
+                        setproductize("XL")
                       }}
-                    />{' '}
+                    />{" "}
                     XL
                   </label>
                 </div>
@@ -117,7 +117,7 @@ const Product = () => {
             </div>
             <div className="row">
               <div className="col">
-              <CardButton pID={parseInt(id)} size={selectedSize} /> 
+                <CardButton pID={parseInt(id)} size={selectedSize} />
               </div>
             </div>
           </div>
