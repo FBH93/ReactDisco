@@ -64,6 +64,7 @@ export const createUser = async (
   localStorage.setItem("lastName", inputName)
   localStorage.setItem("email", inputEmail)
   localStorage.setItem("address", inputAddress)
+  localStorage.setItem("isLoggedIn", "true")
   await createUserBasket(customerID.toString())
 }
 
