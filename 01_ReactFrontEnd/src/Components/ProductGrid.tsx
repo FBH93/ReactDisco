@@ -37,6 +37,7 @@ function ProductGrid(filter: Filter, props) {
         {products.map((product, i) => {
           return (
             <Card
+              key={i}
               className="text-center"
               bg="light"
               border="light"

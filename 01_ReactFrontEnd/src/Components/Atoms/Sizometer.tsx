@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component } from "react"
 
 export class Sizometer extends Component {
   render() {
@@ -8,7 +8,7 @@ export class Sizometer extends Component {
           <div className="col">
             <div
               className="btn-group btn-group-toggle"
-              style={{ paddingBottom: '16px' }}
+              style={{ paddingBottom: "16px" }}
               data-toggle="buttons"
             >
               <label className="btn btn-secondary">
@@ -18,7 +18,7 @@ export class Sizometer extends Component {
                   id="S"
                   autoComplete="off"
                   defaultChecked
-                />{' '}
+                />{" "}
                 S
               </label>
               <label className="btn btn-secondary">
