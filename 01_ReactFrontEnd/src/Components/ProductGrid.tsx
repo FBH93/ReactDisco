@@ -33,7 +33,6 @@ function ProductGrid(filter: Filter, props) {
 
   if (products) {
     return (
-      <Card bg="light" border="dark">
           <div className="container discoGrid justify-content-center d-flex flex-wrap mt-5">
             {products.map((product, i) => {
               return (
@@ -63,19 +62,8 @@ function ProductGrid(filter: Filter, props) {
               )
             })}
           </div>
-      </Card>
     )
   } else return <div> FAULTY FILTER </div>
 }
 
 export default ProductGrid
-
-/*
- <img
-                    className="mt-5 mb-5"
-                    id="productImage"
-                    src={'/assets/img/products/' + product.productID + '.jpg'}
-                    alt-text="productImage"
-                    width="300px"
-                  />
-*/

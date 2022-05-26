@@ -1,4 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+import '../src/custom.scss'
+import Animate from 'animate.css-react'
+import 'animate.css/animate.css'
 import React from 'react'
 import { NavigationBar } from './Components/Navbar'
 import { Basket } from './Components/Basket'
