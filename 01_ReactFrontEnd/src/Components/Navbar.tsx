@@ -1,14 +1,13 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap"
 import { useAtom } from "jotai"
-import { loginAtom, showModalAtom } from "./store"
+import { showModalAtom } from "./store"
 import { Account } from "./Atoms/AccountModal"
 import { Login } from "./Atoms/LoginModal"
 import { Register } from "./Atoms/RegisterModal"
-import { useState } from "react"
 
 export function NavigationBar() {
-  const [modal, setModal] = useAtom(showModalAtom)
-  const [login, setLogin] = useAtom(loginAtom)
+  const [, setModal] = useAtom(showModalAtom)
+  const login = localStorage.getItem("isLoggedIn")
 
   return (
     <div>
@@ -69,7 +68,7 @@ export function NavigationBar() {
               </NavDropdown>
             </Nav>
             <Nav>
-              {login ? (
+              {login == "true" ? (
                 <Nav.Link eventKey="button" onClick={() => setModal(true)}>
                   <p> Account </p>
                 </Nav.Link>
@@ -85,7 +84,7 @@ export function NavigationBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {login ? <Account /> : <Login />}
+      {login == "true" ? <Account /> : <Login />}
       <Register />
     </div>
   )
