@@ -19,7 +19,7 @@ export const Account = () => {
   function handleLogOut() {
     setModal(false)
     localStorage.setItem("isLoggedIn", "false")
-    localStorage.removeItem("CustomerID")
+    localStorage.removeItem("customerID")
     setUserData(null)
     setLogin(false)
   }

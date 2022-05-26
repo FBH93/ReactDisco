@@ -40,6 +40,7 @@ export const Login = () => {
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("customerID", data.customerId)
       setModal(false)
+      exportFromLocal(data.customerId, await localStorageCart())
     }
   }
 
@@ -135,7 +136,7 @@ export const Login = () => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <div className="modal-footer">
+          <div className="modal-footer ">
             <span>No account yet?</span>
             <Button
               className="btn btn-secondary discoButton"

@@ -1,7 +1,8 @@
 import axios from "axios"
-import { createUserBasket } from "./BasketCall"
 import { emailAlertAtom } from "../Components/store"
 import { useAtom } from "jotai"
+import { UserInterface } from "../Components/Atoms/LoginModal"
+import { createUserBasket } from "./BasketCall"
 
 export async function putProductToBasket(
   userID: string,
@@ -61,4 +62,10 @@ export const createUser = async (
     .catch((err) => console.log(err))
   localStorage.setItem("customerID", customerID.toString())
   await createUserBasket(customerID.toString())
+}
+
+export async function getUserDataById(id: any): Promise<UserInterface> {
+  return fetch("http://localhost:3000/customer/" + id).then((response) =>
+    response.json()
+  ) // Parse the response in JSON
 }

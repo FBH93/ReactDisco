@@ -1,8 +1,5 @@
 import React, { Component, useState } from "react"
 import { Button } from "react-bootstrap"
-import Alert from "react-bootstrap/Alert"
-import { addSyntheticTrailingComment } from "typescript"
-import { Basket } from "../Basket"
 import { putProductToBasket } from "../../Services/UserCall"
 
 type CardButtonProps = {
@@ -12,8 +9,8 @@ type CardButtonProps = {
 
 export const CardButton: React.FC<CardButtonProps> = ({ pID, size }) => {
   const addItem = (pID: number, size: string) => {
-    if (localStorage.getItem("CustomerID")) {
-      let cID = localStorage.getItem("CustomerID")
+    if (localStorage.getItem('customerID')) {
+      let cID = localStorage.getItem('customerID')
       if (cID) {
         putProductToBasket(cID, pID, size)
       }

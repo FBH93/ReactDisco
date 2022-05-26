@@ -1,14 +1,12 @@
-import { useAtom } from "jotai"
-import { useEffect } from "react"
-import { useState } from "react"
-import {
-  getSingleBasket,
-  removeProductFromBasket,
-  createUserBasket,
-} from "../Services/BasketCall"
-import { localCartAtom } from "./store"
-import { getSingleProduct } from "../Services/ProductsCall"
-import { putProductToBasket } from "../Services/UserCall"
+import { useAtom } from 'jotai'
+import { ReactElement, ReactNode, useEffect } from 'react'
+import { useState } from 'react'
+import { getSingleBasket, removeProductFromBasket, createUserBasket } from '../Services/BasketCall'
+import { localCartAtom } from './store'
+import { getSingleProduct } from '../Services/ProductsCall'
+import { putProductToBasket, getUserDataById } from '../Services/UserCall'
+import { UserInterface } from './Atoms/LoginModal'
+import { JsxEmit } from 'typescript'
 
 export interface BasketProduct {
   productID: number
@@ -28,7 +26,6 @@ function testlogger(str: string) {
   console.log(str)
 }
 
-//TODO: currently theres a bug where two clicks are required for the page to reload. Says there's an unexpected end of json input at UserCall.tsx line 8. Investigate...
 export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
   let has_localProducts: Boolean = false
   for (let i = 0; i < localStorage.length; i++) {
@@ -55,10 +52,6 @@ export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
     }
 }
 
-//create new basket on user creation
-async function testCreateBasket(cID: string) {
-  await createUserBasket(cID)
-}
 
 export async function localStorageCart(): Promise<BasketProduct[]> {
   let newCart: BasketProduct[] = []
@@ -86,14 +79,19 @@ export async function localStorageCart(): Promise<BasketProduct[]> {
 }
 
 export const Basket = () => {
-  let cID = localStorage.getItem("CustomerID")
 
-  //see TODO at localStorageCart()
-  const [localCart] = useAtom(localCartAtom)
-  const [cart, setCart] = useState<BasketProduct[] | null>([])
-  const [totalPrice, setPrice] = useState<{ totalPrice: number }>()
 
-  useEffect(() => {
+ let cID = localStorage.getItem('customerID')
+
+ //see TODO at localStorageCart()
+ const [localCart]=useAtom(localCartAtom)
+ const [cart, setCart] = useState<BasketProduct[] | null>([]);
+ const [heading, setHeading] = useState(<></>);
+ const [totalPrice, setPrice] = useState<{totalPrice: number}>();
+
+
+
+ useEffect(() => {
     const getBasket = async () => {
       const contents = cID
         ? await getSingleBasket(cID)
@@ -101,37 +99,77 @@ export const Basket = () => {
       setCart(contents)
     }
     getBasket()
-  }, [cID])
+  }, [cID]
+  )
 
-  async function removeFromLocalCart(pID: number): Promise<BasketProduct[]> {
-    for (let i = 0; i < localStorage.length; i++) {
-      if (localStorage.key(i)?.substring(7) == pID.toString()) {
-        localStorage.removeItem("product" + pID)
+  useEffect(() => {
+    const getHeading = async () => {
+      const message = await basketHeading()
+      setHeading(message)
+    }
+    getHeading()
+  })
+
+  
+async function removeFromLocalCart(pID:number): Promise<BasketProduct[]> {
+    for (let i = 0; i < localStorage.length; i++){
+      if(localStorage.key(i)?.substring(7) == pID.toString()){        
+        localStorage.removeItem('product'+pID);
       }
     }
     return localStorageCart()
   }
 
-  async function removeFromCart(
-    cID: string,
-    pID: number,
-    size: string
-  ): Promise<BasketProduct[]> {
-    await removeProductFromBasket(cID, pID, size)
-    return await getSingleBasket(cID)
-  }
 
-  async function pseudoLogin(cID: string) {
-    localStorage.setItem("CustomerID", cID)
-    await exportFromLocal(cID, cart!)
+
+async function removeFromCart(cID:string, pID:number, size:string): Promise<BasketProduct[]> {
+  await removeProductFromBasket(cID, pID, size);
+  return await getSingleBasket(cID);
+}
+
+  async function pseudoLogin (cID: string) {
+    localStorage.setItem('customerID', cID)
+    await exportFromLocal(cID, cart!)     
     window.location.reload()
   }
 
   const pseudoLogout = () => {
-    localStorage.removeItem("CustomerID")
+    localStorage.removeItem('customerID')
     window.location.reload()
   }
 
+   
+  async function basketHeading() {
+
+    
+    let message = <></>
+    if(cID){
+      let user:UserInterface = await getUserDataById(cID);
+      let firstName:string = user.firstName;
+      if (cart) if(cart.length > 0){
+        message = <div>Hello {firstName}. Let's see what's in your basket. </div>
+      }
+      else{
+        message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
+      }
+      
+    }
+    else{
+     
+      if (cart) if(cart.length > 0){
+       
+        message = <div>Let's see what's in your basket. </div>
+      }
+      else{
+
+        message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
+      }
+    }
+
+    return message;
+    
+  }
+  
   function getTotalPrice(): number {
     let total = 0
     {
@@ -243,7 +281,7 @@ export const Basket = () => {
           <div className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" />
           <div className="col d-flex justify-content-center align-items-center align-items-xxl-center" />
           <div className="col d-flex justify-content-center align-items-center">
-            <p className="fs-4 fw-light" style={{ marginTop: "12px" }}>
+            <p className="fs-5 fw-light" style={{ marginTop: "12px" }}>
               {cart?.length} items in your cart
             </p>
           </div>
@@ -251,7 +289,7 @@ export const Basket = () => {
             className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center"
             style={{ padding: "25px" }}
           >
-            <p className="fs-4 fw-bold" style={{ marginTop: "12px" }}>
+            <p className="fs-5 fw-bold" style={{ marginTop: "12px" }}>
               Sub-Total: {getTotalPrice()} DKK
             </p>
           </div>
@@ -278,16 +316,7 @@ export const Basket = () => {
           test log out
         </button>{" "}
       </div>
-      <div className="testCreateBasket">
-        {" "}
-        <button
-          onClick={async () => await testCreateBasket("3")}
-          className="btn btn-primary"
-          type="button"
-        >
-          test createBasket
-        </button>{" "}
-      </div>
+      
       <div className="container" id="discoSaleButtonContent" />
     </div>
   )

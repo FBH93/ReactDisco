@@ -1,9 +1,9 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap"
 import { useAtom } from "jotai"
-import { showModalAtom } from "./store"
-import { Account } from "./Atoms/AccountModal"
-import { Login } from "./Atoms/LoginModal"
-import { Register } from "./Atoms/RegisterModal"
+import { loginAtom, showModalAtom } from "../store"
+import { Account } from "./AccountModal"
+import { Login } from "./LoginModal"
+import { Register } from "./RegisterModal"
 
 export function NavigationBar() {
   const [, setModal] = useAtom(showModalAtom)
