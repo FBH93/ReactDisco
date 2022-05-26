@@ -106,15 +106,18 @@ export const Basket = () => {
     getBasket()
   }, [cID])
 
-  // useEffect(() => {
-  //   const getHeading = async () => {
-  //     const message =
-  //     ? await basketHeading()
-  //     : <></>
-  //     setHeading(message)
-  //   }
-  //   getHeading()
-  // })
+  useEffect(() => {
+    const getHeading = async () => {
+      let message = <></>
+      if(cart)if(cart?.length>0){
+        message = await basketHeading()
+      }
+      
+      
+      setHeading(message)
+    }
+    getHeading()
+  }, [cart])
 
   async function removeFromLocalCart(pID: number): Promise<BasketProduct[]> {
     let foundItem: string = ""
@@ -149,25 +152,25 @@ export const Basket = () => {
 
   async function basketHeading() {
     let message = <></>
-    // if(cID){
-    //   let user:UserInterface = await getUserDataById(cID);
-    //   let firstName:string = user.firstName;
-    //   if (cart) if(cart.length > 0){
-    //     message = <div>Hello {firstName}. Let's see what's in your basket. </div>
-    //   }
-    //   else{
-    //     message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
-    //   }
-    // }
-    // else{
-    //   if (cart) if(cart.length != 0){
-    //     message = <div>Let's see what's in your basket. </div>
-    //   }
-    //   else{
-    //     message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
-    //   }
-    // }
-    return <div>hello</div>
+    if(cID){
+      let user:UserInterface = await getUserDataById(cID);
+      let firstName:string = user.firstName;
+      if (cart) if(cart.length > 0){
+        message = <div>Hello {firstName}. Let's see what's in your basket. </div>
+      }
+      else{
+        message = <div>Your basket is empty, {firstName}. <a href = "/">Let's go shopping</a></div>
+      }
+    }
+    else{
+      if (cart) if(cart.length != 0){
+        message = <div>Let's see what's in your basket. </div>
+      }
+      else{
+        message = <div>Your basket is empty. <a href = "/">Let's go shopping</a></div>
+      }
+    }
+    return message
   }
 
   function getTotalPrice(): number {
@@ -213,9 +216,10 @@ export const Basket = () => {
       <div className="container" id="discoCartContent">
         {/* insert products here */}
         <div>
-          {cart?.map(({ productID, size, productName, productPrice }) => {
+          {cart?.map(({ productID, size, productName, productPrice }, i) => {
             return (
               <div
+                key={i}
                 className="row row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row-cols-xl-5 row-cols-xxl-5 justify-content-start"
                 style={{
                   background: "#ffffff",
