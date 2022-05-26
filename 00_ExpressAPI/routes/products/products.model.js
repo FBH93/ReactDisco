@@ -1,5 +1,5 @@
-import * as fs from 'fs/promises'
-const PRODUCTS_DB = './data/products.json'
+import * as fs from "fs/promises"
+const PRODUCTS_DB = "./data/products.json"
 
 // RETURN ALL PRODUCTS FROM DB
 export async function getAll() {
@@ -8,7 +8,7 @@ export async function getAll() {
     let products = JSON.parse(productsRaw)
     return products
   } catch (err) {
-    if (err.code === 'ENOENT') {
+    if (err.code === "ENOENT") {
       // DATA NOT FOUND
       await save([]) // CREATE EMPTY DATA ARRAY
       return [] // RETURN EMPTY DATA ARRAY
@@ -45,12 +45,12 @@ export async function getByQuery(style, type, featured, price) {
   }
   //check if filter is for price
   if (price) {
-    if (price == 'premium') {
+    if (price == "premium") {
       filteredArray = productArray.filter(
         (product) => parseInt(product.productPrice) > 600
       )
     }
-    if (price == 'discount') {
+    if (price == "discount") {
       filteredArray = productArray.filter(
         (product) => parseInt(product.productPrice) < 300
       )
@@ -72,7 +72,6 @@ export async function getByQuery(style, type, featured, price) {
   }
   //Check if any products are returned. Error if none.
   if (filteredArray.length <= 0) {
-    console.log('no products returned')
     throw new Error(`There are no products with this filter!`)
   }
   return filteredArray
