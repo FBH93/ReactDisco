@@ -40,6 +40,7 @@ export const Account = () => {
     localStorage.setItem("isLoggedIn", "false")
     localStorage.removeItem("customerID")
     setLogin(false)
+    window.location.reload()
   }
 
   return (
