@@ -156,3 +156,4 @@ sketch
 
 01_ReactFrontend/node_modules/.cache/default-development/*.pack
 00_ExpressAPI/data/basket.json
+00_ExpressAPI/data/customer.json
