@@ -6,7 +6,7 @@ import { Login } from "../Organisms/LoginModal"
 import { Register } from "../Organisms/RegisterModal"
 import { useState } from "react"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome" //used for icons in navbar
 import { library } from "@fortawesome/fontawesome-svg-core"
 import {
   faRightToBracket,

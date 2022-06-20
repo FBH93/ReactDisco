@@ -18,18 +18,18 @@ export default function BasketCall(cID: string) {
 
   return basketArray
 }
-
+// this probably shouldn't be here. 
 function getAPI(cID: string) {
   console.log("calling with id: " + cID)
   return "http://localhost:3000/basket/" + cID
 }
-
+//returns a basket based on the corresponding userID (id)
 export async function getSingleBasket(id: any): Promise<BasketProduct[]> {
   return fetch("http://localhost:3000/basket/" + id)
     .then((response) => response.json())
     .then((basket) => basket.products)
 }
-
+//removes the corresponding item from the corresponding user basket. 
 export async function removeProductFromBasket(
   userID: string,
   pID: number,
@@ -47,7 +47,7 @@ export async function removeProductFromBasket(
     }
   )
 }
-
+//creates a new basket with the corresponding customerID (userID)
 export async function createUserBasket(userID: string) {
   return fetch("http://localhost:3000/basket/" + userID, {
     method: "POST",

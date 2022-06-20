@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 
-library.add(faTrash)
+library.add(faTrash)  
 
 export interface BasketProduct {
   productID: number
@@ -26,38 +26,38 @@ export interface BasketInterface {
   customerID: string
   products: BasketProduct[]
 }
-
+//used to read every basket item when user is not logged in, and puts the items in the database basket with the corresponding customerID.
 export async function exportFromLocal(cID: string, cart: BasketProduct[]) {
   let has_localProducts: Boolean = false
-  for (let i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i)!.substring(0, 7) == "product") {
-      has_localProducts = true
-      localStorage.removeItem(localStorage.key(i)!)
+  for (let i = 0; i < localStorage.length; i++) { //read everything in localStorage
+    if (localStorage.key(i)!.substring(0, 7) == "product") { //if it is a product
+      has_localProducts = true //notify that something is found. 
+      localStorage.removeItem(localStorage.key(i)!) //remove the product from localStorage. the "!" is a non-null assertion. Promises this is not null
     }
   }
-  if (cart && has_localProducts == true)
+  if (cart && has_localProducts == true) //if there is a cart and we've some localProducts. See line 34. 
     for (let i = 0; i < cart?.length; i++) {
       try {
-        await putProductToBasket(cID, cart[i].productID, cart[i].size)
+        await putProductToBasket(cID, cart[i].productID, cart[i].size) //Puts all the products found in the cart into the database basket associated with the customerID (cID). 
       } catch (error) {
         console.log(error)
       }
     }
 }
-
+//returns a cart in the BasketProduct[] format which can read the productIDs from localStorage and gets the relevant info from the database. 
 export async function localStorageCart(): Promise<BasketProduct[]> {
-  let newCart: BasketProduct[] = []
+  let newCart: BasketProduct[] = [] //the container which gets products appended. 
   let foundSomething: boolean = false
 
-  for (let i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i)?.substring(0, 7) == "product") {
-      foundSomething = true
-      let pID = localStorage.key(i)?.substring(7)
-      let singleProduct = await getSingleProduct(pID)
-      let localSize: string = localStorage
+  for (let i = 0; i < localStorage.length; i++) { //goes through localStorage 
+    if (localStorage.key(i)?.substring(0, 7) == "product") { //if it is a product
+      foundSomething = true //a product is found in localStorage
+      let pID = localStorage.key(i)?.substring(7) //get the productID.
+      let singleProduct = await getSingleProduct(pID) //get the information from the Product.
+      let localSize: string = localStorage //returns product size. 
         .getItem("product" + pID)
         ?.split(", ")[1]!
-      let productForBasket: BasketProduct = {
+      let productForBasket: BasketProduct = { //inputs all the relevant method from the product interface into the BasketProduct interface. 
         productID: singleProduct.productID,
         productName: singleProduct.productName,
         productPrice: singleProduct.productPrice,
@@ -65,19 +65,19 @@ export async function localStorageCart(): Promise<BasketProduct[]> {
         type: singleProduct.type,
         size: localSize,
       }
-      newCart.push(productForBasket)
+      newCart.push(productForBasket) //pushes the newly created productForBasket into our newCart
     }
   }
-  if (foundSomething) {
-    return newCart
-  } else {
-    let emptyCart: BasketProduct[] = []
+  if (foundSomething) { //only happens if we actually found anything. 
+    return newCart 
+  } else { //if we didn't found any products in localStorage, then we just return a empty basket. 
+    let emptyCart: BasketProduct[] = [] 
     return emptyCart
   }
 }
 
 export const Basket = () => {
-  let cID = localStorage.getItem("customerID")
+  let cID = localStorage.getItem("customerID") //if the user is logged in, there is a customerID (cID)
 
   //see TODO at localStorageCart()
   const [cart, setCart] = useState<BasketProduct[] | null>([])
@@ -97,20 +97,21 @@ export const Basket = () => {
     const getHeading = async () => {
       let message = <></>
       if (cart)
-        if (cart?.length > 0) {
+        if (cart?.length > 0) { //if there are items in the basket. 
           if (cID) {
-            message = await basketHeading()
+            message = await basketHeading() //if the user is logged in, it returns a customized messsage with the user's name. 
           } else {
-            message = <div>Let's see what's in your basket. </div>
+            message = <div>Let's see what's in your basket. </div> //if not logged in, a static message is shown.
           }
         } else {
-          if (cID) {
-            message = await basketHeading()
+          if (cID) { 
+            message = await basketHeading() //returns a customized message, with the user's name. 
           } else {
             message = (
               <div>
                 Your basket is empty.{" "}
-                <a href="/">
+                {/* this href navigates the user back the frontpage. */}
+                <a href="/"> 
                   <div className="row text-center">
                     <div className="col">
                       <a href="/">
@@ -133,7 +134,8 @@ export const Basket = () => {
     getHeading()
   }, [cart])
 
-  async function removeFromLocalCart(pID: number): Promise<BasketProduct[]> {
+  //Removes items from localstorage. I don't think this have to be async. Doesn't give any exceptions, it is just verbose. 
+  async function removeFromLocalCart(pID: number): Promise<BasketProduct[]> { 
     let foundItem: string = ""
     for (let i = 0; i < localStorage.length; i++) {
       if (localStorage.key(i)?.substring(7) == pID.toString()) {
@@ -143,7 +145,7 @@ export const Basket = () => {
     localStorage.removeItem(foundItem)
     return localStorageCart()
   }
-
+//removes from the database cart based on which user is logged in. 
   async function removeFromCart(
     cID: string,
     pID: number,
@@ -152,21 +154,22 @@ export const Basket = () => {
     await removeProductFromBasket(cID, pID, size)
     return await getSingleBasket(cID)
   }
-
+//creates the customized heading if the user is logged in. 
   async function basketHeading() {
     let message = <></>
     if (cID) {
-      let user: UserInterface = await getUserDataById(cID)
-      let firstName: string = user.firstName
+      let user: UserInterface = await getUserDataById(cID) //gets info about the user. 
+      let firstName: string = user.firstName //takes the first name from the user. 
       if (cart)
         if (cart.length > 0) {
           message = (
-            <div>Hello {firstName}. Let's see what's in your basket. </div>
+            <div>Hello {firstName}. Let's see what's in your basket. </div> //creates JSX with the username. 
           )
         } else {
           message = (
             <div>
               Your basket is empty, {firstName}.{" "}
+              {/* this href navigates you back to the frontpage */}
               <a href="/">
                 <div className="row text-center">
                   <div className="col">
@@ -187,21 +190,21 @@ export const Basket = () => {
     }
     return message
   }
-
+//function for calculating the total price based on what is in your cart
   function getTotalPrice(): number {
     let total = 0
     {
-      cart?.map((item) => {
+      cart?.map((item) => { //maps over your cart, and gets the number for each item. Adds them to the "total" variable. 
         total += item.productPrice
       })
     }
     return total
   }
-
-  const getImgPathById = (id: number) => {
+  //takes a productID as a number and uses it for creating a string that is used for creating a path to an image. 
+  const getImgPathById = (id: number) => { 
     return "assets/img/products/" + id + ".jpg"
   }
-
+//this part of the jsx creates the surroundings of the basket
   return (
     <div
       className="pb-5 min-vh-100"
@@ -228,7 +231,7 @@ export const Basket = () => {
         </div>
       </div>
       <div className="container" id="discoCartContent">
-        {/* insert products here */}
+        {/* maps over the cart. Uses the properties of the cart, such as productID etc, for creating the basket. These are e.g. used a arguments in other functions or consts */}
         <div>
           {cart?.map(({ productID, size, productName, productPrice }, i) => {
             return (
@@ -244,6 +247,7 @@ export const Basket = () => {
               >
                 <div className="col d-flex d-md-flex d-xxl-flex justify-content-center align-items-center justify-content-md-center justify-content-xxl-center align-items-xxl-center">
                   <a href={"/products/" + productID}>
+                    {/* calls a function described further up. */}
                     <img src={getImgPathById(productID)} width="90x" />{" "}
                   </a>
                 </div>
@@ -267,6 +271,7 @@ export const Basket = () => {
                   className="col d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center"
                   style={{ padding: "25px" }}
                 >
+                  {/* Here a new cart is created, where the specified product is removed. Each of the functions below returns a new and filtered cart */}
                   <button
                     onClick={async () => {
                       const updatedCart = cID
@@ -307,6 +312,7 @@ export const Basket = () => {
             style={{ padding: "25px" }}
           >
             <p className="fs-5 fw-bold" style={{ marginTop: "12px" }}>
+              {/* function described further up.  */}
               Sub-Total: {getTotalPrice()} DKK
             </p>
           </div>
