@@ -19,6 +19,7 @@ export const Account = () => {
   const email = localStorage.getItem("email")
   const address = localStorage.getItem("address")
 
+  //handels logout of users 
   function handleLogOut() {
     setModal(false)
     localStorage.setItem("isLoggedIn", "false")
@@ -31,6 +32,7 @@ export const Account = () => {
     window.location.reload()
   }
 
+  //creates the user modal that displays user information 
   return (
     <Modal
       size="lg"

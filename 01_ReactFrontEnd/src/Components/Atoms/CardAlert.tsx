@@ -2,6 +2,7 @@ import { Alert, Modal } from "react-bootstrap"
 import { useAtom } from "jotai"
 import { cardAlertAtom } from "../store"
 
+//Displays the successfull message for adding an item into the shopping basket
 export const CardAlert = () => {
   const [show, setShow] = useAtom(cardAlertAtom)
 

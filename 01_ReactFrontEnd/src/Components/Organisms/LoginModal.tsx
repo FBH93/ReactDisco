@@ -30,6 +30,7 @@ export const Login = () => {
   const [, setSignUp] = useAtom(signUpAtom)
   const [showAlert, setShow] = useState(false)
 
+  //logs in user given they are registered 
   const login = async () => {
     let data = await getUserData(inputEmail)
     const password = data.password
@@ -47,11 +48,11 @@ export const Login = () => {
       window.location.reload()
     }
   }
-
+  //prevents default submit behavior of login form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
-
+  //toggle modal content between login and register 
   function toggleToSignUp() {
     setModal(false)
     setSignUp(true)
