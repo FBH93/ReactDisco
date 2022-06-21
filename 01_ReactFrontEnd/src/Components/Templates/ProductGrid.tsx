@@ -12,10 +12,12 @@ export type Filter = {
   filter2: string
 }
 
+//Renders a single productgrid based on a filter.
 function ProductGrid(filter: Filter, props) {
   const [products, setProducts] = useState<ProductInterface[]>([])
   const [selectedSize, setproductize] = useAtom(sizeAtom)
 
+  //Gets the API call to retrieve products from data, based on the filter given in component.
   const API = getAPI(filter)
   console.log(API)
 
@@ -31,6 +33,7 @@ function ProductGrid(filter: Filter, props) {
     fetchProducts()
   }, [API])
 
+  //Checks if the filter returns any products. If it does, display HTML code for each product as a "Card"-component.
   if (products) {
     return (
       <div className="container discoGrid justify-content-center d-flex flex-wrap my-5">

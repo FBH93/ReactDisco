@@ -7,6 +7,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Product from "./Components/Templates/Product"
 import { Home } from "./Components/Templates/Home"
 
+//App renders all content on the website.
+//The router determines what components are shown, based on the path chosen.
+
 class App extends React.Component {
   render() {
     return (

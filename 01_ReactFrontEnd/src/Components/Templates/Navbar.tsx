@@ -14,6 +14,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons"
 
+//What does this do???
 library.add(faRightToBracket, faShoppingBasket, faUser)
 
 export function NavigationBar() {
@@ -24,6 +25,8 @@ export function NavigationBar() {
     setLogin(localStorage.getItem("isLoggedIn")!)
   }
 
+  //Displays the navbar at the top of the website. This navbar consists of react-bootstrap components.
+  //The href changes the routes, that the react router uses to display productGrids.
   return (
     <div onLoad={getLogin}>
       <Navbar

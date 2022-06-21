@@ -2,6 +2,7 @@ import { Headline } from "../Atoms/Headline"
 import ProductGrid from "../Templates/ProductGrid"
 import Carousel from "../Organisms/Carousel"
 
+//Displays the home-page component.
 export const Home = () => {
   return (
     <>

@@ -1,6 +1,7 @@
 import { Carousel } from "react-bootstrap"
 import Headline from "../Atoms/Headline"
 
+//Displays the sliding hero image on the front page.
 export default function Caroussel() {
   return (
     <Carousel className="discoCarousel">

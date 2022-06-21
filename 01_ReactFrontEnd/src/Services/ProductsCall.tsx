@@ -1,5 +1,6 @@
 import { Filter } from "../Components/Templates/ProductGrid"
 import type { ProductInterface } from "../Components/Templates/Product"
+
 //get products from API
 export function getAPI(filter: Filter) {
   //Return all products if no filter
@@ -21,6 +22,7 @@ export function getAPI(filter: Filter) {
   }
 }
 
+//Gets a product with a specific productID
 export async function getSingleProduct(id: any): Promise<ProductInterface> {
   return fetch("http://localhost:3000/products/" + id).then((response) =>
     response.json()
