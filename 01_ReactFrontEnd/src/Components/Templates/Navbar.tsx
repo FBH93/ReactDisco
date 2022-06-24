@@ -14,7 +14,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons"
 
-//What does this do???
+//Adds the icons from font-Awesome to the local library, so we can use them later.
 library.add(faRightToBracket, faShoppingBasket, faUser)
 
 export function NavigationBar() {
